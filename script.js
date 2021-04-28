@@ -1,8 +1,26 @@
 chrome.storage.sync.get({ changeIcon: true }, results => {
 	change = results.changeIcon;
 });
+var oldHref = document.location.href;
 
 window.onload = function() {
+	main();
+	var bodyList = document.querySelector("body");
+	observer = new MutationObserver(function(mutations) {
+		mutations.forEach(function(mutation) {
+			if (oldHref != document.location.href) {
+				oldHref = document.location.href;
+				main();
+			}
+		});
+	});
+
+	var config = {childList: true, subtree: true};
+
+	observer.observe(bodyList, config);
+}
+
+function main(){
 	array = document.getElementsByTagName('video');
 	if (array.length > 0){
 		button = document.getElementsByClassName('ytp-pip-button')[0];

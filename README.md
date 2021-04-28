@@ -7,7 +7,7 @@ Version: <code>1.2</code>
 
 <img src="image.png"></img>
 
-
+</br></br>
 
 ### List of changes:
 ## 1.0:

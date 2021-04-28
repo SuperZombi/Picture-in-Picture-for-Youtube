@@ -7,6 +7,8 @@ Version: <code>1.2</code>
 
 <img src="image.png"></img>
 
+
+
 ### List of changes:
 ## 1.0:
 The "Picture in Picture" button is now displayed.

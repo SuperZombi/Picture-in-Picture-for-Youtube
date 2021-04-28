@@ -9,7 +9,7 @@ Version: <code>1.2</code>
 
 </br></br>
 
-### List of changes:
+## List of changes:
 ## 1.0:
 The "Picture in Picture" button is now displayed.
 

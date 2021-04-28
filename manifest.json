@@ -22,5 +22,6 @@
    "options_ui": {
       "open_in_tab": false,
       "page": "options.html"
-   }
+   },
+   "minimum_chrome_version": "71.0.3578.80"
 }

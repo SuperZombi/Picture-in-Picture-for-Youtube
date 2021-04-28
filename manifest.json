@@ -1,0 +1,26 @@
+{
+   "manifest_version": 2,
+   "version": "1.0",
+   "name": "Picture-in-Picture for Youtube",
+   "description": "Add Picture-in-Picture button active",
+   "content_scripts": [{
+      "matches": ["https://www.youtube.com/*"],
+      "js": ["script.js"],
+      "run_at": "document_end"
+   }],
+   "browser_action": {
+      "default_popup": "options.html",
+      "default_icon": {
+         "19": "images/icon-19.png",
+         "38": "images/icon-38.png"
+      }
+   },
+   "icons": {
+      "128": "images/icon-128.png"
+   },
+   "permissions": [ "storage" ],
+   "options_ui": {
+      "open_in_tab": false,
+      "page": "options.html"
+   }
+}

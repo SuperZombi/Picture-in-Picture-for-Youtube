@@ -3,4 +3,4 @@
 
 Add Picture-in-Picture button active
 
-<img src="image1.png"></img>
+<img src="image-1.png"></img>

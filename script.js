@@ -3,11 +3,38 @@ chrome.storage.sync.get({ changeIcon: true }, results => {
 });
 
 
+function show_hide(){
+	button = document.getElementsByClassName('ytp-pip-button')[0];
+	if (fullscreen){
+		button.style.display = 'none';
+	}
+	else{
+		button.style.display = 'inline-block';
+	}
+}
+
 window.onload = function() {
 	array = document.getElementsByTagName('video');
 	if (array.length > 0){
-		button = document.getElementsByClassName('ytp-pip-button')[0];
-		button.style.display = 'inline-block';
+		fullscreen = false;
+		fullscreenButton = document.getElementsByClassName('ytp-fullscreen-button')[0];
+		fullscreenButton.addEventListener("click", function(){
+			fullscreen = !fullscreen;
+			show_hide();
+		});
+
+		window.addEventListener("keydown", function(){
+			if (event.keyCode == 27){
+				fullscreen = false;
+				show_hide();
+			}
+			if (event.keyCode == 70){
+				fullscreen = !fullscreen;
+				show_hide();
+			}
+		});
+
+		show_hide();
 
 		if (change){
 			svg = button.children[0];

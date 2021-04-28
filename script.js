@@ -1,40 +1,21 @@
 chrome.storage.sync.get({ changeIcon: true }, results => {
-  change = results.changeIcon;
+	change = results.changeIcon;
 });
-
-
-function show_hide(){
-	button = document.getElementsByClassName('ytp-pip-button')[0];
-	if (fullscreen){
-		button.style.display = 'none';
-	}
-	else{
-		button.style.display = 'inline-block';
-	}
-}
 
 window.onload = function() {
 	array = document.getElementsByTagName('video');
 	if (array.length > 0){
-		fullscreen = false;
-		fullscreenButton = document.getElementsByClassName('ytp-fullscreen-button')[0];
-		fullscreenButton.addEventListener("click", function(){
-			fullscreen = !fullscreen;
-			show_hide();
-		});
+		button = document.getElementsByClassName('ytp-pip-button')[0];
+		button.style.display = 'inline-block';
 
-		window.addEventListener("keydown", function(){
-			if (event.keyCode == 27){
-				fullscreen = false;
-				show_hide();
+		document.addEventListener('fullscreenchange', (event) => {
+			if (document.fullscreenElement) {
+				button.style.display = 'none';
 			}
-			if (event.keyCode == 70){
-				fullscreen = !fullscreen;
-				show_hide();
+			else {
+				button.style.display = 'inline-block';
 			}
 		});
-
-		show_hide();
 
 		if (change){
 			svg = button.children[0];

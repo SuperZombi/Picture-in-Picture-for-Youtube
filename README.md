@@ -11,11 +11,11 @@ Version: <code>1.3</code>
 
 ## How to Install:
 1. Code > "Download Zip".
-2. Unpack the ```src``` archive folder to a convenient location.
+2. Unpack the ```src``` folder to a convenient location.
 3. "Additional tools" > "Extensions".
 4. Turn on "Developer Mode".
 5. Press "Load unpacked extension".
-6. Select the ```src``` folder where you unzip the archive.
+6. Select the ```src``` folder.
 
 
 </br></br>

@@ -3,13 +3,18 @@
 
 Add Picture-in-Picture button active
 
-Version: <code>1.2</code>
+Version: <code>1.3</code>
 
 <img src="image.png"></img>
 
 </br></br>
 
 ## List of changes:
+## 1.3:
+The plugin is adapted for the new YouTube interface.
+
+Added animation (enable it in the settings)
+
 ## 1.2:
 Fixed a bug where the button did not appear. (Previously, it was necessary to reload the page)
 

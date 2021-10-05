@@ -21,8 +21,7 @@ Animation 2:</br>
 5. Press "Load unpacked extension".
 6. Select the path to the ```src``` folder.
 
-
-</br></br>
+</br>
 
 ## List of changes:
 ## 1.3:
@@ -44,3 +43,7 @@ Animation 2:</br>
 ## 1.0:
 * The "Picture in Picture" button is now displayed.
 * The button is changed to a custom one.
+
+<hr>
+
+#### <a href="https://www.donationalerts.com/r/super_zombi">Support the project</a>

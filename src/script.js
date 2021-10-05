@@ -70,8 +70,8 @@ function main(){
 			svg.innerHTML = "";
 			
 			svg.setAttribute('version', '1.0');
-			svg.setAttribute('width', '40px');
-			svg.setAttribute('height', '40px');
+			svg.setAttribute('width', '100%');
+			svg.setAttribute('height', '100%');
 			svg.setAttribute('viewBox', "0 0 300.000000 300.000000");
 
 			g = document.createElement('g');

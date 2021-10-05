@@ -9,6 +9,17 @@ Version: <code>1.3</code>
 
 </br></br>
 
+## How to Install:
+1. Code > "Download Zip".
+2. Unpack the ```src``` archive folder to a convenient location.
+3. "Additional tools" > "Extensions".
+4. Turn on "Developer Mode".
+5. Press "Load unpacked extension".
+6. Select the ```src``` folder where you unzip the archive.
+
+
+</br></br>
+
 ## List of changes:
 ## 1.3:
 * The plugin is adapted for the new YouTube interface.

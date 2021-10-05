@@ -15,7 +15,7 @@ Version: <code>1.3</code>
 3. "Additional tools" > "Extensions".
 4. Turn on "Developer Mode".
 5. Press "Load unpacked extension".
-6. Select the ```src``` folder.
+6. Select the path to the ```src``` folder.
 
 
 </br></br>

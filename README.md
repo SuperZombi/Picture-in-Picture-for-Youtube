@@ -7,6 +7,10 @@ Version: <code>1.3</code>
 
 <img src="image.png"></img>
 
+Animation 1:</br>
+![Alt Text](animation1.gif)</br>
+Animation 2:</br>
+![Alt Text](animation2.gif)
 </br></br>
 
 ## How to Install:

@@ -66,6 +66,8 @@ function main(){
 			});
 
 
+			button.style.transform = 'scale(0.9)';
+
 			svg = button.children[0];
 			svg.innerHTML = "";
 			

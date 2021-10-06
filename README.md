@@ -7,11 +7,19 @@ Version: <code>1.4</code>
 
 <img src="image.png"></img>
 
-Animation 1:</br>
-![Alt Text](animation1.gif)</br>
-Animation 2:</br>
-![Alt Text](animation2.gif)
-</br></br>
+## Animations:
+<details>
+  <summary></summary>
+  
+  Animation 1:</br>
+  ![Alt Text](animation1.gif)</br>
+  Animation 2:</br>
+  ![Alt Text](animation2.gif)</br>
+  Animation 3:</br>
+  ![Alt Text](animation3.gif)
+</details>
+
+</br>
 
 ## How to Install:
 1. Code > "Download Zip".
@@ -24,30 +32,31 @@ Animation 2:</br>
 </br>
 
 ## List of changes:
-# 1.4:
+### 1.4:
 * Added new animation.
 * Added hover animation.
 * Dark Theme.
 
-## 1.3:
-* The plugin is adapted for the new YouTube interface.
-* Added animation (enable it in the settings)
+<details>
+  <summary>Other</summary>
+  
+  ### 1.3:
+  * The plugin is adapted for the new YouTube interface.
+  * Added animation (enable it in the settings)
 
-## 1.2:
-* Fixed a bug where the button did not appear. (Previously, it was necessary to reload the page)
+  ### 1.2:
+  * Fixed a bug where the button did not appear. (Previously, it was necessary to reload the page)
 
+  ### 1.1:
+  * The button is hidden in full screen mode.
+  * Changed the icon of the button during the active "Picture in Picture" mode.
+  * Now you can make the choice to change the custom button or not.
 
-
-## 1.1:
-* The button is hidden in full screen mode.
-* Changed the icon of the button during the active "Picture in Picture" mode.
-* Now you can make the choice to change the custom button or not.
-
-
-
-## 1.0:
-* The "Picture in Picture" button is now displayed.
-* The button is changed to a custom one.
+  ### 1.0:
+  * The "Picture in Picture" button is now displayed.
+  * The button is changed to a custom one.
+  
+</details>
 
 <hr>
 

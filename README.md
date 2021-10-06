@@ -3,7 +3,7 @@
 
 Add Picture-in-Picture button active
 
-Version: <code>1.3</code>
+Version: <code>1.4</code>
 
 <img src="image.png"></img>
 
@@ -24,6 +24,11 @@ Animation 2:</br>
 </br>
 
 ## List of changes:
+# 1.4:
+* Added new animation.
+* Added hover animation.
+* Dark Theme.
+
 ## 1.3:
 * The plugin is adapted for the new YouTube interface.
 * Added animation (enable it in the settings)

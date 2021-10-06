@@ -3,7 +3,7 @@
 
 Add Picture-in-Picture button active
 
-Version: <code>1.4</code>
+Version: <code>1.4.1</code>
 
 ❗ Attention! After changing the plugin settings, reload the YouTube page. ❗
 
@@ -45,11 +45,15 @@ Version: <code>1.4</code>
 </br>
 
 ## List of changes:
+
 ### 1.4:
 * Added new animation.
 * Added hover animation.
 * Dark Theme in Settings.
 * Preview animations in Settings.
+
+#### 1.4.1:
+* Stop animation if "Change Pip Icon" is disabled in Settings.
 
 <details>
   <summary>Other</summary>

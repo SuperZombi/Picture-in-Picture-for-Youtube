@@ -5,18 +5,18 @@ Add Picture-in-Picture button active
 
 Version: <code>1.4</code>
 
-<img src="image.png"></img>
+<img src="images/image.png"></img>
 
 ## Animations:
 <details>
   <summary></summary>
   
   Animation 1:</br>
-  ![Alt Text](animation1.gif)</br>
+  ![Alt Text](images/animation1.gif)</br>
   Animation 2:</br>
-  ![Alt Text](animation2.gif)</br>
+  ![Alt Text](images/animation2.gif)</br>
   Animation 3:</br>
-  ![Alt Text](animation3.gif)
+  ![Alt Text](images/animation3.gif)
 </details>
 
 </br>
@@ -35,8 +35,8 @@ Version: <code>1.4</code>
 <details>
   <summary></summary>
   
-  ![Alt Text](img1.png)</br>
-  ![Alt Text](img2.png)
+  ![Alt Text](images/img1.png)</br>
+  ![Alt Text](images/img2.png)
 </details>
 
 </br>

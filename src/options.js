@@ -19,7 +19,7 @@ chrome.storage.sync.get({ changeIcon: true, animation: "default" }, results => {
       else{
         clrDiv.style.backgroundColor = "#E7E7E7";
       }
-      clrDiv.style.filter = "blur(1px)";
+      clrDiv.style.filter = "blur(1px) grayscale(1)";
       clrDiv.style.pointerEvents = "none";
       clrDiv.style.userSelect = "none";
     }

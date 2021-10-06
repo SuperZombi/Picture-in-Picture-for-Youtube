@@ -28,7 +28,21 @@
 			margin-bottom: 5px;
 		}
 		#animation{
+			border-radius: 8px;
 			transition: 0.5s;
+		}
+		#animation img{
+			height: 35px;
+			vertical-align: middle;
+		}
+
+		.dark{
+			background-color: #181818;
+			color: white;
+			fill: white;
+		}
+		.dark #href_text{
+			color: #00C0FF;
 		}
 	</style>
 </head>
@@ -40,7 +54,7 @@
 
     <hr>
     <div id="animation">
-	    <p style="margin-top:0;margin-bottom:10px;">Animation:</p>
+	    <p style="margin-top:0;margin-bottom:10px;text-align:center;">Animation:</p>
 	    <label>
 		  	<input class="cursor" type="radio" value="default" name="animation" checked>
 		    <a class="cursor">No animation</a>
@@ -48,10 +62,17 @@
 	  	<label>
 		  	<input class="cursor" type="radio" value="animation_1" name="animation">
 		    <a class="cursor">Animation 1</a>
+		    <img src="images/A1.gif">
 		  </label>
 		  <label>
 		    <input class="cursor" type="radio" value="animation_2" name="animation">
 		    <a class="cursor">Animation 2</a>
+		    <img src="images/A2.gif">
+	    </label>
+	    <label>
+		    <input class="cursor" type="radio" value="animation_3" name="animation">
+		    <a class="cursor">Animation 3</a>
+		    <img src="images/A3.gif">
 	    </label>
     </div>
 

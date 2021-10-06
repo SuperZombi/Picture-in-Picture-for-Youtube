@@ -19,11 +19,30 @@ chrome.storage.sync.get({ changeIcon: true, animation: "default" }, results => {
       else{
         clrDiv.style.backgroundColor = "#E7E7E7";
       }
+
+      list = document.getElementById("animation").getElementsByTagName("img")
+      intervals = []
+      for (let item of list) {
+          var x = setInterval(function() {
+              item.setAttribute('src',item.src)
+          },1)
+          intervals.push(x)
+      }
+     
       clrDiv.style.filter = "blur(1px) grayscale(1)";
       clrDiv.style.pointerEvents = "none";
       clrDiv.style.userSelect = "none";
     }
     else{
+      try{
+        for (let item of intervals) {
+            clearInterval(item)
+        }        
+      }catch{}
+
+
+
+      
       clrDiv.style.backgroundColor = "";
       clrDiv.style.filter = "";
       clrDiv.style.pointerEvents = "auto";

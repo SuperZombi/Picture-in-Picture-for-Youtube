@@ -45,7 +45,8 @@ Version: <code>1.4</code>
 ### 1.4:
 * Added new animation.
 * Added hover animation.
-* Dark Theme.
+* Dark Theme in Settings.
+* Preview animations in Settings.
 
 <details>
   <summary>Other</summary>

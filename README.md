@@ -53,7 +53,7 @@ Version: <code>1.4.1</code>
 * Preview animations in Settings.
 
 #### 1.4.1:
-* Stop animation if "Change Pip Icon" is disabled in Settings.
+* Added stopping animation of "Change Pip Icon" is disabled in Settings.
 
 <details>
   <summary>Other</summary>

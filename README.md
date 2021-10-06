@@ -31,6 +31,16 @@ Version: <code>1.4</code>
 
 </br>
 
+## How to open Plugin menu:
+<details>
+  <summary></summary>
+  
+  ![Alt Text](img1.png)</br>
+  ![Alt Text](img2.png)
+</details>
+
+</br>
+
 ## List of changes:
 ### 1.4:
 * Added new animation.

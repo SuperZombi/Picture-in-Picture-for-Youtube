@@ -105,7 +105,7 @@ function main(){
 			
 
 			button.style.transform = 'scale(0.9)';
-			button.style.transition = '0.25s';
+			button.style.transition = '0.2s';
 
 			if (hover_animation){
 				button.onmouseover = function() {

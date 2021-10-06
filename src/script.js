@@ -37,6 +37,7 @@ function main(){
 		});
 
 		if (change){
+			hover_animation = true;
 			if (animation == "animation_1"){
 				document.addEventListener('enterpictureinpicture', () => {
 					document.getElementById('pip_custom_path').style.transform = "translate(2450px, 2100px) rotateY(180deg) rotateX(180deg)"
@@ -53,7 +54,25 @@ function main(){
 					document.getElementById('pip_custom_path').style.transform = ""
 				});
 			}
+			else if (animation == "animation_3"){
+				document.addEventListener('enterpictureinpicture', () => {
+					document.getElementById('pip_custom_path').style.opacity = 0
+					setTimeout(_=>{
+						document.getElementById('pip_custom_path').setAttribute('d', "M1645 1619 c-11 -6 -172 -163 -357 -348 l-338 -336 0 142 c0 137 -1 142 -26 172 -32 38 -80 49 -122 27 -17 -9 -36 -25 -42 -35 -14 -26 -14 -586 0 -612 24 -45 53 -49 333 -49 167 0 276 4 296 11 64 22 80 107 32 161 l-29 33 -148 5 -147 5 244 238 c134 131 290 287 347 347 95 102 102 113 102 151 0 75 -79 123 -145 88z");
+						document.getElementById('pip_custom_path').style.opacity = 1
+					}, 200)
+				});
+				document.addEventListener('leavepictureinpicture', () => {
+					document.getElementById('pip_custom_path').style.opacity = 0
+					setTimeout(_=>{
+						document.getElementById('pip_custom_path').setAttribute('d', "M1348 1825 c-35 -19 -48 -44 -48 -90 0 -46 23 -81 62 -94 17 -6 88 -11 157 -11 l125 0 -342 -343 -342 -343 0 -51 c0 -45 4 -54 31 -77 22 -19 42 -26 72 -26 41 0 44 3 389 347 l348 348 0 -138 c0 -155 9 -186 59 -207 42 -17 95 -5 121 27 19 25 20 39 20 319 l0 293 -24 28 -24 28 -289 2 c-241 2 -292 0 -315 -12z");
+						document.getElementById('pip_custom_path').style.opacity = 1
+					}, 200)
+				});
+			}
 			else{
+				hover_animation = false;
+
 				document.addEventListener('enterpictureinpicture', () => {
 					g = document.getElementById('pip_svg');
 					g.innerHTML = "";
@@ -86,6 +105,16 @@ function main(){
 			
 
 			button.style.transform = 'scale(0.9)';
+			button.style.transition = '0.25s';
+
+			if (hover_animation){
+				button.onmouseover = function() {
+					this.style.transform = "scale(0.95)"
+				}
+				button.onmouseleave = function() {
+					this.style.transform = 'scale(0.9)'
+				}
+			}
 
 			svg = button.children[0];
 			svg.innerHTML = "";

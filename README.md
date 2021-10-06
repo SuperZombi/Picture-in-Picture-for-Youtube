@@ -5,9 +5,9 @@ Add Picture-in-Picture button active
 
 Version: <code>1.4</code>
 
-<img src="images/image.png"></img>
+❗ Attention! After changing the plugin settings, reload the YouTube page.
 
-### ❗ Attention! After changing the plugin settings, reload the YouTube page.
+<img src="images/image.png"></img>
 
 ## Animations:
 <details>

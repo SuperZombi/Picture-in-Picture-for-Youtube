@@ -40,9 +40,6 @@ chrome.storage.sync.get({ changeIcon: true, animation: "default" }, results => {
         }        
       }catch{}
 
-
-
-      
       clrDiv.style.backgroundColor = "";
       clrDiv.style.filter = "";
       clrDiv.style.pointerEvents = "auto";

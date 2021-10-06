@@ -1,10 +1,24 @@
+const darkThemeMq = window.matchMedia("(prefers-color-scheme: dark)");
+if (darkThemeMq.matches) {
+  document.body.className = "dark"
+  theme = "dark"
+}
+else{
+  theme = "light"
+}
+
 chrome.storage.sync.get({ changeIcon: true, animation: "default" }, results => {
   const changeIconCheckbox = document.querySelector('#changeIcon');
   
   function ChangeColor() {
     var clrDiv = document.getElementById("animation")
     if (!changeIconCheckbox.checked){
-      clrDiv.style.backgroundColor = "#E7E7E7";
+      if (theme == "dark"){
+        clrDiv.style.backgroundColor = "#313131";
+      }
+      else{
+        clrDiv.style.backgroundColor = "#E7E7E7";
+      }
       clrDiv.style.filter = "blur(1px)";
       clrDiv.style.pointerEvents = "none";
       clrDiv.style.userSelect = "none";

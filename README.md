@@ -7,6 +7,8 @@ Version: <code>1.4</code>
 
 <img src="images/image.png"></img>
 
+### ❗ Attention! After changing the plugin settings, reload the YouTube page.
+
 ## Animations:
 <details>
   <summary></summary>
@@ -20,6 +22,7 @@ Version: <code>1.4</code>
 </details>
 
 </br>
+
 
 ## How to Install:
 1. Code > "Download Zip".

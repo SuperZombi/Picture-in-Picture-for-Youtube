@@ -1,4 +1,6 @@
 # Picture-in-Picture-for-Youtube
+<img src="https://shields.io/badge/version-v1.4.1-blue">
+
 ### Chrome extension
 
 Add Picture-in-Picture button active

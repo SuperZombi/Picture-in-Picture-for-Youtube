@@ -27,15 +27,21 @@ const target_svg = "M8,7c0,0.55-0.45,1-1,1S6,7.55,6,7c0-0.55,0.45-1,1-1S8,6.45,8
 
 function hide_clip_but(){
 	let timerId = setInterval(() => {
-		if (!hided){
-			arr = document.querySelectorAll('#top-level-buttons-computed > ytd-button-renderer')
-			for (let i = 0; i < arr.length; i++){
-				if (target_svg == arr[i].getElementsByTagName('svg')[0].getElementsByTagName('path')[0].getAttribute('d')){
-					arr[i].remove()
-					hided = true;
-					break
+		if (count > 0){
+			if (!hided){
+				arr = document.querySelectorAll('#top-level-buttons-computed > ytd-button-renderer')
+				for (let i = 0; i < arr.length; i++){
+					if (target_svg == arr[i].getElementsByTagName('svg')[0].getElementsByTagName('path')[0].getAttribute('d')){
+						arr[i].remove()
+						hided = true;
+						break
+					}
 				}
 			}
+			else{
+				clearInterval(timerId)
+			}
+			count--;
 		}
 		else{
 			clearInterval(timerId)
@@ -56,6 +62,7 @@ function main(){
 	if (array.length > 0){
 		if (hideClip){
 			if (youtube_parser(window.location.href)){
+				count = 10;
 				hided = false;
 				hide_clip_but()
 			}

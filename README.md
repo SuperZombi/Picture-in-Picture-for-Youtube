@@ -39,6 +39,7 @@ Version: <code>1.5</code>
 ## How to open Plugin menu:
 <details>
   <summary></summary>
+  
   ❗ Don't forget to click the `Save` button. ❗
   
   ![Alt Text](images/img1.png)</br>
@@ -57,7 +58,7 @@ Version: <code>1.5</code>
   <summary>Other</summary>
   
   #### 1.4.1:
-  * Added animation pause in settings, when <code>Change Pip Icon</code> is disabled.
+  * Added animation pause in settings, when `Change Pip Icon` is disabled.
   
   ### 1.4:
   * Added new animation.

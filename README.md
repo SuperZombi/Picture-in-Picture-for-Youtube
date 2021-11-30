@@ -49,7 +49,7 @@ Version: <code>1.5</code>
 ## List of changes:
 
 ### 1.5:
-* Added a function to hide the <a href="images/clip-youtube.png">"Create Clip"</a> button.
+* <details><summary>Added a function to hide the "Create Clip" button.</summary><img src="images/clip-youtube.png"></details>
 
 
 <details>

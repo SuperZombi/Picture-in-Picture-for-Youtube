@@ -7,8 +7,9 @@ else{
   theme = "light"
 }
 
-chrome.storage.sync.get({ changeIcon: true, animation: "default" }, results => {
+chrome.storage.sync.get({ changeIcon: true, animation: "default", hideClips: false }, results => {
   const changeIconCheckbox = document.querySelector('#changeIcon');
+  const hideClipCheckbox = document.querySelector('#hideClips');
   
   function ChangeColor() {
     var clrDiv = document.getElementById("animation")
@@ -53,11 +54,14 @@ chrome.storage.sync.get({ changeIcon: true, animation: "default" }, results => {
 
   document.querySelector(`input[value="${results.animation}"]`).checked = "checked"
 
+  hideClipCheckbox.checked = results.hideClips;
+
 
   document.getElementById("save").onclick = _ => {
     chrome.storage.sync.set({
       changeIcon: changeIconCheckbox.checked,
-      animation: document.querySelector('input[name="animation"]:checked').value
+      animation: document.querySelector('input[name="animation"]:checked').value,
+      hideClips: hideClipCheckbox.checked
     }, _ => {
       // Reload extension to make opt-out change immediate. 
       chrome.runtime.reload();

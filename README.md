@@ -1,11 +1,11 @@
 # Picture-in-Picture-for-Youtube
-<img src="https://shields.io/badge/version-v1.4.1-blue">
+<img src="https://shields.io/badge/version-v1.5-blue">
 
 ### Chrome extension
 
 Add Picture-in-Picture button active
 
-Version: <code>1.4.1</code>
+Version: <code>1.5</code>
 
 ❗ Attention! After changing the plugin settings, reload the YouTube page. ❗
 
@@ -48,17 +48,22 @@ Version: <code>1.4.1</code>
 
 ## List of changes:
 
-### 1.4:
-* Added new animation.
-* Added hover animation.
-* Dark Theme in Settings.
-* Preview animations in Settings.
+### 1.5:
+* Added a function to hide the "Create Clip" button.
 
-#### 1.4.1:
-* Added animation pause in settings, when "Change Pip Icon" is disabled.
+
 
 <details>
   <summary>Other</summary>
+  
+  #### 1.4.1:
+  * Added animation pause in settings, when "Change Pip Icon" is disabled.
+  
+  ### 1.4:
+  * Added new animation.
+  * Added hover animation.
+  * Dark Theme in Settings.
+  * Preview animations in Settings.
   
   ### 1.3:
   * The plugin is adapted for the new YouTube interface.

@@ -39,6 +39,7 @@ Version: <code>1.5</code>
 ## How to open Plugin menu:
 <details>
   <summary></summary>
+  ❗ Don't forget to click the `Save` button. ❗
   
   ![Alt Text](images/img1.png)</br>
   ![Alt Text](images/img2.png)
@@ -49,14 +50,14 @@ Version: <code>1.5</code>
 ## List of changes:
 
 ### 1.5:
-* <details><summary>Added a function to hide the "Create Clip" button.</summary><img src="images/clip-youtube.png"></details>
+* <details><summary>Added a function to hide the <code>Create Clip</code> button.</summary><img src="images/clip-youtube.png"></details>
 
 
 <details>
   <summary>Other</summary>
   
   #### 1.4.1:
-  * Added animation pause in settings, when "Change Pip Icon" is disabled.
+  * Added animation pause in settings, when <code>Change Pip Icon</code> is disabled.
   
   ### 1.4:
   * Added new animation.

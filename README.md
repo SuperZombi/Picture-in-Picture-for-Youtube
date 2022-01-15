@@ -1,11 +1,9 @@
 # Picture-in-Picture-for-Youtube
-<img src="https://shields.io/badge/version-v1.5-blue">
+<img src="https://shields.io/badge/version-v1.5.1-blue">
 
 ### Chrome extension
 
 Add Picture-in-Picture button active
-
-Version: <code>1.5</code>
 
 ❗ Attention! After changing the plugin settings, reload the YouTube page. ❗
 
@@ -23,8 +21,6 @@ Version: <code>1.5</code>
   ![Alt Text](images/animation3.gif)
 </details>
 
-</br>
-
 
 ## How to Install:
 1. Code > "Download Zip".
@@ -34,7 +30,6 @@ Version: <code>1.5</code>
 5. Press "Load unpacked extension".
 6. Select the path to the ```src``` folder.
 
-</br>
 
 ## How to open Plugin menu:
 <details>
@@ -46,13 +41,14 @@ Version: <code>1.5</code>
   ![Alt Text](images/img2.png)
 </details>
 
-</br>
 
 ## List of changes:
 
+#### 1.5.1:
+* Hiding the Clips button is now more stable because it has been tied to the Share button.
+
 ### 1.5:
 * <details><summary>Added a function to hide the <code>Create Clip</code> button.</summary><img src="images/clip-youtube.png"></details>
-
 
 <details>
   <summary>Other</summary>

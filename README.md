@@ -45,7 +45,7 @@ Add Picture-in-Picture button active
 ## List of changes:
 
 #### 1.5.1:
-* Hiding the Clips button is now more stable because it has been tied to the Share button.
+* Hiding the Clips button is now more stable.
 
 ### 1.5:
 * <details><summary>Added a function to hide the <code>Create Clip</code> button.</summary><img src="images/clip-youtube.png"></details>

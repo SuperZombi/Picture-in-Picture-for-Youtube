@@ -33,10 +33,10 @@ function hide_clip_but(){
 			for (let i = 0; i < arr.length; i++){
 				if (target_svg == arr[i].getElementsByTagName('svg')[0].getElementsByTagName('path')[0].getAttribute('d')){
 					arr[i].remove()
-					clearInterval(timerId)
 					break
 				}
 			}
+			clearInterval(timerId)
 		}
 	}, 250);
 }

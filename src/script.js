@@ -28,7 +28,7 @@ const target_svg = "M8,7c0,0.55-0.45,1-1,1S6,7.55,6,7c0-0.55,0.45-1,1-1S8,6.45,8
 function hide_clip_but(){
 	let timerId = setInterval(() => {
 		var menu = document.getElementById("menu-container")
-		if (menu?.offsetParent != null){
+		if (menu?.offsetParent){
 			var arr = document.querySelectorAll('#top-level-buttons-computed > ytd-button-renderer')
 			for (let i = 0; i < arr.length; i++){
 				if (target_svg == arr[i].getElementsByTagName('svg')[0].getElementsByTagName('path')[0].getAttribute('d')){

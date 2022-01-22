@@ -1,15 +1,16 @@
 {
    "manifest_version": 2,
-   "version": "1.5.1",
-   "name": "Picture-in-Picture for Youtube",
-   "description": "Add Picture-in-Picture button active",
+   "version": "1.6",
+   "name": "__MSG_extName__",
+   "description": "__MSG_extDesc__",
+   "default_locale": "en",
    "content_scripts": [{
       "matches": ["https://www.youtube.com/*"],
       "js": ["script.js"],
       "run_at": "document_end"
    }],
    "browser_action": {
-      "default_popup": "options.html",
+      "default_popup": "menu/options.html",
       "default_icon": {
          "19": "images/icon-19.png",
          "38": "images/icon-38.png"
@@ -21,7 +22,7 @@
    "permissions": [ "storage" ],
    "options_ui": {
       "open_in_tab": false,
-      "page": "options.html"
+      "page": "menu/options.html"
    },
    "homepage_url": "https://github.com/SuperZombi/Picture-in-Picture-for-Youtube",
    "minimum_chrome_version": "71.0.3578.80"

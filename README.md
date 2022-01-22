@@ -1,5 +1,5 @@
 # Picture-in-Picture-for-Youtube
-<img src="https://shields.io/badge/version-v1.5.1-blue">
+<img src="https://shields.io/badge/version-v1.6-blue">
 
 ### Chrome extension
 
@@ -44,14 +44,17 @@ Add Picture-in-Picture button active
 
 ## List of changes:
 
-#### 1.5.1:
-* Hiding the Clips button is now more stable.
-
-### 1.5:
-* <details><summary>Added a function to hide the <code>Create Clip</code> button.</summary><img src="images/clip-youtube.png"></details>
+### 1.6:
+  * Russian localization.
 
 <details>
   <summary>Other</summary>
+  
+  #### 1.5.1:
+  * Hiding the Clips button is now more stable.
+
+  ### 1.5:
+  * <details><summary>Added a function to hide the <code>Create Clip</code> button.</summary><img src="images/clip-youtube.png"></details>
   
   #### 1.4.1:
   * Added animation pause in settings, when `Change Pip Icon` is disabled.

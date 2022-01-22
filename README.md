@@ -25,6 +25,9 @@ Add Picture-in-Picture button active
 ## How to Install:
 1. Code > "Download Zip".
 2. Unpack the ```src``` folder to a convenient location.
+
+   <a href="https://github.com/SuperZombi/Picture-in-Picture-for-Youtube/releases">Or just download from here</a>
+
 3. "Additional tools" > "Extensions".
 4. Turn on "Developer Mode".
 5. Press "Load unpacked extension".

@@ -1,5 +1,5 @@
 # Picture-in-Picture-for-Youtube
-<img src="https://shields.io/badge/version-v1.6-blue">
+<img src="https://shields.io/badge/version-v1.6.1-blue">
 
 ### Chrome extension
 
@@ -46,6 +46,9 @@ Add Picture-in-Picture button active
 
 
 ## List of changes:
+
+#### 1.6.1:
+  * Bug fix.
 
 ### 1.6:
   * Russian localization.

@@ -1,5 +1,5 @@
 # Picture-in-Picture-for-Youtube
-<img src="https://shields.io/badge/version-v2.0-blue">
+<img src="https://shields.io/badge/version-v2.0.1-blue">
 
 ### Chrome extension
 
@@ -47,17 +47,21 @@ Add Picture-in-Picture button active
 
 ## List of changes:
 
+#### 2.0.1:
+  * Ukranian localization.
+
 ### 2.0:
   * Extension moved to manifest version 3.
 
-#### 1.6.1:
-  * Bug fix.
-
-### 1.6:
-  * Russian localization.
-
+<br/>
 <details>
   <summary>Other</summary>
+  
+  #### 1.6.1:
+  * Bug fix.
+
+  ### 1.6:
+  * Russian localization.
   
   #### 1.5.1:
   * Hiding the Clips button is now more stable.

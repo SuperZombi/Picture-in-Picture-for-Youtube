@@ -1,0 +1,29 @@
+{
+   "extName": {
+      "message": "Картинка в картинці для Youtube"
+   },
+   "extDesc": {
+      "message": "Активує кнопку «Картинка в картинці». Прибирає кнопку «Кліпи»."
+   },
+   "changePip": {
+      "message": "Змінити іконку PiP"
+   },
+   "changePipDesc": {
+      "message": "Змінити значок «картинка в картинці»"
+   },
+   "animation": {
+      "message": "Анімація"
+   },
+   "noAnimation": {
+      "message": "Без анімації"
+   },
+   "otherSet": {
+      "message": "Інші налаштування"
+   },
+   "hideClips": {
+      "message": "Сховати кнопку «Кліпи»"
+   },
+   "saveBut": {
+      "message": "Зберегти"
+   }
+}

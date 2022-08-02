@@ -24,19 +24,16 @@ Add Picture-in-Picture button active
 
 ## How to Install:
 ### Chrome:
-  1. Code > "Download Zip".
+  1. Download latest **[Release](https://github.com/SuperZombi/Picture-in-Picture-for-Youtube/releases)**.
   2. Unpack the ```src``` folder to a convenient location.
-
-     <a href="https://github.com/SuperZombi/Picture-in-Picture-for-Youtube/releases">Or just download from here</a>
-
-  3. "Additional tools" > "Extensions".
+  3. Chrome > "Additional tools" > "Extensions".
   4. Turn on "Developer Mode".
   5. Press "Load unpacked extension".
   6. Select the path to the ```src``` folder.
 
 ### Tampermonkey:
-1. Install **[Tampermonkey](https://www.tampermonkey.net/)**
-2. Install **[Script](https://raw.githubusercontent.com/SuperZombi/Picture-in-Picture-for-Youtube/main/pip.user.js)**
+1. Install **[Tampermonkey](https://www.tampermonkey.net/)**.
+2. Install **[Script](https://raw.githubusercontent.com/SuperZombi/Picture-in-Picture-for-Youtube/main/pip.user.js)**.
 
 
 ## How to open Plugin menu:

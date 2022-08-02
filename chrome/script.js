@@ -1,5 +1,5 @@
-chrome.storage.sync.get({ changeIcon: true, animation: "default",
-													hideClips: false, hideThanks: false, hideSponsor: false }, results => {
+chrome.storage.sync.get({ changeIcon: true, animation: "default", 
+						  hideClips: false, hideThanks: false, hideSponsor: false }, results => {
 	change = results.changeIcon;
 	animation = results.animation;
 	hideClip = results.hideClips;

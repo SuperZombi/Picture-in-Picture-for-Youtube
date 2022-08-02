@@ -2,11 +2,11 @@ body{
 	font-size: 14pt;
 	white-space: nowrap;
 	padding-top: 5px;
-	padding-right: 25px;
-	padding-left: 25px;
+	padding-right: 20px;
+	padding-left: 20px;
 	text-align: center;
 	user-select: none;
-	min-width: 200px;
+	min-width: 240px;
 }
 .cursor{
 	cursor: pointer;
@@ -63,7 +63,6 @@ body{
 label{
 	display: flex;
 	align-items: center;
-	justify-content: center;
 }
 label input[type="radio"]{
 	margin-top: 1px !important;
@@ -111,4 +110,53 @@ label input{
 }
 .other > label{
 	font-size: 11pt;
+}
+
+.tooltip {
+	position: relative;
+	display: inline-flex;
+	align-items: center;
+	margin-left: 5px;
+}
+.tooltip img{
+	height: 1.2em;
+	cursor: help;
+}
+.tooltip .tooltiptext {
+	visibility: hidden;
+	min-width: 100px;
+	max-width: 95vw;
+	background-color: rgba(0,0,0, 0.8);
+	color: #fff;
+	text-align: center;
+	padding: 2px 2px;
+	white-space: normal;
+	word-break: break-word;
+	border-radius: 6px;
+	position: absolute;
+	top: 130%;
+	left: 50%;
+	transform: translateX(-50%);
+	z-index: 1;
+	opacity: 0;
+	transition: opacity 0.2s;
+}
+.tooltip .tooltiptext img{
+	display: block;
+	height: 30px;
+	cursor: auto;
+}
+.tooltip .tooltiptext::after {
+	content: "";
+	position: absolute;
+	bottom: 100%;
+	left: 50%;
+	margin-left: -5px;
+	border-width: 5px;
+	border-style: solid;
+	border-color: transparent transparent black transparent;
+}
+.tooltip:hover .tooltiptext {
+	visibility: visible;
+	opacity: 1;
 }

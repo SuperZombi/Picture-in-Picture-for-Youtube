@@ -1,0 +1,166 @@
+body{
+	font-size: 14pt;
+	white-space: nowrap;
+	padding-top: 5px;
+	padding-right: 20px;
+	padding-left: 20px;
+	text-align: center;
+	user-select: none;
+	min-width: 240px;
+}
+.cursor{
+	cursor: pointer;
+}
+#save {
+	display: block;
+	margin-left: auto;
+	margin-right: auto;
+	margin-top: 15px;
+	border: 5em;
+	cursor: pointer;
+	outline: none;
+	font-size: 18px;
+	transform: translate(0);
+	background-image: linear-gradient(45deg, #4568dc, #b06ab3);
+	padding: 0.7em 2em;
+	border-radius: 65px;
+	box-shadow: 1px 1px 10px rgba(0, 0, 0, 0.5);
+	transition: box-shadow 0.25s, font-size 0.3s ease-out;
+	color: black;
+}
+#save:after {
+	content: "";
+	border-radius: 18px;
+	position: absolute;
+	margin: 4px;
+	top: 0;
+	left: 0;
+	bottom: 0;
+	right: 0;
+	z-index: -1;
+	background: white;
+}
+#save:hover {
+	background-image: linear-gradient(-45deg, #4568dc, #b06ab3);
+	box-shadow: 0 12px 24px rgba(128, 128, 128, 0.1) !important;
+}
+#href_text{
+	color: blue;
+	cursor: alias;
+	vertical-align: top;
+	font-size: 13pt;
+	display:flex;
+}
+#href_text svg{
+	transform: scale(0.95);
+	margin-right: 6px;
+}
+.other-links{
+	display: flex;
+	justify-content: space-between;
+	align-items: center;
+}
+label{
+	display: flex;
+	align-items: center;
+}
+label input[type="radio"]{
+	margin-top: 1px !important;
+}
+label input{
+	transform: scale(0.8);
+	margin-right: 5px !important;
+}
+#animation{
+	border-radius: 8px;
+	transition: 0.5s;
+	text-align: left;
+	margin: auto;
+	display: inline-block;
+}
+#animation img{
+	height: 35px;
+	margin-left: 5px;
+	margin-top: 3px;
+}
+
+.dark{
+	background-color: #181818;
+	color: white;
+}
+.dark svg{
+	fill: white;
+}
+.dark #href_text{
+	color: #00C0FF;
+}
+.dark #save{
+	box-shadow: 1px 1px 10px rgba(255, 255, 255, 0.5);
+	color: white;
+}
+.dark #save:after {
+	background: #181818;
+}
+
+.other{
+	font-size: 12pt;
+}
+.other[open] summary{
+	margin-bottom: 10px;
+}
+.other input{
+	transform: scale(0.7);
+}
+.other > label{
+	font-size: 11pt;
+}
+
+.tooltip {
+	position: relative;
+	display: inline-flex;
+	align-items: center;
+	margin-left: 5px;
+}
+.tooltip img{
+	height: 1.2em;
+	cursor: help;
+}
+.tooltip .tooltiptext {
+	visibility: hidden;
+	max-width: 99vw;
+	background-color: rgba(0,0,0, 0.8);
+	color: #fff;
+	text-align: center;
+	padding: 2px 2px;
+	white-space: normal;
+	word-break: break-word;
+	border-radius: 6px;
+	position: absolute;
+	top: 130%;
+	left: 50%;
+	transform: translateX(-50%);
+	z-index: 1;
+	opacity: 0;
+	transition: opacity 0.2s;
+	display: flex;
+	justify-content: center;
+}
+.tooltip .tooltiptext img{
+	display: block;
+	height: 30px;
+	cursor: auto;
+}
+.tooltip .tooltiptext::after {
+	content: "";
+	position: absolute;
+	bottom: 100%;
+	left: 50%;
+	margin-left: -5px;
+	border-width: 5px;
+	border-style: solid;
+	border-color: transparent transparent black transparent;
+}
+.tooltip:hover .tooltiptext {
+	visibility: visible;
+	opacity: 1;
+}

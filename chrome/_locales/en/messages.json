@@ -1,0 +1,39 @@
+{
+   "extName": {
+      "message": "Picture-in-Picture for Youtube"
+   },
+   "extDesc": {
+      "message": "Add Picture-in-Picture button active. Hiding the Clips button."
+   },
+   "changePip": {
+      "message": "Change PiP Icon"
+   },
+   "changePipDesc": {
+      "message": "Change picture-in-picture icon"
+   },
+   "animation": {
+      "message": "Animation"
+   },
+   "noAnimation": {
+      "message": "No animation"
+   },
+   "otherSet": {
+      "message": "Other settings"
+   },
+   
+   "hideClips": {
+      "message": "Hide «Clips» Button"
+   }, "hideClipsTooltip": { "message": "../images/tooltips/en/clip.png" },
+
+   "hideThanks": {
+      "message": "Hide «Thanks» Button"
+   }, "hideSponsorTooltip": { "message": "../images/tooltips/en/thanks.png" },
+
+   "hideSponsor": {
+      "message": "Hide «Sponsor» Button"
+   }, "hideThanksTooltip": { "message": "../images/tooltips/en/sponsor.png" },
+
+   "saveBut": {
+      "message": "Save"
+   }
+}

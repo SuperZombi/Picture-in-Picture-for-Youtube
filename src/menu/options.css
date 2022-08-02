@@ -124,8 +124,7 @@ label input{
 }
 .tooltip .tooltiptext {
 	visibility: hidden;
-	min-width: 100px;
-	max-width: 95vw;
+	max-width: 99vw;
 	background-color: rgba(0,0,0, 0.8);
 	color: #fff;
 	text-align: center;
@@ -140,6 +139,8 @@ label input{
 	z-index: 1;
 	opacity: 0;
 	transition: opacity 0.2s;
+	display: flex;
+	justify-content: center;
 }
 .tooltip .tooltiptext img{
 	display: block;

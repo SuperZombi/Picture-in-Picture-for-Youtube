@@ -56,10 +56,10 @@ Add Picture-in-Picture button active
   <summary>Other</summary>
   
   #### 2.0.1:
-    * Ukranian localization.
+  * Ukranian localization.
 
   ### 2.0:
-    * Extension moved to manifest version 3.
+  * Extension moved to manifest version 3.
   
   #### 1.6.1:
   * Bug fix.

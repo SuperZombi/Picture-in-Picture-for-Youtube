@@ -7,9 +7,9 @@ else{
   theme = "light"
 }
 
-chrome.storage.sync.get({ changeIcon: true, animation: "default", hideClips: false }, results => {
+chrome.storage.sync.get({ changeIcon: true, animation: "default",
+                          hideClips: false, hideThanks: false, hideSponsor: false }, results => {
   const changeIconCheckbox = document.querySelector('#changeIcon');
-  const hideClipCheckbox = document.querySelector('#hideClips');
   
   function ChangeColor() {
     var clrDiv = document.getElementById("animation")
@@ -52,16 +52,23 @@ chrome.storage.sync.get({ changeIcon: true, animation: "default", hideClips: fal
   changeIconCheckbox.checked = results.changeIcon;
   ChangeColor()
 
-  document.querySelector(`input[value="${results.animation}"]`).checked = "checked"
+  document.querySelector(`input[value="${results.animation}"]`).checked = "checked";
+
+  const hideClipCheckbox = document.querySelector('#hideClips');
+  const hideThanksCheckbox = document.querySelector('#hideThanks');
+  const hideSponsorCheckbox = document.querySelector('#hideSponsor');
 
   hideClipCheckbox.checked = results.hideClips;
-
+  hideThanksCheckbox.checked = results.hideThanks;
+  hideSponsorCheckbox.checked = results.hideSponsor;
 
   document.getElementById("save").onclick = _ => {
     chrome.storage.sync.set({
       changeIcon: changeIconCheckbox.checked,
       animation: document.querySelector('input[name="animation"]:checked').value,
-      hideClips: hideClipCheckbox.checked
+      hideClips: hideClipCheckbox.checked,
+      hideThanks: hideThanksCheckbox.checked,
+      hideSponsor: hideSponsorCheckbox.checked
     }, _ => {
       // Reload extension to make opt-out change immediate. 
       chrome.runtime.reload();

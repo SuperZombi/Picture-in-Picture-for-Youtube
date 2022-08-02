@@ -64,7 +64,7 @@ const locale = {
 }
 
 function get_message(name, default_="en"){
-  var userLang = (navigator.language || navigator.userLanguage).toLowerCase(); 
+  var userLang = (navigator.language || navigator.userLanguage).slice(0,2).toLowerCase(); 
   if (Object.keys(locale).includes(userLang) && Object.keys(locale[userLang]).includes(name)){
     return locale[userLang][name]
   }

@@ -20,9 +20,19 @@
    "otherSet": {
       "message": "Other settings"
    },
+   
    "hideClips": {
       "message": "Hide «Clips» Button"
-   },
+   }, "hideClipsTooltip": { "message": "../images/tooltips/en/clip.png" },
+
+   "hideThanks": {
+      "message": "Hide «Thanks» Button"
+   }, "hideSponsorTooltip": { "message": "../images/tooltips/en/thanks.png" },
+
+   "hideSponsor": {
+      "message": "Hide «Sponsor» Button"
+   }, "hideThanksTooltip": { "message": "../images/tooltips/en/sponsor.png" },
+
    "saveBut": {
       "message": "Save"
    }

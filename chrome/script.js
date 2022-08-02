@@ -1,4 +1,4 @@
-chrome.storage.sync.get({ changeIcon: true, animation: "default", 
+chrome.storage.sync.get({ changeIcon: true, animation: "default",
 						  hideClips: false, hideThanks: false, hideSponsor: false }, results => {
 	change = results.changeIcon;
 	animation = results.animation;
@@ -86,9 +86,9 @@ function hide_button(id){
 
 
 function youtube_parser(url){
-		var regExp = /^.*((youtu.be\/)|(v\/)|(\/u\/\w\/)|(embed\/)|(watch\?))\??v?=?([^#&?]*).*/;
-		var match = url.match(regExp);
-		return (match&&match[7].length==11)? match[7] : false;
+	var regExp = /^.*((youtu.be\/)|(v\/)|(\/u\/\w\/)|(embed\/)|(watch\?))\??v?=?([^#&?]*).*/;
+	var match = url.match(regExp);
+	return (match&&match[7].length==11)? match[7] : false;
 }
 
 function main(){

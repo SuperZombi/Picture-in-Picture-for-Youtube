@@ -36,7 +36,7 @@ Add Picture-in-Picture button active
 
 ### Tampermonkey:
 1. Install **[Tampermonkey](https://www.tampermonkey.net/)**
-2. Install **[Script](https://raw.githubusercontent.com/SuperZombi/Picture-in-Picture-for-Youtube/main/UserScript.js)**
+2. Install **[Script](https://raw.githubusercontent.com/SuperZombi/Picture-in-Picture-for-Youtube/main/pip.user.js)**
 
 
 ## How to open Plugin menu:

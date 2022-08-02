@@ -105,6 +105,9 @@ label input{
 .other{
 	font-size: 12pt;
 }
+.other[open] summary{
+	margin-bottom: 10px;
+}
 .other input{
 	transform: scale(0.7);
 }

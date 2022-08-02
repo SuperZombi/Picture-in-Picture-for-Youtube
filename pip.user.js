@@ -11,6 +11,7 @@
 // @downloadURL  https://raw.githubusercontent.com/SuperZombi/Picture-in-Picture-for-Youtube/main/UserScript.js
 // @grant        GM_setValue
 // @grant        GM_getValue
+// @grant        GM_deleteValue
 // @grant        GM_listValues
 // @grant        GM_registerMenuCommand
 // ==/UserScript==
@@ -27,7 +28,7 @@ const images = {
 const locale = {
   'en': {
     "settings": "Settings",
-    "changePip": "Change PiP Icon",
+    "activatePip": "Activate PiP",
     "animation": "Animation",
     "noAnimation": "No animation",
     "otherSet": "Other settings",
@@ -39,7 +40,7 @@ const locale = {
   },
   'ru': {
     "settings": "Настройки",
-    "changePip": "Изменить иконку PiP",
+    "activatePip": "Активировать PiP",
     "animation": "Анимация",
     "noAnimation": "Без анимации",
     "otherSet": "Другие настройки",
@@ -51,7 +52,7 @@ const locale = {
   },
   'uk': {
     "settings": "Налаштування",
-    "changePip": "Змінити іконку PiP",
+    "activatePip": "Активувати PiP",
     "animation": "Анімація",
     "noAnimation": "Без анімації",
     "otherSet": "Інші налаштування",
@@ -110,8 +111,8 @@ GM_registerMenuCommand(get_message("settings"), ()=>{
     <hr style="border-top: 1px solid #dfe1e8; margin: 0.5em 0;">
 
     <label>
-      <input class="pip_settings" type="checkbox" name="changeIcon" checked>
-      <a>${get_message('changePip')}</a>
+      <input class="pip_settings" type="checkbox" name="activatePip" checked>
+      <a>${get_message('activatePip')}</a>
     </label>
 
     <hr style="border-top: 1px solid #dfe1e8; margin: 0.5em 0;">
@@ -175,14 +176,18 @@ GM_registerMenuCommand(get_message("settings"), ()=>{
   div.appendChild(content)
   let keys = GM_listValues()
   keys.forEach(e=>{
-    let els = div.querySelectorAll(`input[name=${e}]`)
-    if (els.length > 1){
-      let val = db_get(e)
-      let el = Array.from(els).filter(e=>e.value == val)[0]
-      el.checked = true
-    }
-    else{
-      els[0].checked = db_get(e)
+    try{
+      let els = div.querySelectorAll(`input[name=${e}]`)
+      if (els.length > 1){
+        let val = db_get(e)
+        let el = Array.from(els).filter(e=>e.value == val)[0]
+        el.checked = true
+      }
+      else{
+        els[0].checked = db_get(e)
+      }     
+    } catch{
+      GM_deleteValue(e)
     }
   })
 
@@ -313,19 +318,19 @@ function main(){
       }
     }
 
-    var button = document.getElementsByClassName('ytp-pip-button')[0];
-    button.style.display = 'inline-block';
+    if (db_get("activatePip", true)){
+      var button = document.getElementsByClassName('ytp-pip-button')[0];
+      button.style.display = 'inline-block';
 
-    document.addEventListener('fullscreenchange', (event) => {
-      if (document.fullscreenElement) {
-        button.style.display = 'none';
-      }
-      else {
-        button.style.display = 'inline-block';
-      }
-    });
+      document.addEventListener('fullscreenchange', (event) => {
+        if (document.fullscreenElement) {
+          button.style.display = 'none';
+        }
+        else {
+          button.style.display = 'inline-block';
+        }
+      });
 
-    if (db_get("changeIcon", true)){
       var hover_animation = true;
       var animation = db_get("animation", "default")
       if (animation == "animation_1"){

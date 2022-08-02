@@ -20,9 +20,19 @@
    "otherSet": {
       "message": "Інші налаштування"
    },
+
    "hideClips": {
       "message": "Сховати кнопку «Кліпи»"
-   },
+   }, "hideClipsTooltip": { "message": "../images/tooltips/uk/clip.png" },
+
+   "hideThanks": {
+      "message": "Сховати кнопку «Дякую»"
+   }, "hideSponsorTooltip": { "message": "../images/tooltips/uk/thanks.png" },
+
+   "hideSponsor": {
+      "message": "Сховати кнопку «Спонсорувати»"
+   }, "hideThanksTooltip": { "message": "../images/tooltips/uk/sponsor.png" },
+
    "saveBut": {
       "message": "Зберегти"
    }

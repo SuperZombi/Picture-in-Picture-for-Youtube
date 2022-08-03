@@ -26,7 +26,7 @@ Add Picture-in-Picture button active
 ### Chrome:
   1. Download latest **[Release](https://github.com/SuperZombi/Picture-in-Picture-for-Youtube/releases)**.
   2. Unpack the ```src``` folder to a convenient location.
-  3. Chrome > "Additional tools" > "Extensions".
+  3. ```⋮``` > "Additional tools" > "Extensions".
   4. Turn on "Developer Mode".
   5. Press "Load unpacked extension".
   6. Select the path to the ```src``` folder.

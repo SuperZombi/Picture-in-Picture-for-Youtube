@@ -7,18 +7,18 @@ Add Picture-in-Picture button active
 
 ❗ Attention! After changing the plugin settings, reload the YouTube page. ❗
 
-<img src="images/image.png"></img>
+<img src="github/images/image.png"></img>
 
 ## Animations:
 <details>
   <summary></summary>
   
   Animation 1:</br>
-  ![Alt Text](images/animation1.gif)</br>
+  ![Alt Text](github/images/animation1.gif)</br>
   Animation 2:</br>
-  ![Alt Text](images/animation2.gif)</br>
+  ![Alt Text](github/images/animation2.gif)</br>
   Animation 3:</br>
-  ![Alt Text](images/animation3.gif)
+  ![Alt Text](github/images/animation3.gif)
 </details>
 
 
@@ -42,8 +42,8 @@ Add Picture-in-Picture button active
   
   ❗ Don't forget to click the `Save` button. ❗
   
-  ![Alt Text](images/img1.png)</br>
-  ![Alt Text](images/img2.png)
+  ![Alt Text](github/images/img1.png)</br>
+  ![Alt Text](github/images/img2.png)
 </details>
 
 

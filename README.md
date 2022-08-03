@@ -73,7 +73,7 @@ Add Picture-in-Picture button active
   * Hiding the Clips button is now more stable.
 
   ### 1.5:
-  * <details><summary>Added a function to hide the <code>Create Clip</code> button.</summary><img src="images/clip-youtube.png"></details>
+  * <details><summary>Added a function to hide the <code>Create Clip</code> button.</summary><img src="github/images/clip-youtube.png"></details>
   
   #### 1.4.1:
   * Added animation pause in settings, when `Change Pip Icon` is disabled.

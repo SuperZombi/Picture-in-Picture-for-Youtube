@@ -3,7 +3,7 @@
 
 ### Chrome extension
 
-Add Picture-in-Picture button active
+Activates the Picture-in-Picture button and other useful features.
 
 ❗ Attention! After changing the plugin settings, reload the YouTube page. ❗
 

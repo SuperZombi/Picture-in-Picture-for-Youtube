@@ -216,7 +216,7 @@ function main(){
 		}, 250);
 		return
 	}
-	array = document.getElementsByTagName('video');
+	var array = document.getElementsByTagName('video');
 	if (array.length > 0){
 		if (youtube_parser(window.location.href)){
 			if (hideClip){

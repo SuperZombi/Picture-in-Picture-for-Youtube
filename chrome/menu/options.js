@@ -77,7 +77,7 @@ chrome.storage.sync.get({ changeIcon: true, animation: "default",
       hideThanks: hideThanksCheckbox.checked,
       hideSponsor: hideSponsorCheckbox.checked,
       speedometer: speedometerCheckbox.checked,
-      fullscreen: fullscreenCheckbox.checked,
+      fullscreen: fullscreenCheckbox.checked
     }, _ => {
       // Reload extension to make opt-out change immediate. 
       chrome.runtime.reload();

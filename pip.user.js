@@ -412,7 +412,7 @@ function addFullScreen(parrent){
     div.title = get_message("fullscreen")
     div.style.height = "24px"
     div.style.width = "28px"
-    div.style.marginTop = "12px"
+    div.style.marginTop = "14px"
     div.style.cursor = "pointer"
     div.style.transition = "0.2s ease"
     div.onmouseover = _=> {

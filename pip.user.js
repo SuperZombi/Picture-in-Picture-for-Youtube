@@ -1,6 +1,6 @@
 // ==UserScript==
 // @name         Picture-in-Picture for Youtube
-// @version      2.1
+// @version      2.2
 // @description  Activates the Picture-in-Picture button and other useful features.
 // @author       Super Zombi
 // @match        https://www.youtube.com/*
@@ -198,7 +198,7 @@ GM_registerMenuCommand(get_message("settings"), ()=>{
         <span style="margin-left:5px; color: blue;">GitHub</span>
       </a>
 
-      <img style="margin-top:2px;" src="https://shields.io/badge/version-v2.1-blue">
+      <img style="margin-top:2px;" src="https://shields.io/badge/version-v2.2-blue">
     </p>
   `
   div.appendChild(content)

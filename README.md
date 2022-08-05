@@ -1,5 +1,5 @@
 # Picture-in-Picture-for-Youtube
-<img src="https://shields.io/badge/version-v2.1-blue">
+<img src="https://shields.io/badge/version-v2.2-blue">
 
 ### Chrome extension
 
@@ -49,13 +49,17 @@ Activates the Picture-in-Picture button and other useful features.
 
 ## List of changes:
 
-### 2.1:
-  * Added a function to hide the <code>Thanks</code> button.
-  * Added a function to hide the <code>Sponsor</code> button.
+### 2.2:
+  * Added speed control for Shorts.
+  * Added full screen mode for Shorts.
 
 <br/>
 <details>
   <summary>Other</summary>
+  
+  ### 2.1:
+  * Added a function to hide the <code>Thanks</code> button.
+  * Added a function to hide the <code>Sponsor</code> button.
   
   #### 2.0.1:
   * Ukranian localization.

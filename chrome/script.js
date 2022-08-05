@@ -330,7 +330,7 @@ function main(){
 			svg.setAttribute('viewBox', "0 0 300 300");
 
 			g = document.createElement('g');
-			g.setAttribute('transform', 'translate(60.000000,240.000000) scale(0.100000,-0.100000)');
+			g.setAttribute('transform', 'translate(60,240) scale(0.1,-0.1)');
 			g.setAttribute('fill', '#fff');
 			g.setAttribute('stroke', 'none');
 			g.setAttribute('id', 'pip_svg');

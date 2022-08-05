@@ -20,6 +20,21 @@
    "otherSet": {
       "message": "Other settings"
    },
+   "shorts": {
+      "message": "Shorts"
+   },
+   "speed": {
+      "message": "Speed"
+   },
+   "playbackSpeed": {
+      "message": "Playback speed"
+   },
+   "fullscreen": {
+      "message": "Full screen"
+   },
+   "fullscreenMode": {
+      "message": "Full screen mode"
+   },
    
    "hideClips": {
       "message": "Hide «Clips» Button"

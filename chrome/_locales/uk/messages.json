@@ -20,6 +20,21 @@
    "otherSet": {
       "message": "Інші налаштування"
    },
+   "shorts": {
+      "message": "Shorts"
+   },
+   "speed": {
+      "message": "Швидкість"
+   },
+   "playbackSpeed": {
+      "message": "Швидкість програвання"
+   },
+   "fullscreen": {
+      "message": "Повний екран"
+   },
+   "fullscreenMode": {
+      "message": "Повноекранний режим"
+   },
 
    "hideClips": {
       "message": "Сховати кнопку «Кліпи»"

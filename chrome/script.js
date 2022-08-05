@@ -213,7 +213,7 @@ function main(){
 					addFullScreen(parrent)
 				}
 			}
-		}, 250);
+		}, 50);
 		return
 	}
 	var array = document.getElementsByTagName('video');

@@ -1,10 +1,13 @@
 chrome.storage.sync.get({ changeIcon: true, animation: "default",
-						  hideClips: false, hideThanks: false, hideSponsor: false }, results => {
+						  hideClips: false, hideThanks: false, hideSponsor: false,
+						  speedometer: false, fullscreen: false }, results => {
 	change = results.changeIcon;
 	animation = results.animation;
 	hideClip = results.hideClips;
 	hideThanks = results.hideThanks;
 	hideSponsor = results.hideSponsor;
+	speedometer = results.speedometer;
+	fullscreenBut = results.fullscreen;
 });
 var oldHref = document.location.href;
 
@@ -21,7 +24,6 @@ window.onload = function() {
 	});
 
 	var config = {childList: true, subtree: true};
-
 	observer.observe(bodyList, config);
 }
 
@@ -63,7 +65,7 @@ const thanks_svg = "M16.5,3C19.02,3,21,5.19,21,7.99c0,3.7-3.28,6.94-8.25,11.86L1
 function hide_icon(target_svg){
 	let timerId = setInterval(() => {
 		if (getButtons()?.offsetParent && isVideoLoaded()) {
-			var arr = document.querySelectorAll('#top-level-buttons-computed > ytd-button-renderer')
+			let arr = document.querySelectorAll('#top-level-buttons-computed > ytd-button-renderer')
 			for (let i = 0; i < arr.length; i++){
 				if (target_svg == arr[i].getElementsByTagName('svg')[0].getElementsByTagName('path')[0].getAttribute('d')){
 					arr[i].remove()
@@ -90,11 +92,132 @@ function youtube_parser(url){
 	var match = url.match(regExp);
 	return (match&&match[7].length==11)? match[7] : false;
 }
+function isInViewport(element) {
+	const rect = element.getBoundingClientRect();
+	const height = innerHeight || document.documentElement.clientHeight;
+	const width = innerWidth || document.documentElement.clientWidth;
+	return (
+		rect.top >= 0 &&
+		rect.left >= 0 &&
+		rect.bottom <= height &&
+		rect.right <= width
+	);
+}
+function getShortsCurrent(selector){
+	let elements = document.querySelectorAll(selector)
+	for (let element of elements) {
+		if (isInViewport(element)) {
+			return element
+		}
+	}
+}
+
+var currentSpead = 1;
+function addSpeedometer(parrent){
+	if (!parrent.querySelector("#speedometer")){
+		let div = document.createElement("div")
+		div.id = "speedometer"
+		div.title = chrome.i18n.getMessage("speed")
+		div.style.paddingTop = "10px"
+		div.style.position = "relative"
+		div.style.display = "flex";
+		div.style.alignItems = "center";
+		let img = document.createElement("img")
+		img.src = chrome.runtime.getURL("images/speedometer.svg")
+		img.style.cursor = "pointer"
+		img.style.height = "32px"
+		img.style.marginBottom = "2px";
+		img.onclick = function(e){
+			let target = e.target.nextElementSibling;
+			let result = target.style.visibility == "hidden" ? "visible" : "hidden";
+			target.style.visibility = result;
+		}
+
+		let slider_area = document.createElement("div")
+		slider_area.style.visibility = "hidden";
+		slider_area.style.display = "flex";
+		slider_area.style.alignItems = "center";
+		slider_area.style.position = "absolute";
+		slider_area.style.left = "40px";
+
+		let input = document.createElement("input")
+		input.type = "range"
+		input.min = 1
+		input.max = 2
+		input.step = 0.25
+		input.value = currentSpead
+		input.oninput = function(e){
+			e.target.nextElementSibling.innerHTML = e.target.value + "x";
+			let video = getShortsCurrent("#shorts-container video")
+			currentSpead = e.target.value;
+			video.playbackRate = e.target.value;
+		}
+		let text = document.createElement("span")
+		text.innerHTML = currentSpead + "x";
+		text.style.fontSize = "14px";
+		text.style.marginLeft = "5px";
+		text.style.color = "#aaa"
+
+		slider_area.appendChild(input)
+		slider_area.appendChild(text)
+
+		div.appendChild(img)
+		div.appendChild(slider_area)
+		parrent.insertBefore(div, parrent.querySelector("#share-button"));
+	}
+	else{
+		parrent.querySelector("#speedometer input").value = currentSpead;
+		parrent.querySelector("#speedometer span").innerHTML = currentSpead + "x";
+	}
+}
+function addFullScreen(parrent){
+	if (!parrent.querySelector("#fullScreener")){
+		let div = document.createElement("div")
+		div.id = "fullScreener"
+		div.title = chrome.i18n.getMessage("fullscreen")
+		div.style.height = "24px"
+		div.style.width = "28px"
+		div.style.marginTop = "12px"
+		div.style.cursor = "pointer"
+		div.style.transition = "0.2s ease"
+		div.onmouseover = _=> {
+			div.style.transform = "scale(1.15)"
+			setTimeout(function(){ div.style.transform = "" }, 150)
+		}
+		div.onclick = _=>{
+			let video = getShortsCurrent("#shorts-container video")
+			video.style.objectFit = "contain";
+			video.requestFullscreen();
+		}
+		let img = document.createElement("img")
+		img.src = chrome.runtime.getURL("images/full.svg")
+		div.appendChild(img)
+		parrent.insertBefore(div, parrent.querySelector("#share-button"));
+	}
+}
+
+
 
 function main(){
+	if (window.location.pathname.startsWith("/shorts")){
+		let timerId = setInterval(() => {
+			let parrent = getShortsCurrent("#shorts-container #actions")
+			let video = getShortsCurrent("#shorts-container video")
+			if (parrent && video){
+				clearInterval(timerId)
+				if (speedometer){
+					video.playbackRate = currentSpead
+					addSpeedometer(parrent)
+				}
+				if (fullscreenBut){
+					addFullScreen(parrent)
+				}
+			}
+		}, 250);
+		return
+	}
 	array = document.getElementsByTagName('video');
 	if (array.length > 0){
-
 		if (youtube_parser(window.location.href)){
 			if (hideClip){
 				hide_icon(clips_svg)
@@ -202,10 +325,9 @@ function main(){
 			svg = button.children[0];
 			svg.innerHTML = "";
 			
-			svg.setAttribute('version', '1.0');
 			svg.setAttribute('width', '100%');
 			svg.setAttribute('height', '100%');
-			svg.setAttribute('viewBox', "0 0 300.000000 300.000000");
+			svg.setAttribute('viewBox', "0 0 300 300");
 
 			g = document.createElement('g');
 			g.setAttribute('transform', 'translate(60.000000,240.000000) scale(0.100000,-0.100000)');

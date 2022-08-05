@@ -8,7 +8,8 @@ else{
 }
 
 chrome.storage.sync.get({ changeIcon: true, animation: "default",
-                          hideClips: false, hideThanks: false, hideSponsor: false }, results => {
+                          hideClips: false, hideThanks: false, hideSponsor: false,
+                          speedometer: false, fullscreen: false }, results => {
   const changeIconCheckbox = document.querySelector('#changeIcon');
   
   function ChangeColor() {
@@ -58,9 +59,15 @@ chrome.storage.sync.get({ changeIcon: true, animation: "default",
   const hideThanksCheckbox = document.querySelector('#hideThanks');
   const hideSponsorCheckbox = document.querySelector('#hideSponsor');
 
+  const speedometerCheckbox = document.querySelector('#speedometer');
+  const fullscreenCheckbox = document.querySelector('#fullscreen');
+
   hideClipCheckbox.checked = results.hideClips;
   hideThanksCheckbox.checked = results.hideThanks;
   hideSponsorCheckbox.checked = results.hideSponsor;
+
+  speedometerCheckbox.checked = results.speedometer;
+  fullscreenCheckbox.checked = results.fullscreen;
 
   document.getElementById("save").onclick = _ => {
     chrome.storage.sync.set({
@@ -68,7 +75,9 @@ chrome.storage.sync.get({ changeIcon: true, animation: "default",
       animation: document.querySelector('input[name="animation"]:checked').value,
       hideClips: hideClipCheckbox.checked,
       hideThanks: hideThanksCheckbox.checked,
-      hideSponsor: hideSponsorCheckbox.checked
+      hideSponsor: hideSponsorCheckbox.checked,
+      speedometer: speedometerCheckbox.checked,
+      fullscreen: fullscreenCheckbox.checked,
     }, _ => {
       // Reload extension to make opt-out change immediate. 
       chrome.runtime.reload();

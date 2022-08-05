@@ -20,6 +20,12 @@
       "128": "images/icon-128.png"
    },
    "permissions": [ "storage" ],
+   "web_accessible_resources": [
+      {
+         "resources": [ "images/*" ],
+         "matches": [ "https://www.youtube.com/*" ]
+      }
+   ],
    "options_ui": {
       "open_in_tab": false,
       "page": "menu/options.html"

@@ -215,7 +215,7 @@ GM_registerMenuCommand(get_message("settings"), ()=>{
         <span style="margin-left:5px; color: blue;">GitHub</span>
       </a>
 
-      <img style="margin-top:2px;" src="https://shields.io/badge/version-v2.2-blue">
+      <img style="margin-top:2px;" src="https://shields.io/badge/version-v2.3-blue">
     </p>
   `
   div.appendChild(content)

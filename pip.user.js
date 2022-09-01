@@ -320,7 +320,7 @@ function hide_icon(target_svg){
       let arr = document.querySelectorAll('#top-level-buttons-computed ytd-button-renderer')
       for (let i = 0; i < arr.length; i++){
         if (target_svg == arr[i].getElementsByTagName('svg')[0].getElementsByTagName('path')[0].getAttribute('d')){
-          if (arr[i].parentElement != document.querySelector('#top-level-buttons-computed')){
+          if (arr[i].parentElement == document.querySelector('ytd-download-button-renderer')){
             arr[i].parentElement.remove()
           }
           else{
@@ -337,7 +337,7 @@ function hide_button(id){
   let timerId = setInterval(() => {
     if (getButtons()?.offsetParent && isVideoLoaded()) {
       let el = document.getElementById(id)
-      el.remove()
+      if (el){ el.remove() }
       clearInterval(timerId)
     }
   }, 200);
@@ -349,7 +349,9 @@ function hideAllText_onButton(){
       let arr = document.querySelectorAll('#top-level-buttons-computed ytd-button-renderer')
       for (let i = 0; i < arr.length; i++){
         let text_element = arr[i].querySelector("#text")
-        text_element.remove()
+        if (text_element){
+          text_element.remove()
+        }
       }
       clearInterval(timerId)
     }

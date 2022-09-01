@@ -320,7 +320,12 @@ function hide_icon(target_svg){
       let arr = document.querySelectorAll('#top-level-buttons-computed ytd-button-renderer')
       for (let i = 0; i < arr.length; i++){
         if (target_svg == arr[i].getElementsByTagName('svg')[0].getElementsByTagName('path')[0].getAttribute('d')){
-          arr[i].remove()
+          if (arr[i].parentElement != document.querySelector('#top-level-buttons-computed')){
+            arr[i].parentElement.remove()
+          }
+          else{
+            arr[i].remove()
+          }
           break
         }
       }

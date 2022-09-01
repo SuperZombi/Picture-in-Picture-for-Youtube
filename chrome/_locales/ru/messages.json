@@ -36,6 +36,10 @@
       "message": "Полноэкранный режим"
    },
    
+   "hideButtonLabels": {
+      "message": "Скрыть подписи кнопок"
+   },
+   
    "hideClips": {
       "message": "Скрыть кнопку «Клипы»"
    }, "hideClipsTooltip": { "message": "../images/tooltips/ru/clip.png" },
@@ -43,6 +47,10 @@
    "hideThanks": {
       "message": "Скрыть кнопку «Спасибо»"
    }, "hideThanksTooltip": { "message": "../images/tooltips/ru/thanks.png" },
+
+   "hideDownload": {
+      "message": "Скрыть кнопку «Скачать»"
+   }, "hideDownloadTooltip": { "message": "../images/tooltips/ru/download.png" },
 
    "hideSponsor": {
       "message": "Скрыть кнопку «Спонсировать»"

@@ -126,6 +126,7 @@ label input{
 	cursor: help;
 }
 .tooltip .tooltiptext {
+	pointer-events: none;
 	visibility: hidden;
 	max-width: 99vw;
 	background-color: rgba(0,0,0, 0.8);

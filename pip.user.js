@@ -331,7 +331,7 @@ function hide_icon(target_svg){
       }
       clearInterval(timerId)
     }
-  }, 250);
+  }, 200);
 }
 function hide_button(id){
   let timerId = setInterval(() => {
@@ -340,7 +340,7 @@ function hide_button(id){
       el.remove()
       clearInterval(timerId)
     }
-  }, 250);
+  }, 200);
 }
 
 function hideAllText_onButton(){
@@ -353,7 +353,7 @@ function hideAllText_onButton(){
       }
       clearInterval(timerId)
     }
-  }, 250);
+  }, 200);
 }
 
 function youtube_parser(url){

@@ -8,7 +8,8 @@ else{
 }
 
 chrome.storage.sync.get({ changeIcon: true, animation: "default",
-                          hideClips: false, hideThanks: false, hideSponsor: false,
+                          hideClips: false, hideThanks: false, hideDownload: false, hideSponsor: false,
+                          hideButtonLabels: false,
                           speedometer: false, fullscreen: false }, results => {
   const changeIconCheckbox = document.querySelector('#changeIcon');
   
@@ -55,15 +56,19 @@ chrome.storage.sync.get({ changeIcon: true, animation: "default",
 
   document.querySelector(`input[value="${results.animation}"]`).checked = "checked";
 
+  const hideButtonLabelsCheckbox = document.querySelector('#hideButtonLabels');
   const hideClipCheckbox = document.querySelector('#hideClips');
   const hideThanksCheckbox = document.querySelector('#hideThanks');
+  const hideDownloadCheckbox = document.querySelector('#hideDownload');
   const hideSponsorCheckbox = document.querySelector('#hideSponsor');
 
   const speedometerCheckbox = document.querySelector('#speedometer');
   const fullscreenCheckbox = document.querySelector('#fullscreen');
 
+  hideButtonLabelsCheckbox.checked = results.hideButtonLabels;
   hideClipCheckbox.checked = results.hideClips;
   hideThanksCheckbox.checked = results.hideThanks;
+  hideDownloadCheckbox.checked = results.hideDownload;
   hideSponsorCheckbox.checked = results.hideSponsor;
 
   speedometerCheckbox.checked = results.speedometer;
@@ -73,8 +78,10 @@ chrome.storage.sync.get({ changeIcon: true, animation: "default",
     chrome.storage.sync.set({
       changeIcon: changeIconCheckbox.checked,
       animation: document.querySelector('input[name="animation"]:checked').value,
+      hideButtonLabels: hideButtonLabelsCheckbox.checked,
       hideClips: hideClipCheckbox.checked,
       hideThanks: hideThanksCheckbox.checked,
+      hideDownload: hideDownloadCheckbox.checked,
       hideSponsor: hideSponsorCheckbox.checked,
       speedometer: speedometerCheckbox.checked,
       fullscreen: fullscreenCheckbox.checked

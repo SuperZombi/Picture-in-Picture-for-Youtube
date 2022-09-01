@@ -36,6 +36,10 @@
       "message": "Full screen mode"
    },
    
+   "hideButtonLabels": {
+      "message": "Hide button labels"
+   },
+   
    "hideClips": {
       "message": "Hide «Clips» Button"
    }, "hideClipsTooltip": { "message": "../images/tooltips/en/clip.png" },
@@ -43,6 +47,10 @@
    "hideThanks": {
       "message": "Hide «Thanks» Button"
    }, "hideSponsorTooltip": { "message": "../images/tooltips/en/thanks.png" },
+
+   "hideDownload": {
+      "message": "Hide «Download» Button"
+   }, "hideDownloadTooltip": { "message": "../images/tooltips/en/download.png" },
 
    "hideSponsor": {
       "message": "Hide «Sponsor» Button"

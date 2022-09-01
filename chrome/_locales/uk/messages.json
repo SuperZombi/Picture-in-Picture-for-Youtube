@@ -35,6 +35,10 @@
    "fullscreenMode": {
       "message": "Повноекранний режим"
    },
+   
+   "hideButtonLabels": {
+      "message": "Приховати підписи кнопок"
+   },
 
    "hideClips": {
       "message": "Сховати кнопку «Кліпи»"
@@ -43,6 +47,10 @@
    "hideThanks": {
       "message": "Сховати кнопку «Дякую»"
    }, "hideSponsorTooltip": { "message": "../images/tooltips/uk/thanks.png" },
+
+   "hideDownload": {
+      "message": "Сховати кнопку «Завантажити»"
+   }, "hideDownloadTooltip": { "message": "../images/tooltips/uk/download.png" },
 
    "hideSponsor": {
       "message": "Сховати кнопку «Спонсорувати»"

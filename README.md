@@ -49,13 +49,17 @@ Activates the Picture-in-Picture button and other useful features.
 
 ## List of changes:
 
-### 2.2:
-  * Added speed control for Shorts.
-  * Added full screen mode for Shorts.
+### 2.3:
+  * Added a function to hide the <code>Download</code> button.
+  * <details><summary>Added a function to hide labels for buttons.</summary><img src="github/images/hideButtonLabels.png"></details>
 
 <br/>
 <details>
   <summary>Other</summary>
+  
+  ### 2.2:
+  * Added speed control for Shorts.
+  * Added full screen mode for Shorts.
   
   ### 2.1:
   * Added a function to hide the <code>Thanks</code> button.

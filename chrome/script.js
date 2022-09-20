@@ -1,35 +1,16 @@
+var Settings = {}
 chrome.storage.sync.get({ changeIcon: true, animation: "default",
 						  hideClips: false, hideThanks: false, hideDownload: false, hideSponsor: false,
 						  hideButtonLabels: false,
-						  speedometer: false, fullscreen: false }, results => {
-	change = results.changeIcon;
-	animation = results.animation;
-	hideButtonLabels = results.hideButtonLabels;
-	hideClip = results.hideClips;
-	hideThanks = results.hideThanks;
-	hideDownload = results.hideDownload;
-	hideSponsor = results.hideSponsor;
-	speedometer = results.speedometer;
-	fullscreenBut = results.fullscreen;
-});
-var oldHref = document.location.href;
+						  maximumVolume: false, 
+						  speedometer: false, fullscreen: false, showTimeline: false, OpenInYouTube: false,
+						  shortcuts: {} }, results => { Settings = results; });
 
-window.onload = function() {
+window.onload = function() { main(); }
+
+document.addEventListener("yt-navigate-finish", ()=>{
 	main();
-	var bodyList = document.querySelector("body");
-	observer = new MutationObserver(function(mutations) {
-		mutations.forEach(function(mutation) {
-			if (oldHref != document.location.href) {
-				oldHref = document.location.href;
-				main();
-			}
-		});
-	});
-
-	var config = {childList: true, subtree: true};
-	observer.observe(bodyList, config);
-}
-
+});
 
 
 function getVideoId(url) {
@@ -153,10 +134,12 @@ function addSpeedometer(parrent){
 		img.style.cursor = "pointer"
 		img.style.height = "32px"
 		img.style.marginBottom = "2px";
-		img.onclick = function(e){
-			let target = e.target.nextElementSibling;
-			let result = target.style.visibility == "hidden" ? "visible" : "hidden";
-			target.style.visibility = result;
+		document.body.onclick = function(e){
+			if (e.path.includes(div)){
+				if (e.path.includes(div.lastChild)){ return }
+				let result = div.lastChild.style.visibility == "hidden" ? "visible" : "hidden";
+				div.lastChild.style.visibility = result;
+			} else { div.lastChild.style.visibility = "hidden"; }
 		}
 
 		let slider_area = document.createElement("div")
@@ -172,6 +155,7 @@ function addSpeedometer(parrent){
 		input.max = 2
 		input.step = 0.25
 		input.value = currentSpead
+		input.style.cursor = "ew-resize"
 		input.oninput = function(e){
 			e.target.nextElementSibling.innerHTML = e.target.value + "x";
 			let video = getShortsCurrent("#shorts-container video")
@@ -221,48 +205,264 @@ function addFullScreen(parrent){
 		parrent.insertBefore(div, parrent.querySelector("#share-button"));
 	}
 }
+function addControls_and_progressBar(video){
+	let progress = getShortsCurrent("#shorts-container #overlay").querySelector("#progress-bar #progress-bar-line")
+
+	let progressBarObserver = new MutationObserver(function(mutations) {
+		mutations.forEach(function(mutation) {
+			if (progress.hasAttribute("hidden")){
+				progress.removeAttribute("hidden")
+			}
+			Array.from(progress.children).forEach(function(child){
+				child.style.height = "100%"
+			})
+		});
+	});
+	progressBarObserver.observe(progress, {attributes: true, subtree: true});
+	progress.removeAttribute("hidden")
+
+	progress.style.pointerEvents = "auto"
+	progress.style.cursor = "pointer"
+	progress.style.transition = "0.25s"
+	progress.style.height = "2px";
+	progress.onmouseover = function(){
+		progress.style.paddingBottom = "5px";
+		Array.from(progress.children).forEach(function(child){
+			child.style.height = "100%"
+		})
+	}
+	progress.onmouseout = function(){
+		progress.style.paddingBottom = "";
+	}
+
+	var dragActive = false;
+	progress.addEventListener('mousedown', event=>{
+		dragActive = true;
+		rewind(event);
+	});
+	window.addEventListener('mouseup', _=>{dragActive=false});
+	function getCoefficient(event) {
+		let slider = progress.getBoundingClientRect();
+		let clickedPoint = event.clientX - slider.left;
+		let K = 0;
+		let width = progress.clientWidth;
+		K = clickedPoint / width;
+		return K;
+	}
+	function rewind(event) {
+		if (dragActive){
+			video.currentTime = video.duration * getCoefficient(event);
+		}
+	}
+
+	video.addEventListener("fullscreenchange", _=>{
+
+		function fullScreener(){
+			if (!video.hasAttribute("controls")){
+				video.setAttribute("controls","controls")
+			}
+			if (video.hasAttribute("data-no-fullscreen")){
+				video.removeAttribute("data-no-fullscreen")
+			}
+		}
+
+		if (document.fullscreenElement) {
+			let controlsObserver = new MutationObserver(function(mutations) {
+				mutations.forEach(function(mutation) {
+					fullScreener()
+				});
+			});
+			controlsObserver.observe(video, {attributes: true});
+
+			fullScreener()
+
+			var playRateHandler = function(){
+				currentSpead = video.playbackRate;
+				let element = getShortsCurrent("#shorts-container #actions").querySelector("#speedometer input")
+				if (element){
+					element.value = currentSpead;
+					element.nextElementSibling.innerHTML = currentSpead + "x";
+				}
+			}
+
+			video.addEventListener("ratechange", playRateHandler)
+
+			video.addEventListener("fullscreenchange", _=>{
+				if (!document.fullscreenElement) {
+					controlsObserver.disconnect()
+					video.removeAttribute("controls")
+					video.removeEventListener("ratechange", playRateHandler); 
+				}
+			})
+		}
+	})
+}
+function addOpenInYouTube(actions){
+	actions.querySelector("#menu").addEventListener("click", _=>{
+	let parrent = getShortsCurrent("#contentWrapper").querySelector("#items")
+	if (parrent && !parrent.querySelector("#openInDefaultYoutube")){
+		let div = document.createElement("ytd-menu-navigation-item-renderer")
+		div.id = "openInDefaultYoutube"
+		parrent.appendChild(div);
+
+		let default_fill = window.getComputedStyle(parrent.querySelector("svg")).fill
+
+		let observ = new MutationObserver(function(mutations) {
+			mutations.forEach(function(mutation) {
+				observ.disconnect()
+				div.querySelector("tp-yt-paper-item").innerHTML = `
+
+				<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512"  height="24px" width="24px" style="margin-right: 16px;">
+				  <g fill="${default_fill}">
+				    <path d="m398.071 19.213 4.73.117c50.114 2.461 89.989 43.875 89.989 94.598v189.43l-.118 4.727c-2.464 50.113-43.875 89.988-94.602 89.988l-.113 4.73c-2.465 50.113-43.875 89.988-94.602 89.988h-189.43l-4.727-.117c-50.113-2.465-89.988-43.875-89.988-94.602v-189.43l.118-4.727c2.46-50.117 43.875-89.992 94.598-89.992l.117-4.726c2.465-50.113 43.875-89.988 94.602-89.988zm-284.15 142.07-3.531.129c-24.508 1.808-43.824 22.262-43.824 47.23v189.43l.129 3.535c1.808 24.504 22.262 43.824 47.227 43.824h189.43l3.535-.129c24.504-1.808 43.824-22.262 43.824-47.23H208.64l-4.727-.113c-50.117-2.465-89.992-43.875-89.992-94.602zm284.15-94.715h-189.43l-3.535.129c-24.504 1.808-43.824 22.262-43.824 47.227v189.43l.129 3.535c1.808 24.504 22.262 43.824 47.23 43.824h189.43c26.156 0 47.359-21.203 47.359-47.359v-189.43l-.13-3.531c-1.808-24.508-22.261-43.824-47.23-43.824zm-23.676 47.355c8.645 0 15.523 4.285 19.602 10.37.2.317.406.634.602.958a23.726 23.726 0 0 1 1.84 3.707 24.05 24.05 0 0 1 1.648 10.082l-.016 93.281c0 13.074-10.602 23.676-23.676 23.676-12.145 0-22.152-9.14-23.523-20.918l-.156-2.758v-37.559l-77.973 77.98c-9.25 9.246-24.242 9.246-33.488 0-8.535-8.535-9.191-21.969-1.969-31.258l1.969-2.23 77.93-77.973h-37.508c-12.145 0-22.152-9.14-23.52-20.918l-.16-2.762c0-12.145 9.14-22.152 20.918-23.52l2.761-.16z"/>
+				  </g>
+				</svg>
+
+					${chrome.i18n.getMessage("openInYouTubeBut")}
+				`
+
+				div.addEventListener("click", function(event) {
+					let video_id = window.location.pathname.replace("/shorts/", "")
+					let new_url = `https://www.youtube.com/watch?v=${video_id}`
+					window.open(new_url,'_blank');
+					document.body.click()
+					let video = getShortsCurrent("#shorts-container video")
+					video.pause();
+				    event.stopPropagation();
+				}, true);
+			});
+		});
+		observ.observe(div, {childList: true, subtree: true});
+	}
+	})
+}
+
+function smartVolume(video){
+	function check(){
+		let data = JSON.parse(window.localStorage.getItem("yt-player-volume"));
+		if (data){
+			let currentVolume = JSON.parse(data.data).volume/100;
+			if (video.volume != currentVolume){
+				video.volume = currentVolume;
+			}
+		}
+	}
+	check()
+	video.addEventListener("volumechange", check, true)
+}
+
+var HotKeysWorker = function(e){
+	let vid = getShortsCurrent("#shorts-container video");
+
+	if (Settings.shortcuts.J_and_L){
+		J_L_rewind(parseInt(Settings.shortcuts.J_and_L))
+	}
+	if (Settings.shortcuts.ArrowLeftRight){
+		Left_Right_arrow_rewind(parseInt(Settings.shortcuts.ArrowLeftRight))
+	}
+	if (Settings.shortcuts.fullscreen){
+		fullScreen_button()
+	}
+
+
+	function rewind_manager(sec){
+		let target = Math.max(0, vid.currentTime + sec);
+		if (target < vid.duration){
+			vid.currentTime = target;
+		}
+	}
+
+	function J_L_rewind(sec){
+		if (e.keyCode == 74){      // J
+			rewind_manager(0 - sec)
+		}
+		else if (e.keyCode == 76){ // L
+			rewind_manager(sec)
+		}
+	}
+	function Left_Right_arrow_rewind(sec){
+		if (e.keyCode == 37){      // ArrowLeft
+			rewind_manager(0 - sec)
+		}
+		else if (e.keyCode == 39){ // ArrowRight
+			rewind_manager(sec)
+		}
+	}
+	function fullScreen_button(){
+		if (e.keyCode == 70){      // F
+			if (document.fullscreenElement){
+				document.exitFullscreen();
+			}
+			else{
+				vid.style.objectFit = "contain";
+				vid.requestFullscreen();
+			}
+		}
+	}
+}
 
 
 
 function main(){
+	if (Object.keys(Settings.shortcuts).length > 0){
+		window.removeEventListener("keydown", HotKeysWorker, true)
+	}
 	if (window.location.pathname.startsWith("/shorts")){
 		let timerId = setInterval(() => {
-			let parrent = getShortsCurrent("#shorts-container #actions")
+			let actions = getShortsCurrent("#shorts-container #actions")
 			let video = getShortsCurrent("#shorts-container video")
-			if (parrent && video){
+
+			if (actions && video){
 				clearInterval(timerId)
-				if (speedometer){
-					video.playbackRate = currentSpead
-					addSpeedometer(parrent)
+				if (Settings.maximumVolume){
+					smartVolume(video)
 				}
-				if (fullscreenBut){
-					addFullScreen(parrent)
+				if (Settings.speedometer){
+					video.playbackRate = currentSpead
+					addSpeedometer(actions)
+				}
+				if (Settings.fullscreen){
+					addFullScreen(actions)
+				}
+				if (Settings.showTimeline){
+					addControls_and_progressBar(video)
+				}
+				if (Settings.OpenInYouTube){
+					addOpenInYouTube(actions)
+				}
+				if (Object.keys(Settings.shortcuts).length > 0){
+					window.addEventListener("keydown", HotKeysWorker, true)
 				}
 			}
 		}, 50);
 		return
 	}
-	var array = document.getElementsByTagName('video');
-	if (array.length > 0){
+
+
+	let video = document.querySelector("video")
+	if (video){
+		if (Settings.maximumVolume){
+			smartVolume(video)
+		}
 		if (youtube_parser(window.location.href)){
-			if (hideButtonLabels){
+			if (Settings.hideButtonLabels){
 				hideAllText_onButton()
 			}
-			if (hideClip){
+			if (Settings.hideClips){
 				hide_icon(clips_svg)
 			}
-			if (hideThanks){
+			if (Settings.hideThanks){
 				hide_icon(thanks_svg)
 			}
-			if (hideDownload){
+			if (Settings.hideDownload){
 				hide_icon(download_svg)
 			}
-			if (hideSponsor){
+			if (Settings.hideSponsor){
 				hide_button("sponsor-button")
 			}
 		}
 
-		button = document.getElementsByClassName('ytp-pip-button')[0];
+		var button = document.getElementsByClassName('ytp-pip-button')[0];
 		button.style.display = 'inline-block';
 
 		document.addEventListener('fullscreenchange', (event) => {
@@ -274,9 +474,9 @@ function main(){
 			}
 		});
 
-		if (change){
-			hover_animation = true;
-			if (animation == "animation_1"){
+		if (Settings.changeIcon){
+			var hover_animation = true;
+			if (Settings.animation == "animation_1"){
 				document.addEventListener('enterpictureinpicture', () => {
 					document.getElementById('pip_custom_path').style.transform = "translate(2450px, 2100px) rotateY(180deg) rotateX(180deg)"
 				});
@@ -284,7 +484,7 @@ function main(){
 					document.getElementById('pip_custom_path').style.transform = ""
 				});
 			}
-			else if (animation == "animation_2"){
+			else if (Settings.animation == "animation_2"){
 				document.addEventListener('enterpictureinpicture', () => {
 					document.getElementById('pip_custom_path').style.transform = "translateY(2100px) translateX(2450px) rotate(-180deg)"
 				});
@@ -292,7 +492,7 @@ function main(){
 					document.getElementById('pip_custom_path').style.transform = ""
 				});
 			}
-			else if (animation == "animation_3"){
+			else if (Settings.animation == "animation_3"){
 				document.addEventListener('enterpictureinpicture', () => {
 					document.getElementById('pip_custom_path').style.opacity = 0
 					setTimeout(_=>{
@@ -312,12 +512,12 @@ function main(){
 				hover_animation = false;
 
 				document.addEventListener('enterpictureinpicture', () => {
-					g = document.getElementById('pip_svg');
+					let g = document.getElementById('pip_svg');
 					g.innerHTML = "";
 
-					path1 = document.createElement('path');
+					let path1 = document.createElement('path');
 					path1.setAttribute('d', "M1645 1619 c-11 -6 -172 -163 -357 -348 l-338 -336 0 142 c0 137 -1 142 -26 172 -32 38 -80 49 -122 27 -17 -9 -36 -25 -42 -35 -14 -26 -14 -586 0 -612 24 -45 53 -49 333 -49 167 0 276 4 296 11 64 22 80 107 32 161 l-29 33 -148 5 -147 5 244 238 c134 131 290 287 347 347 95 102 102 113 102 151 0 75 -79 123 -145 88z");
-					path2 = document.createElement('path');
+					let path2 = document.createElement('path');
 					path2.setAttribute('d', "M26 1584 l-26 -27 0 -664 0 -664 25 -24 24 -25 836 0 837 0 29 29 29 29 0 307 c0 325 -3 350 -49 375 -35 18 -87 12 -120 -16 l-31 -26 0 -249 0 -249 -690 0 -690 0 0 515 0 515 411 0 411 0 29 29 c41 41 41 101 0 142 l-29 29 -485 0 -484 0 -27 -26z");
 					
 					g.appendChild(path1);
@@ -326,12 +526,12 @@ function main(){
 					g.innerHTML += "";
 				});
 				document.addEventListener('leavepictureinpicture', () => {
-					g = document.getElementById('pip_svg');
+					let g = document.getElementById('pip_svg');
 					g.innerHTML = "";
 
-					path1 = document.createElement('path');
+					let path1 = document.createElement('path');
 					path1.setAttribute('d', "M1348 1825 c-35 -19 -48 -44 -48 -90 0 -46 23 -81 62 -94 17 -6 88 -11 157 -11 l125 0 -342 -343 -342 -343 0 -51 c0 -45 4 -54 31 -77 22 -19 42 -26 72 -26 41 0 44 3 389 347 l348 348 0 -138 c0 -155 9 -186 59 -207 42 -17 95 -5 121 27 19 25 20 39 20 319 l0 293 -24 28 -24 28 -289 2 c-241 2 -292 0 -315 -12z");
-					path2 = document.createElement('path');
+					let path2 = document.createElement('path');
 					path2.setAttribute('d', "M26 1584 l-26 -27 0 -664 0 -664 25 -24 24 -25 836 0 837 0 29 29 29 29 0 307 c0 325 -3 350 -49 375 -35 18 -87 12 -120 -16 l-31 -26 0 -249 0 -249 -690 0 -690 0 0 515 0 515 411 0 411 0 29 29 c41 41 41 101 0 142 l-29 29 -485 0 -484 0 -27 -26z");
 					
 					g.appendChild(path1);
@@ -354,26 +554,26 @@ function main(){
 				}
 			}
 
-			svg = button.children[0];
+			let svg = button.children[0];
 			svg.innerHTML = "";
 			
 			svg.setAttribute('width', '100%');
 			svg.setAttribute('height', '100%');
 			svg.setAttribute('viewBox', "0 0 300 300");
 
-			g = document.createElement('g');
+			let g = document.createElement('g');
 			g.setAttribute('transform', 'translate(60,240) scale(0.1,-0.1)');
 			g.setAttribute('fill', '#fff');
 			g.setAttribute('stroke', 'none');
 			g.setAttribute('id', 'pip_svg');
 
-			path1 = document.createElement('path');
+			let path1 = document.createElement('path');
 			path1.id = "pip_custom_path"
 			path1.style.transformOrigin = 'center'
 			path1.style.transition = "0.25s cubic-bezier(0, 0.5, 0.2, 1)"
 			
 			path1.setAttribute('d', "M1348 1825 c-35 -19 -48 -44 -48 -90 0 -46 23 -81 62 -94 17 -6 88 -11 157 -11 l125 0 -342 -343 -342 -343 0 -51 c0 -45 4 -54 31 -77 22 -19 42 -26 72 -26 41 0 44 3 389 347 l348 348 0 -138 c0 -155 9 -186 59 -207 42 -17 95 -5 121 27 19 25 20 39 20 319 l0 293 -24 28 -24 28 -289 2 c-241 2 -292 0 -315 -12z");
-			path2 = document.createElement('path');
+			let path2 = document.createElement('path');
 			path2.setAttribute('d', "M26 1584 l-26 -27 0 -664 0 -664 25 -24 24 -25 836 0 837 0 29 29 29 29 0 307 c0 325 -3 350 -49 375 -35 18 -87 12 -120 -16 l-31 -26 0 -249 0 -249 -690 0 -690 0 0 515 0 515 411 0 411 0 29 29 c41 41 41 101 0 142 l-29 29 -485 0 -484 0 -27 -26z");
 			
 			g.appendChild(path1);

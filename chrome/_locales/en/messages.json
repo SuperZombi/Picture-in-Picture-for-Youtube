@@ -35,27 +35,56 @@
    "fullscreenMode": {
       "message": "Full screen mode"
    },
-   
    "hideButtonLabels": {
       "message": "Hide button labels"
    },
+   "showTimeline": {
+      "message": "Show timeline"
+   },
+   "openInYouTube": {
+      "message": "Show «Open in YouTube» button"
+   },
+   "openInYouTubeBut": {
+      "message": "Open in YouTube"
+   },
+   "maximumVolume": {
+      "message": "Maximum volume"
+   },
+   "Hotkeys": {
+      "message": "Hotkeys"
+   },
+   "enableAll": {
+      "message": "Enable all"
+   },
+   "rewind": {
+      "message": "Rewind: "
+   },
+   "5s": {
+      "message": "5 sec"
+   },
+   "10s": {
+      "message": "10 sec"
+   },
    
    "hideClips": {
-      "message": "Hide «Clips» Button"
+      "message": "Hide «Clips» button"
    }, "hideClipsTooltip": { "message": "../images/tooltips/en/clip.png" },
 
    "hideThanks": {
-      "message": "Hide «Thanks» Button"
+      "message": "Hide «Thanks» button"
    }, "hideSponsorTooltip": { "message": "../images/tooltips/en/thanks.png" },
 
    "hideDownload": {
-      "message": "Hide «Download» Button"
+      "message": "Hide «Download» button"
    }, "hideDownloadTooltip": { "message": "../images/tooltips/en/download.png" },
 
    "hideSponsor": {
-      "message": "Hide «Sponsor» Button"
+      "message": "Hide «Sponsor» button"
    }, "hideThanksTooltip": { "message": "../images/tooltips/en/sponsor.png" },
 
+   "resetBut": {
+      "message": "Reset"
+   },
    "saveBut": {
       "message": "Save"
    }

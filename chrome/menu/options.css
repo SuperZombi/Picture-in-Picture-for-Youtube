@@ -60,7 +60,7 @@ body{
 	justify-content: space-between;
 	align-items: center;
 }
-.other-links *{
+.other-links > *{
 	display: flex;
 	align-items: center;
 }

@@ -82,6 +82,9 @@
       "message": "Сховати кнопку «Спонсорувати»"
    }, "hideThanksTooltip": { "message": "../images/tooltips/uk/sponsor.png" },
 
+   "updateAvailable": {
+       "message": "Доступне оновлення"
+   },
    "resetBut": {
       "message": "Скинути"
    },

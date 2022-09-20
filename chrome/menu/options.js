@@ -1,94 +1,173 @@
 const darkThemeMq = window.matchMedia("(prefers-color-scheme: dark)");
 if (darkThemeMq.matches) {
-  document.body.className = "dark"
-  theme = "dark"
+	document.body.className = "dark"
+	theme = "dark"
 }
 else{
-  theme = "light"
+	theme = "light"
 }
 
-chrome.storage.sync.get({ changeIcon: true, animation: "default",
-                          hideClips: false, hideThanks: false, hideDownload: false, hideSponsor: false,
-                          hideButtonLabels: false,
-                          speedometer: false, fullscreen: false }, results => {
-  const changeIconCheckbox = document.querySelector('#changeIcon');
-  
-  function ChangeColor() {
-    var clrDiv = document.getElementById("animation")
-    if (!changeIconCheckbox.checked){
-      if (theme == "dark"){
-        clrDiv.style.backgroundColor = "#313131";
-      }
-      else{
-        clrDiv.style.backgroundColor = "#E7E7E7";
-      }
+chrome.storage.sync.get(null, results => {
+	for (let [key, value] of Object.entries(results)) {
+		if (key == "shortcuts"){
+			for (let [hotkey, val] of Object.entries(value)) {
+				let checkbox = document.querySelector(`#shortCuts input[name=${hotkey}]`)
+				checkbox.checked = true;
+				let select = document.querySelector(`#shortCuts select[name=${hotkey}]`)
+				if (select){
+					select.value = val
+				}
+			}
+		}
+		else{
+			let elements = document.querySelectorAll(`input[name=${key}]:not(.shortcut)`)
+			let input;
+			if (elements.length > 1){
+				input = document.querySelector(`input[name=${key}][value=${value}]`)
+			} else{ input = elements[0]; }
+			if (input.type == "radio" || input.type == "checkbox"){
+				input.checked = value
+			}
+		}
+	}
 
-      list = document.getElementById("animation").getElementsByTagName("img")
-      intervals = []
-      for (let item of list) {
-          var x = setInterval(function() {
-              item.setAttribute('src',item.src)
-          },1)
-          intervals.push(x)
-      }
-     
-      clrDiv.style.filter = "blur(1px) grayscale(1)";
-      clrDiv.style.pointerEvents = "none";
-      clrDiv.style.userSelect = "none";
-    }
-    else{
-      try{
-        for (let item of intervals) {
-            clearInterval(item)
-        }        
-      }catch{}
-
-      clrDiv.style.backgroundColor = "";
-      clrDiv.style.filter = "";
-      clrDiv.style.pointerEvents = "auto";
-      clrDiv.style.userSelect = "auto";
-    }
-  }
-  changeIconCheckbox.onclick = function() { ChangeColor(); }
-
-  changeIconCheckbox.checked = results.changeIcon;
-  ChangeColor()
-
-  document.querySelector(`input[value="${results.animation}"]`).checked = "checked";
-
-  const hideButtonLabelsCheckbox = document.querySelector('#hideButtonLabels');
-  const hideClipCheckbox = document.querySelector('#hideClips');
-  const hideThanksCheckbox = document.querySelector('#hideThanks');
-  const hideDownloadCheckbox = document.querySelector('#hideDownload');
-  const hideSponsorCheckbox = document.querySelector('#hideSponsor');
-
-  const speedometerCheckbox = document.querySelector('#speedometer');
-  const fullscreenCheckbox = document.querySelector('#fullscreen');
-
-  hideButtonLabelsCheckbox.checked = results.hideButtonLabels;
-  hideClipCheckbox.checked = results.hideClips;
-  hideThanksCheckbox.checked = results.hideThanks;
-  hideDownloadCheckbox.checked = results.hideDownload;
-  hideSponsorCheckbox.checked = results.hideSponsor;
-
-  speedometerCheckbox.checked = results.speedometer;
-  fullscreenCheckbox.checked = results.fullscreen;
-
-  document.getElementById("save").onclick = _ => {
-    chrome.storage.sync.set({
-      changeIcon: changeIconCheckbox.checked,
-      animation: document.querySelector('input[name="animation"]:checked').value,
-      hideButtonLabels: hideButtonLabelsCheckbox.checked,
-      hideClips: hideClipCheckbox.checked,
-      hideThanks: hideThanksCheckbox.checked,
-      hideDownload: hideDownloadCheckbox.checked,
-      hideSponsor: hideSponsorCheckbox.checked,
-      speedometer: speedometerCheckbox.checked,
-      fullscreen: fullscreenCheckbox.checked
-    }, _ => {
-      // Reload extension to make opt-out change immediate. 
-      chrome.runtime.reload();
-      window.close();
-    });
-  };
+	main();
 });
+
+function main(){
+	document.querySelector('#changeIcon').onclick = function() { ChangeColor(); }
+	ChangeColor()
+
+	initSave()
+	initReset()
+	initShortcuts()
+	document.querySelector("#openShortcuts").addEventListener("click", ()=>{
+		let el = document.querySelector("#shortCuts")
+		if (el.style.display == "block"){
+			el.style.display = "none"
+		} else{
+			el.style.display = "block"
+		}
+	})
+}
+
+function initReset(){
+	window.addEventListener("keydown", function(e){
+		if (e.keyCode == 17){ // CTRL
+			if (!event.repeat){
+				document.getElementById("save").innerHTML = chrome.i18n.getMessage("resetBut")
+				document.getElementById("save").onclick = _ => {
+					chrome.storage.sync.clear();
+					chrome.runtime.reload();
+					window.close();
+				}
+			}
+		}
+	})
+	window.addEventListener("keyup", function(e){
+		if (e.keyCode == 17){ // CTRL
+			document.getElementById("save").innerHTML = chrome.i18n.getMessage("saveBut")
+			initSave()
+		}
+	})
+}
+
+function initShortcuts(){
+	function allChecked(){
+		return Array.from(document.querySelectorAll('#shortCuts input[type=checkbox]:not(#activeAllShortcuts)'))
+				.map(e=>{return e.checked})
+				.every(x=>x)
+	}
+	document.querySelector("#activeAllShortcuts").checked = allChecked();
+
+	document.querySelector("#activeAllShortcuts").addEventListener("change",e=>{
+		let current = e.target.checked;
+		document.querySelectorAll("#shortCuts input[type=checkbox]:not(#activeAllShortcuts)").forEach(function(el){
+			el.checked = current;
+		})
+	})
+
+	document.querySelectorAll("#shortCuts input[type=checkbox]:not(#activeAllShortcuts)").forEach(function(el){
+		el.addEventListener("change",e=>{
+			document.querySelector("#activeAllShortcuts").checked = allChecked();
+		})
+	})
+}
+
+function initSave(){
+	document.getElementById("save").onclick = _ => {
+		let settings = {}
+		let elements = document.querySelectorAll(`input:not(.shortcut)`)
+		elements.forEach(function(el){
+			if (el.type == "checkbox"){
+				settings[el.name] = el.checked
+			}
+			else if (el.type == "radio"){
+				if (el.checked){
+					settings[el.name] = el.value
+				}
+			}
+		})
+
+		let shortcuts = {}
+		let elements2 = [...document.querySelectorAll("#shortCuts input:not(#activeAllShortcuts)"),
+							...document.querySelectorAll("#shortCuts select")]
+		elements2.forEach(function(el){
+			if (el.type == "checkbox"){
+				if (el.checked){
+					shortcuts[el.name] = el.checked
+				}
+			}
+			else if (el.tagName === 'SELECT'){
+				if (document.querySelector(`#shortCuts input[type=checkbox][name=${el.name}]`).checked){
+					shortcuts[el.name] = el.value
+				}
+			}
+		})
+		settings["shortcuts"] = shortcuts
+
+		chrome.storage.sync.set({
+			...settings
+			}, _ => {
+			// Reload extension to make opt-out change immediate. 
+			chrome.runtime.reload();
+			window.close();
+		});
+	};
+}
+
+function ChangeColor() {
+	let clrDiv = document.getElementById("animation")
+	let checkbox = document.getElementById("changeIcon")
+	if (!checkbox.checked){
+		if (theme == "dark"){
+			clrDiv.style.backgroundColor = "#313131";
+		}
+		else{
+			clrDiv.style.backgroundColor = "#E7E7E7";
+		}
+
+		list = document.getElementById("animation").getElementsByTagName("img")
+		intervals = []
+		for (let item of list) {
+			var x = setInterval(function() {
+				item.setAttribute('src',item.src)
+			},1)
+			intervals.push(x)
+		}
+		clrDiv.style.filter = "blur(1px) grayscale(1)";
+		clrDiv.style.pointerEvents = "none";
+		clrDiv.style.userSelect = "none";
+	}
+	else{
+		try{
+			for (let item of intervals) {
+				clearInterval(item)
+			}        
+		}catch{}
+		clrDiv.style.backgroundColor = "";
+		clrDiv.style.filter = "";
+		clrDiv.style.pointerEvents = "auto";
+		clrDiv.style.userSelect = "auto";
+	}
+}

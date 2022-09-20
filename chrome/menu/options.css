@@ -115,6 +115,58 @@ label input{
 	font-size: 11pt;
 }
 
+#openShortcuts {
+	margin-top: 12px;
+	font-family: sans-serif;
+	border-radius: 6px;
+	padding: 2px 8px;
+}
+#shortCuts{
+	display: none;
+	text-align: left;
+	margin-top: 10px;
+}
+#shortCuts input[type="checkbox"]{
+	vertical-align: middle;
+}
+#shortCuts select{
+	vertical-align: top;
+}
+#shortCuts table td:nth-child(2){
+	text-align: center;
+}
+
+.keyboard__key {
+	display: inline-block;
+	height: 30px;
+	width: 30px;
+	text-align: center;
+	line-height: 30px;
+	font-family: sans-serif;
+	font-size: 18px;
+	margin: 5px;
+	border-radius: 5px;
+	background: #eee;
+	filter: drop-shadow(0 2px 2px grey);
+	transition: 0.2s;
+}
+.dark .keyboard__key {
+	background: #333;
+}
+.keyboard__key:hover{
+	text-shadow: #A9A9A9 0 0 10px;
+	filter: drop-shadow(0 2px 3px #717171);
+}
+.dark .keyboard__key:hover{
+	text-shadow: white 0 0 10px;
+	filter: drop-shadow(0 2px 3px #A9A9A9);
+}
+.keyboard__key:active{
+	filter: drop-shadow(0 0 1px grey) !important;
+	transform: translateY(2px);
+	text-shadow: none !important;
+}
+
 .tooltip {
 	position: relative;
 	display: inline-flex;

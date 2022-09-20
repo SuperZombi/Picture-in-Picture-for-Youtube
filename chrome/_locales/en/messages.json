@@ -82,6 +82,9 @@
       "message": "Hide «Sponsor» button"
    }, "hideThanksTooltip": { "message": "../images/tooltips/en/sponsor.png" },
 
+   "updateAvailable": {
+       "message": "Update available"
+   },
    "resetBut": {
       "message": "Reset"
    },

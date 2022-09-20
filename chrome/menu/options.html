@@ -1,12 +1,13 @@
 <!DOCTYPE html>
 <html>
 <head>
+	<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
 	<link rel="stylesheet" href="options.css">
 	<link rel="stylesheet" href="aqua.min.css">
 </head>
 <body>
 	<label title="__MSG_changePipDesc__">
-		<input class="form-check-input" type="checkbox" id="changeIcon">
+		<input class="form-check-input" type="checkbox" id="changeIcon" name="changeIcon" checked>
 		<a class="cursor">__MSG_changePip__</a>
 	</label>
 
@@ -41,7 +42,12 @@
 			<summary>__MSG_otherSet__</summary>
 
 				<label style="margin-top:8px;">
-					<input class="form-check-input" type="checkbox" id="hideButtonLabels">
+					<input class="form-check-input" type="checkbox" name="maximumVolume">
+					<a class="cursor">__MSG_maximumVolume__</a>
+				</label>
+
+				<label style="margin-top:8px;">
+					<input class="form-check-input" type="checkbox" name="hideButtonLabels">
 					<a class="cursor">__MSG_hideButtonLabels__</a>
 
 					<div class="tooltip"><img src="../images/question_mark.svg">
@@ -50,7 +56,7 @@
 				</label>
 
 				<label style="margin-top:8px;">
-					<input class="form-check-input" type="checkbox" id="hideClips">
+					<input class="form-check-input" type="checkbox" name="hideClips">
 					<a class="cursor">__MSG_hideClips__</a>
 
 					<div class="tooltip"><img src="../images/question_mark.svg">
@@ -59,7 +65,7 @@
 				</label>
 
 				<label style="margin-top:8px;">
-					<input class="form-check-input" type="checkbox" id="hideDownload">
+					<input class="form-check-input" type="checkbox" name="hideDownload">
 					<a class="cursor">__MSG_hideDownload__</a>
 
 					<div class="tooltip"><img src="../images/question_mark.svg">
@@ -68,7 +74,7 @@
 				</label>
 
 				<label style="margin-top:8px;">
-					<input class="form-check-input" type="checkbox" id="hideThanks">
+					<input class="form-check-input" type="checkbox" name="hideThanks">
 					<a class="cursor">__MSG_hideThanks__</a>
 
 					<div class="tooltip"><img src="../images/question_mark.svg">
@@ -77,7 +83,7 @@
 				</label>
 
 				<label style="margin-top:8px;">
-					<input class="form-check-input" type="checkbox" id="hideSponsor">
+					<input class="form-check-input" type="checkbox" name="hideSponsor">
 					<a class="cursor">__MSG_hideSponsor__</a>
 
 					<div class="tooltip"><img src="../images/question_mark.svg">
@@ -91,18 +97,80 @@
 			<summary>__MSG_shorts__</summary>
 
 				<label style="margin-top:8px;">
-					<input class="form-check-input" type="checkbox" id="speedometer">
+					<input class="form-check-input" type="checkbox" name="speedometer">
 					<a class="cursor">__MSG_playbackSpeed__</a>
 				</label>
 
 				<label style="margin-top:8px;">
-					<input class="form-check-input" type="checkbox" id="fullscreen">
+					<input class="form-check-input" type="checkbox" name="fullscreen">
 					<a class="cursor">__MSG_fullscreenMode__</a>
 				</label>
+
+				<label style="margin-top:8px;">
+					<input class="form-check-input" type="checkbox" name="showTimeline">
+					<a class="cursor">__MSG_showTimeline__</a>
+				</label>
+
+				<label style="margin-top:8px;">
+					<input class="form-check-input" type="checkbox" name="OpenInYouTube">
+					<a class="cursor">__MSG_openInYouTube__</a>
+				</label>
+
+
+				<button id="openShortcuts" class="cursor">__MSG_Hotkeys__</button>
+
+				<div id="shortCuts">
+					<table>
+						<tr>
+							<td style="padding-bottom: 5px;">
+								<input class="form-check-input shortcut" type="checkbox" id="activeAllShortcuts">
+							</td>
+							<td style="display: inline-flex;">
+								<label for="activeAllShortcuts" class="cursor">__MSG_enableAll__</label>
+							</td>
+						</tr>
+						<tr>
+							<td><input class="form-check-input shortcut" type="checkbox" name="J_and_L"></td>
+							<td>
+								<div class="keyboard__key">J</div><div class="keyboard__key">L</div>
+							</td>
+							<td>
+								<span>__MSG_rewind__
+									<select name="J_and_L" class="shortcut">
+										<option value="10" selected>__MSG_10s__</option>
+										<option value="5">__MSG_5s__</option>
+									</select>
+								</span>
+							</td>
+						</tr>
+
+						<tr>
+							<td><input class="form-check-input shortcut" type="checkbox" name="ArrowLeftRight"></td>
+							<td>
+								<div class="keyboard__key"><</div><div class="keyboard__key">></div>
+							</td>
+							<td>
+								<span>__MSG_rewind__
+									<select name="ArrowLeftRight" class="shortcut">
+										<option value="5" selected>__MSG_5s__</option>
+										<option value="10">__MSG_10s__</option>
+									</select>
+								</span>
+							</td>
+						</tr>
+
+						<tr>
+							<td><input class="form-check-input shortcut" type="checkbox" name="fullscreen"></td>
+							<td><div class="keyboard__key">F</div></td>
+							<td><span>__MSG_fullscreen__</span></td>
+						</tr>
+					</table>
+				</div>
 
 		</details>
 
 		<hr>
+
 		<button id="save">__MSG_saveBut__</button>
 
 		<p class="other-links">
@@ -111,7 +179,7 @@
 				<span>GitHub</span>
 			</a>
 
-			<img style="margin-top:2px;" src="https://shields.io/badge/version-v2.3-blue">
+			<img style="margin-top:2px;" src="https://shields.io/badge/version-v2.4-blue">
 		</p>
 	<script src="options.js"></script>
 	<script src="localize.js"></script>

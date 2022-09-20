@@ -49,6 +49,7 @@ function main(){
 			el.style.display = "block"
 		}
 	})
+	check_updates()
 }
 
 function initReset(){
@@ -170,4 +171,43 @@ function ChangeColor() {
 		clrDiv.style.pointerEvents = "auto";
 		clrDiv.style.userSelect = "auto";
 	}
+}
+
+class Version{
+	constructor(text) {
+		this.version = text.split(".").map(x=>parseInt(x));
+	}
+	diff(what){
+		let array = [this.version, what.version]
+		let temp = array.map(el => el.length)
+		let min_length = array[temp.indexOf(Math.min(...temp))].length
+		
+		for (var i = 0; i < min_length; i++) {
+			// A bigger than B
+			if (parseInt(this.version[i]) > parseInt(what.version[i])) {
+				return 1;
+			}
+
+			// B bigger than A
+			if (parseInt(this.version[i]) < parseInt(what.version[i])) {
+				return -1;
+			}
+		}
+		return 0;
+	}
+}
+
+function check_updates(){
+	let current_version = new Version(chrome.runtime.getManifest().version)
+
+	fetch("https://api.github.com/repos/SuperZombi/Picture-in-Picture-for-Youtube/tags")
+		.then(response => response.json())
+		.then(data => {
+			let last_version = new Version(data[0].name)
+			if (last_version.diff(current_version) == 1){
+				document.getElementById("update").parentNode.title = chrome.i18n.getMessage("updateAvailable")
+				document.getElementById("update").parentNode.style.cursor = "help"
+				document.getElementById("update").style.display = "inline-block"
+			}
+		});
 }

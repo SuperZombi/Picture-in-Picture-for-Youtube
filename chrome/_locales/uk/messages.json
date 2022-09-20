@@ -35,9 +35,35 @@
    "fullscreenMode": {
       "message": "Повноекранний режим"
    },
-   
    "hideButtonLabels": {
       "message": "Приховати підписи кнопок"
+   },
+   "showTimeline": {
+      "message": "Відобразити часову шкалу"
+   },
+   "openInYouTube": {
+      "message": "Відобразити «Відкрити в YouTube»"
+   },
+   "openInYouTubeBut": {
+      "message": "Відкрити в YouTube"
+   },
+   "maximumVolume": {
+      "message": "Максимальна гучність"
+   },
+   "Hotkeys": {
+      "message": "Гарячі клавіші"
+   },
+   "enableAll": {
+      "message": "Включити всі"
+   },
+   "rewind": {
+      "message": "Перемотати: "
+   },
+   "5s": {
+      "message": "5 сек"
+   },
+   "10s": {
+      "message": "10 сек"
    },
 
    "hideClips": {
@@ -56,6 +82,9 @@
       "message": "Сховати кнопку «Спонсорувати»"
    }, "hideThanksTooltip": { "message": "../images/tooltips/uk/sponsor.png" },
 
+   "resetBut": {
+      "message": "Скинути"
+   },
    "saveBut": {
       "message": "Зберегти"
    }

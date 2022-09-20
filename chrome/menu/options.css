@@ -60,6 +60,14 @@ body{
 	justify-content: space-between;
 	align-items: center;
 }
+.other-links *{
+	display: flex;
+	align-items: center;
+}
+.other-links img{
+	user-select: none;
+	pointer-events: none;
+}
 label{
 	display: flex;
 	align-items: center;

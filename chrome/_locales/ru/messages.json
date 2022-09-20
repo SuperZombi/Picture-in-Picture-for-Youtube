@@ -82,6 +82,9 @@
       "message": "Скрыть кнопку «Спонсировать»"
    }, "hideSponsorTooltip": { "message": "../images/tooltips/ru/sponsor.png" },
 
+   "updateAvailable": {
+       "message": "Доступно обновление"
+   },
    "resetBut": {
       "message": "Сбросить"
    },

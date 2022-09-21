@@ -121,6 +121,7 @@ GM_registerMenuCommand(get_message("settings"), ()=>{
   div.style.zIndex = 10000
   div.style.top = 0
   div.style.right = "-50%"
+  div.style.willChange = "right"
   div.style.transition = "0.5s"
   div.style.borderRadius = "0 0 0 12px";
   div.style.fontSize = "14pt"

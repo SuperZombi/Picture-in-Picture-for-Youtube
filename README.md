@@ -49,13 +49,23 @@ Activates the Picture-in-Picture button and other useful features.
 
 ## List of changes:
 
-### 2.3:
-  * Added a function to hide the <code>Download</code> button.
-  * <details><summary>Added a function to hide labels for buttons.</summary><img src="github/images/hideButtonLabels.png"></details>
+### 2.4:
+ * Timeline and controls in Shorts.
+ * Hotkeys for rewind and Fullscreen in Shorts.
+  * <details><summary>Maximum volume.</summary>
+    By default, YouTube makes sound audio normalization, and volume of the video actually turns out to be in the range from 0.75 to 0.85 (Even if the player is set to 100%)</details>
+ * <details><summary>«Open in YouTube» in Shorts.</summary>
+    Opens the current video in the standard YouTube player in a new tab.</details>
+ * Redesigned settings engine. [dev]
+ * Optimization, User Experience improvement and Bug fixes.
 
 <br/>
 <details>
   <summary>Other</summary>
+
+  ### 2.3:
+  * Added a function to hide the <code>Download</code> button.
+  * <details><summary>Added a function to hide labels for buttons.</summary><img src="github/images/hideButtonLabels.png"></details>
   
   ### 2.2:
   * Added speed control for Shorts.

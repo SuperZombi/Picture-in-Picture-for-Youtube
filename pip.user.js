@@ -120,7 +120,8 @@ GM_registerMenuCommand(get_message("settings"), ()=>{
   div.style.position = 'fixed'
   div.style.zIndex = 10000
   div.style.top = 0
-  div.style.right = 0
+  div.style.right = "-50%"
+  div.style.transition = "0.5s"
   div.style.borderRadius = "0 0 0 12px";
   div.style.fontSize = "14pt"
   div.style.minWidth = "300px"
@@ -149,7 +150,8 @@ GM_registerMenuCommand(get_message("settings"), ()=>{
   img.style.filter = "drop-shadow(0 0 4px black)"
   img.src = images["close.png"]
   img.onclick = _ => {
-      div.remove()
+      div.style.right = "-50%"
+      setTimeout(()=>{ div.remove() }, 500)
   }
   close.appendChild(img)
   div.appendChild(close)
@@ -403,6 +405,7 @@ GM_registerMenuCommand(get_message("settings"), ()=>{
   })
 
   document.body.appendChild(div)
+  setTimeout(()=>{ div.style.right = 0; }, 1)
 })
 
 

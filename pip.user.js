@@ -127,7 +127,7 @@ GM_registerMenuCommand(get_message("settings"), ()=>{
   div.style.maxHeight = "100%"
   div.style.overflowY = "auto"
   div.style.backgroundImage = `url(${images['noise.png']})`
-  div.style.backdropFilter = "blur(20px)"
+  div.style.backdropFilter = "blur(15px)"
   if (document.documentElement.hasAttribute("dark")){
     div.style.backgroundColor = "rgb(0, 0, 0, 0.7)";
     div.style.color = "white"

@@ -1,5 +1,5 @@
 # Picture-in-Picture-for-Youtube
-<img src="https://shields.io/badge/version-v2.3-blue">
+<img src="https://shields.io/badge/version-v2.4-blue">
 
 ### Chrome extension
 

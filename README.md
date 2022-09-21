@@ -58,6 +58,7 @@ Activates the Picture-in-Picture button and other useful features.
     Opens the current video in the standard YouTube player in a new tab.</details>
  * Redesigned settings engine. [dev]
  * Optimization, User Experience improvement and Bug fixes.
+ * (Hold `ctrl` to reset extension settings)
 
 <br/>
 <details>

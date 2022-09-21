@@ -6,7 +6,12 @@ chrome.storage.sync.get({ changeIcon: true, animation: "default",
 						  speedometer: false, fullscreen: false, showTimeline: false, OpenInYouTube: false,
 						  shortcuts: {} }, results => { Settings = results; });
 
-window.onload = function() { main(); }
+window.onload = function() {
+	if (Settings.maximumVolume){
+		let video = document.querySelector("video")
+		if (video){ smartVolume(video, true) }
+	}
+}
 
 document.addEventListener("yt-navigate-finish", ()=>{
 	main();
@@ -337,7 +342,7 @@ function addOpenInYouTube(actions){
 	})
 }
 
-function smartVolume(video){
+function smartVolume(video, first_load=false){
 	function check(){
 		let data = JSON.parse(window.localStorage.getItem("yt-player-volume"));
 		if (data){
@@ -348,7 +353,9 @@ function smartVolume(video){
 		}
 	}
 	check()
-	video.addEventListener("volumechange", check, true)
+	if (!first_load){
+		video.addEventListener("volumechange", check, true)
+	}
 }
 
 var HotKeysWorker = function(e){

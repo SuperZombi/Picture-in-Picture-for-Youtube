@@ -21,6 +21,18 @@ Activates the Picture-in-Picture button and other useful features.
   ![Alt Text](github/images/animation3.gif)
 </details>
 
+## Overview:
+<details>
+  <summary></summary>
+  <p align="center">
+    <img src="github/images/Light.png" width="400px">
+    <img src="github/images/Dark.png" width="400px">
+    </br>
+     <img src="github/images/other_settings.png" width="400px"></br>
+     <img src="github/images/hotkeys.png" width="400px">
+  </p>  
+</details>
+
 
 ## How to Install:
 ### Chrome:

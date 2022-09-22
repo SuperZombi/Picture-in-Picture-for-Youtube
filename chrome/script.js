@@ -126,6 +126,15 @@ function getShortsCurrent(selector){
 
 var currentSpead = 1;
 function addSpeedometer(parrent){
+	function click_heandler(element){
+		document.body.onclick = function(e){
+			if (e.path.includes(element)){
+				if (e.path.includes(element.lastChild)){ return }
+				let result = element.lastChild.style.visibility == "hidden" ? "visible" : "hidden";
+				element.lastChild.style.visibility = result;
+			} else { element.lastChild.style.visibility = "hidden"; }
+		}
+	}
 	if (!parrent.querySelector("#speedometer")){
 		let div = document.createElement("div")
 		div.id = "speedometer"
@@ -139,13 +148,7 @@ function addSpeedometer(parrent){
 		img.style.cursor = "pointer"
 		img.style.height = "32px"
 		img.style.marginBottom = "2px";
-		document.body.onclick = function(e){
-			if (e.path.includes(div)){
-				if (e.path.includes(div.lastChild)){ return }
-				let result = div.lastChild.style.visibility == "hidden" ? "visible" : "hidden";
-				div.lastChild.style.visibility = result;
-			} else { div.lastChild.style.visibility = "hidden"; }
-		}
+		click_heandler(div)
 
 		let slider_area = document.createElement("div")
 		slider_area.style.visibility = "hidden";
@@ -179,10 +182,12 @@ function addSpeedometer(parrent){
 		div.appendChild(img)
 		div.appendChild(slider_area)
 		parrent.insertBefore(div, parrent.querySelector("#share-button"));
+		getShortsCurrent("#shorts-container .overlay").style.overflow = "visible"
 	}
 	else{
 		parrent.querySelector("#speedometer input").value = currentSpead;
 		parrent.querySelector("#speedometer span").innerHTML = currentSpead + "x";
+		click_heandler(parrent.querySelector("#speedometer"))
 	}
 }
 function addFullScreen(parrent){

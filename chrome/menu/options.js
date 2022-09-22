@@ -180,16 +180,16 @@ class Version{
 	diff(what){
 		let array = [this.version, what.version]
 		let temp = array.map(el => el.length)
-		let min_length = array[temp.indexOf(Math.min(...temp))].length
+		let max_length = array[temp.indexOf(Math.max(...temp))].length
 		
-		for (var i = 0; i < min_length; i++) {
+		for (var i = 0; i < max_length; i++) {
 			// A bigger than B
-			if (parseInt(this.version[i]) > parseInt(what.version[i])) {
+			if ( (parseInt(this.version[i]) || 0) > (parseInt(what.version[i]) || 0) ) {
 				return 1;
 			}
 
 			// B bigger than A
-			if (parseInt(this.version[i]) < parseInt(what.version[i])) {
+			if ( (parseInt(this.version[i]) || 0) < (parseInt(what.version[i]) || 0) ) {
 				return -1;
 			}
 		}

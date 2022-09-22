@@ -1,5 +1,5 @@
 # Picture-in-Picture-for-Youtube
-<img src="https://shields.io/badge/version-v2.4-blue">
+<img src="https://shields.io/badge/version-v2.4.1-blue">
 
 ### Chrome extension
 
@@ -60,6 +60,9 @@ Activates the Picture-in-Picture button and other useful features.
 
 
 ## List of changes:
+
+#### 2.4.1:
+ * Speedometer bug fixes
 
 ### 2.4:
  * Timeline and controls in Shorts.

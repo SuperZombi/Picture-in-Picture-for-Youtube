@@ -28,8 +28,12 @@ Activates the Picture-in-Picture button and other useful features.
     <img src="github/images/Light.png" width="400px">
     <img src="github/images/Dark.png" width="400px">
     </br>
+    <img src="github/images/hide_icons.png" width="800px">
+    </br>
      <img src="github/images/other_settings.png" width="400px"></br>
-     <img src="github/images/hotkeys.png" width="400px">
+     <img src="github/images/hotkeys.png" width="400px"></br>
+     <img src="github/images/speed.png" width="400px"></br>
+     
   </p>  
 </details>
 

@@ -474,22 +474,20 @@ function main(){
 		if (Settings.maximumVolume){
 			smartVolume(video)
 		}
-		if (youtube_parser(window.location.href)){
-			if (Settings.hideButtonLabels){
-				hideAllText_onButton()
-			}
-			if (Settings.hideClips){
-				hide_icon(clips_svg)
-			}
-			if (Settings.hideThanks){
-				hide_icon(thanks_svg)
-			}
-			if (Settings.hideDownload){
-				hide_icon(download_svg)
-			}
-			if (Settings.hideSponsor){
-				hide_button("sponsor-button")
-			}
+		if (Settings.hideButtonLabels){
+			hideAllText_onButton()
+		}
+		if (Settings.hideClips){
+			hide_icon(clips_svg)
+		}
+		if (Settings.hideThanks){
+			hide_icon(thanks_svg)
+		}
+		if (Settings.hideDownload){
+			hide_icon(download_svg)
+		}
+		if (Settings.hideSponsor){
+			hide_button("sponsor-button")
 		}
 
 		var button = document.getElementsByClassName('ytp-pip-button')[0];

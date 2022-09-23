@@ -1,6 +1,6 @@
 // ==UserScript==
 // @name         Picture-in-Picture for Youtube
-// @version      2.4.1
+// @version      2.4.2
 // @description  Activates the Picture-in-Picture button and other useful features.
 // @author       Super Zombi
 // @match        https://www.youtube.com/*
@@ -319,7 +319,7 @@ GM_registerMenuCommand(get_message("settings"), ()=>{
         <span style="margin-left:5px; ${document.documentElement.hasAttribute("dark") ? "color: #00c0ff;" : "color: blue;"}">GitHub</span>
       </a>
 
-      <img style="margin-top:2px;" src="https://shields.io/badge/version-v2.4-blue">
+      <img style="margin-top:2px;" src="https://shields.io/badge/version-v2.4.2-blue">
     </p>
   `
   div.appendChild(content)
@@ -422,6 +422,10 @@ document.addEventListener("yt-navigate-finish", ()=>{
   fisrt_load = false;
 });
 
+document.addEventListener("yt-player-updated", ()=>{
+  smartVolume(document.querySelector("video"))
+});
+
 
 function db_get(value, default_=undefined){
   let val = GM_getValue(value)
@@ -471,14 +475,17 @@ function hide_icon(target_svg){
     if (getButtons()?.offsetParent && isVideoLoaded()) {
       let arr = document.querySelectorAll('#top-level-buttons-computed ytd-button-renderer')
       for (let i = 0; i < arr.length; i++){
-        if (target_svg == arr[i].getElementsByTagName('svg')[0].getElementsByTagName('path')[0].getAttribute('d')){
-          if (arr[i].parentElement == document.querySelector('ytd-download-button-renderer')){
-            arr[i].parentElement.remove()
+        let icon = arr[i].querySelectorAll('svg')
+        if (icon[0]){
+          if (target_svg == icon[0].getElementsByTagName('path')[0].getAttribute('d')){
+            if (arr[i].parentElement == document.querySelector('ytd-download-button-renderer')){
+              arr[i].parentElement.remove()
+            }
+            else{
+              arr[i].remove()
+            }
+            break
           }
-          else{
-            arr[i].remove()
-          }
-          break
         }
       }
       clearInterval(timerId)
@@ -861,6 +868,19 @@ function main(){
   }
   let video = document.querySelector("video")
   if (video){
+    main_watch(video)
+  }
+  else if (window.location.pathname.startsWith("/watch")){
+    let timerId = setInterval(() => {
+      let video = document.querySelector("video")
+      if (video){
+        clearInterval(timerId)
+        main_watch(video)
+      }
+    }, 10);
+  }
+
+  function main_watch(video){
     if (db_get("maximumVolume", false)){
       smartVolume(video)
     }

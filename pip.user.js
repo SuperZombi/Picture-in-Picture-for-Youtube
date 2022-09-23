@@ -884,22 +884,20 @@ function main(){
     if (db_get("maximumVolume", false)){
       smartVolume(video)
     }
-    if (youtube_parser(window.location.href)){
-      if (db_get("hideButtonLabels", false)){
-        hideAllText_onButton()
-      }
-      if (db_get("hideClips", false)){
-        hide_icon(clips_svg)
-      }
-      if (db_get("hideThanks", false)){
-        hide_icon(thanks_svg)
-      }
-      if (db_get("hideDownload", false)){
-        hide_icon(download_svg)
-      }
-      if (db_get("hideSponsor", false)){
-        hide_button("sponsor-button")
-      }
+    if (db_get("hideButtonLabels", false)){
+      hideAllText_onButton()
+    }
+    if (db_get("hideClips", false)){
+      hide_icon(clips_svg)
+    }
+    if (db_get("hideThanks", false)){
+      hide_icon(thanks_svg)
+    }
+    if (db_get("hideDownload", false)){
+      hide_icon(download_svg)
+    }
+    if (db_get("hideSponsor", false)){
+      hide_button("sponsor-button")
     }
 
     if (db_get("activatePip", true)){

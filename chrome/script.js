@@ -18,7 +18,9 @@ document.addEventListener("yt-navigate-finish", ()=>{
 });
 
 document.addEventListener("yt-player-updated", ()=>{
-	smartVolume(document.querySelector("video"))
+	if (Settings.maximumVolume){
+		smartVolume(document.querySelector("video"))
+	}
 });
 
 

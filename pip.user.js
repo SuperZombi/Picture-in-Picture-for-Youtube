@@ -1,6 +1,6 @@
 // ==UserScript==
 // @name         Picture-in-Picture for Youtube
-// @version      2.4.2
+// @version      2.4.2.1
 // @description  Activates the Picture-in-Picture button and other useful features.
 // @author       Super Zombi
 // @match        https://www.youtube.com/*
@@ -319,7 +319,7 @@ GM_registerMenuCommand(get_message("settings"), ()=>{
         <span style="margin-left:5px; ${document.documentElement.hasAttribute("dark") ? "color: #00c0ff;" : "color: blue;"}">GitHub</span>
       </a>
 
-      <img style="margin-top:2px;" src="https://shields.io/badge/version-v2.4.2-blue">
+      <img style="margin-top:2px;" src="https://shields.io/badge/version-v2.4.2.1-blue">
     </p>
   `
   div.appendChild(content)
@@ -423,7 +423,9 @@ document.addEventListener("yt-navigate-finish", ()=>{
 });
 
 document.addEventListener("yt-player-updated", ()=>{
-  smartVolume(document.querySelector("video"))
+  if (db_get("maximumVolume", false)){
+    smartVolume(document.querySelector("video"))
+  }
 });
 
 

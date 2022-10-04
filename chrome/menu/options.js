@@ -22,11 +22,16 @@ chrome.storage.sync.get(null, results => {
 		else{
 			let elements = document.querySelectorAll(`input[name=${key}]:not(.shortcut)`)
 			let input;
-			if (elements.length > 1){
-				input = document.querySelector(`input[name=${key}][value=${value}]`)
-			} else{ input = elements[0]; }
-			if (input.type == "radio" || input.type == "checkbox"){
-				input.checked = value
+			if (elements.length > 0){
+				if (elements.length > 1){
+					input = document.querySelector(`input[name=${key}][value=${value}]`)
+				} else{ input = elements[0]; }
+				if (input.type == "radio" || input.type == "checkbox"){
+					input.checked = value
+				}
+			}
+			else{
+				chrome.storage.sync.remove(key)
 			}
 		}
 	}

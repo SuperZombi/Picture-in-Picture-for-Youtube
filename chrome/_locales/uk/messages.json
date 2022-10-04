@@ -41,12 +41,6 @@
    "showTimeline": {
       "message": "Відобразити часову шкалу"
    },
-   "openInYouTube": {
-      "message": "Відобразити «Відкрити в YouTube»"
-   },
-   "openInYouTubeBut": {
-      "message": "Відкрити в YouTube"
-   },
    "maximumVolume": {
       "message": "Максимальна гучність"
    },
@@ -65,18 +59,6 @@
    "10s": {
       "message": "10 сек"
    },
-
-   "hideClips": {
-      "message": "Сховати кнопку «Кліпи»"
-   }, "hideClipsTooltip": { "message": "../images/tooltips/uk/clip.png" },
-
-   "hideThanks": {
-      "message": "Сховати кнопку «Дякую»"
-   }, "hideSponsorTooltip": { "message": "../images/tooltips/uk/thanks.png" },
-
-   "hideDownload": {
-      "message": "Сховати кнопку «Завантажити»"
-   }, "hideDownloadTooltip": { "message": "../images/tooltips/uk/download.png" },
 
    "hideSponsor": {
       "message": "Сховати кнопку «Спонсорувати»"

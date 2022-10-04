@@ -41,12 +41,6 @@
    "showTimeline": {
       "message": "Show timeline"
    },
-   "openInYouTube": {
-      "message": "Show «Open in YouTube» button"
-   },
-   "openInYouTubeBut": {
-      "message": "Open in YouTube"
-   },
    "maximumVolume": {
       "message": "Maximum volume"
    },
@@ -65,18 +59,6 @@
    "10s": {
       "message": "10 sec"
    },
-   
-   "hideClips": {
-      "message": "Hide «Clips» button"
-   }, "hideClipsTooltip": { "message": "../images/tooltips/en/clip.png" },
-
-   "hideThanks": {
-      "message": "Hide «Thanks» button"
-   }, "hideSponsorTooltip": { "message": "../images/tooltips/en/thanks.png" },
-
-   "hideDownload": {
-      "message": "Hide «Download» button"
-   }, "hideDownloadTooltip": { "message": "../images/tooltips/en/download.png" },
 
    "hideSponsor": {
       "message": "Hide «Sponsor» button"

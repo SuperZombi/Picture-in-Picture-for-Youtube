@@ -1,5 +1,5 @@
 # Picture-in-Picture-for-Youtube
-<img src="https://shields.io/badge/version-v2.4.2.1-blue">
+<img src="https://shields.io/badge/version-v2.4.3-blue">
 
 ### Chrome extension
 
@@ -64,6 +64,9 @@ Activates the Picture-in-Picture button and other useful features.
 
 
 ## List of changes:
+
+#### 2.4.3:
+ * Updated with the new visual changes of YouTube
 
 ##### 2.4.2.1:
  * Maximum volume bug fixed

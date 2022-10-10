@@ -65,12 +65,10 @@ function hide_icon(target_svg){
 				if (icon[0]){
 					if (target_svg == icon[0].getElementsByTagName('path')[0].getAttribute('d')){
 						if (arr[i].parentElement == document.querySelector('ytd-download-button-renderer')){
-							arr[i].parentElement.style.visibility = 'hidden';
-							arr[i].parentElement.style.width = 0;
+							arr[i].parentElement.remove()
 						}
 						else{
-							arr[i].style.visibility = 'hidden';
-							arr[i].style.width = 0;
+							arr[i].remove()
 						}
 						break
 					}
@@ -100,8 +98,7 @@ function hideAllText_onButton(){
 			for (let i = 0; i < arr.length; i++){
 				let text_element = arr[i].querySelector("span[role='text']")
 				if (text_element){
-					text_element.parentElement.style.visibility = 'hidden';
-					text_element.parentElement.style.width = 0;
+					text_element.parentElement.remove()
 					let icon = arr[i].querySelector("yt-icon").parentElement;
 					icon.style.marginLeft = 0;
 					icon.style.marginRight = 0;

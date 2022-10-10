@@ -463,12 +463,10 @@ function hide_icon(target_svg){
         if (icon[0]){
           if (target_svg == icon[0].getElementsByTagName('path')[0].getAttribute('d')){
             if (arr[i].parentElement == document.querySelector('ytd-download-button-renderer')){
-              arr[i].parentElement.style.visibility = 'hidden';
-              arr[i].parentElement.style.width = 0;
+              arr[i].parentElement.remove()
             }
             else{
-              arr[i].style.visibility = 'hidden';
-              arr[i].style.width = 0;
+              arr[i].remove()
             }
             break
           }

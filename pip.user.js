@@ -1,6 +1,6 @@
 // ==UserScript==
 // @name         Picture-in-Picture for Youtube
-// @version      2.4.3
+// @version      2.4.4
 // @description  Activates the Picture-in-Picture button and other useful features.
 // @author       Super Zombi
 // @match        https://www.youtube.com/*
@@ -37,6 +37,8 @@ const locale = {
     "noAnimation": "No animation",
     "otherSet": "Other settings",
     "hideButtonLabels": "Hide button labels",
+    "hideClips": "Hide «Clips» Button",
+    "hideDownload": "Hide «Download» Button",
     "hideSponsor": "Hide «Sponsor» Button",
     "speed": "Speed",
     "playbackSpeed": "Playback speed",
@@ -58,6 +60,8 @@ const locale = {
     "otherSet": "Другие настройки",
     "hideButtonLabels": "Скрыть подписи кнопок",
     "hideSponsor": "Скрыть кнопку «Спонсировать»",
+    "hideClips": "Скрыть кнопку «Клипы»",
+    "hideDownload": "Скрыть кнопку «Скачать»",
     "speed": "Скорость",
     "playbackSpeed": "Скорость воспроизведения",
     "fullscreen": "Полный экран",
@@ -78,6 +82,8 @@ const locale = {
     "otherSet": "Інші налаштування",
     "hideButtonLabels": "Приховати підписи кнопок",
     "hideSponsor": "Сховати кнопку «Спонсорувати»",
+    "hideClips": "Сховати кнопку «Кліпи»",
+    "hideDownload": "Сховати кнопку «Завантажити»",
     "speed": "Швидкість",
     "playbackSpeed": "Швидкість програвання",
     "fullscreen": "Повний екран",
@@ -215,6 +221,16 @@ GM_registerMenuCommand(get_message("settings"), ()=>{
           <a>${get_message('hideButtonLabels')}</a>
         </label>
 
+        <label style="display:block; margin-top:10px; cursor:pointer;">
+          <input style="cursor: pointer;" class="pip_settings" type="checkbox" name="hideClips">
+          <a>${get_message('hideClips')}</a>
+        </label>
+
+        <label style="display:block; margin-top:10px; cursor:pointer;">
+          <input style="cursor: pointer;" class="pip_settings" type="checkbox" name="hideDownload">
+          <a>${get_message('hideDownload')}</a>
+        </label>
+
         <label style="display:block; margin-top:8px; cursor:pointer;">
           <input style="cursor: pointer;" class="pip_settings" type="checkbox" name="hideSponsor">
           <a>${get_message('hideSponsor')}</a>
@@ -298,7 +314,7 @@ GM_registerMenuCommand(get_message("settings"), ()=>{
         <span style="margin-left:5px; ${document.documentElement.hasAttribute("dark") ? "color: #00c0ff;" : "color: blue;"}">GitHub</span>
       </a>
 
-      <img style="margin-top:2px;" src="https://shields.io/badge/version-v2.4.3-blue">
+      <img style="margin-top:2px;" src="https://shields.io/badge/version-v2.4.4-blue">
     </p>
   `
   div.appendChild(content)
@@ -437,6 +453,25 @@ function getButtons() {
   }
 }
 
+function hide_icon(target_svg){
+  let timerId = setInterval(() => {
+    if (getButtons()?.offsetParent && isVideoLoaded()) {
+      let arr = [ ...document.querySelectorAll('#flexible-item-buttons ytd-button-renderer'),
+            ...document.querySelectorAll('#top-level-buttons-computed ytd-button-renderer')]
+      for (let i = 0; i < arr.length; i++){
+        let icon = arr[i].querySelectorAll('svg')
+        if (icon[0]){
+          if (target_svg == icon[0].getElementsByTagName('path')[0].getAttribute('d')){
+            arr[i].parentElement.style.visibility = 'hidden';
+            arr[i].parentElement.style.width = 0;
+            break
+          }
+        }
+      }
+      clearInterval(timerId)
+    }
+  }, 200);
+}
 function hide_button(id){
   let timerId = setInterval(() => {
     if (getButtons()?.offsetParent && isVideoLoaded()) {
@@ -740,6 +775,9 @@ var HotKeysWorker = function(e){
 
 
 function main(){
+  const clips_svg = "M8,7c0,0.55-0.45,1-1,1S6,7.55,6,7c0-0.55,0.45-1,1-1S8,6.45,8,7z M7,16c-0.55,0-1,0.45-1,1c0,0.55,0.45,1,1,1s1-0.45,1-1 C8,16.45,7.55,16,7,16z M10.79,8.23L21,18.44V20h-3.27l-5.76-5.76l-1.27,1.27C10.89,15.97,11,16.47,11,17c0,2.21-1.79,4-4,4 c-2.21,0-4-1.79-4-4c0-2.21,1.79-4,4-4c0.42,0,0.81,0.08,1.19,0.2l1.37-1.37l-1.11-1.11C8,10.89,7.51,11,7,11c-2.21,0-4-1.79-4-4 c0-2.21,1.79-4,4-4c2.21,0,4,1.79,4,4C11,7.43,10.91,7.84,10.79,8.23z M10.08,8.94L9.65,8.5l0.19-0.58C9.95,7.58,10,7.28,10,7 c0-1.65-1.35-3-3-3S4,5.35,4,7c0,1.65,1.35,3,3,3c0.36,0,0.73-0.07,1.09-0.21L8.7,9.55l0.46,0.46l1.11,1.11l0.71,0.71l-0.71,0.71 L8.9,13.91l-0.43,0.43l-0.58-0.18C7.55,14.05,7.27,14,7,14c-1.65,0-3,1.35-3,3c0,1.65,1.35,3,3,3s3-1.35,3-3 c0-0.38-0.07-0.75-0.22-1.12l-0.25-0.61L10,14.8l1.27-1.27l0.71-0.71l0.71,0.71L18.15,19H20v-0.15L10.08,8.94z M17.73,4H21v1.56 l-5.52,5.52l-2.41-2.41L17.73,4z M18.15,5l-3.67,3.67l1,1L20,5.15V5H18.15z"
+  const download_svg = "M17 18V19H6V18H17ZM16.5 11.4L15.8 10.7L12 14.4V4H11V14.4L7.2 10.6L6.5 11.3L11.5 16.3L16.5 11.4Z"
+
   if (Object.keys(db_get("shortcuts", {})).length > 0){
     window.removeEventListener("keydown", HotKeysWorker, true)
   }
@@ -792,6 +830,12 @@ function main(){
     }
     if (db_get("hideSponsor", false)){
       hide_button("sponsor-button")
+    }
+    if (db_get("hideClips", false)){
+      hide_icon(clips_svg)
+    }
+    if (db_get("hideDownload", false)){
+      hide_icon(download_svg)
     }
 
     if (db_get("activatePip", true)){

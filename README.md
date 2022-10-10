@@ -1,5 +1,5 @@
 # Picture-in-Picture-for-Youtube
-<img src="https://shields.io/badge/version-v2.4.3-blue">
+<img src="https://shields.io/badge/version-v2.4.4-blue">
 
 ### Chrome extension
 
@@ -65,32 +65,35 @@ Activates the Picture-in-Picture button and other useful features.
 
 ## List of changes:
 
+#### 2.4.4:
+ * Return of some old functions and bug fixes
+
 #### 2.4.3:
  * Updated with the new visual changes of YouTube
-
-##### 2.4.2.1:
- * Maximum volume bug fixed
-
-#### 2.4.2:
- * Bug fixes
-
-#### 2.4.1:
- * Speedometer bug fixes
-
-### 2.4:
- * Timeline and controls in Shorts.
- * Hotkeys for rewind and Fullscreen in Shorts.
-  * <details><summary>Maximum volume.</summary>
-    By default, YouTube makes sound audio normalization, and volume of the video actually turns out to be in the range from 0.75 to 0.85 (Even if the player is set to 100%)</details>
- * <details><summary>«Open in YouTube» in Shorts.</summary>
-    Opens the current video in the standard YouTube player in a new tab.</details>
- * Redesigned settings engine. [dev]
- * Optimization, User Experience improvement and Bug fixes.
- * (Hold `ctrl` to reset extension settings)
 
 <br/>
 <details>
   <summary>Other</summary>
+
+  ##### 2.4.2.1:
+   * Maximum volume bug fixed
+
+  #### 2.4.2:
+   * Bug fixes
+
+  #### 2.4.1:
+   * Speedometer bug fixes
+
+  ### 2.4:
+   * Timeline and controls in Shorts.
+   * Hotkeys for rewind and Fullscreen in Shorts.
+    * <details><summary>Maximum volume.</summary>
+      By default, YouTube makes sound audio normalization, and volume of the video actually turns out to be in the range from 0.75 to 0.85 (Even if the player is set to 100%)</details>
+   * <details><summary>«Open in YouTube» in Shorts.</summary>
+      Opens the current video in the standard YouTube player in a new tab.</details>
+   * Redesigned settings engine. [dev]
+   * Optimization, User Experience improvement and Bug fixes.
+   * (Hold `ctrl` to reset extension settings)
 
   ### 2.3:
   * Added a function to hide the <code>Download</code> button.

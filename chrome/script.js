@@ -64,8 +64,14 @@ function hide_icon(target_svg){
 				let icon = arr[i].querySelectorAll('svg')
 				if (icon[0]){
 					if (target_svg == icon[0].getElementsByTagName('path')[0].getAttribute('d')){
-						arr[i].parentElement.style.visibility = 'hidden';
-						arr[i].parentElement.style.width = 0;
+						if (arr[i].parentElement == document.querySelector('ytd-download-button-renderer')){
+							arr[i].parentElement.style.visibility = 'hidden';
+							arr[i].parentElement.style.width = 0;
+						}
+						else{
+							arr[i].style.visibility = 'hidden';
+							arr[i].style.width = 0;
+						}
 						break
 					}
 				}

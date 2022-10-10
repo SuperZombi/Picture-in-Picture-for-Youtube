@@ -64,6 +64,14 @@
       "message": "Скрыть кнопку «Спонсировать»"
    }, "hideSponsorTooltip": { "message": "../images/tooltips/ru/sponsor.png" },
 
+   "hideClips": {
+      "message": "Скрыть кнопку «Клипы»"
+   }, "hideClipsTooltip": { "message": "../images/tooltips/ru/clip.png" },
+
+   "hideDownload": {
+      "message": "Скрыть кнопку «Скачать»"
+   }, "hideDownloadTooltip": { "message": "../images/tooltips/ru/download.png" },
+
    "updateAvailable": {
        "message": "Доступно обновление"
    },

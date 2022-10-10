@@ -64,6 +64,14 @@
       "message": "Hide «Sponsor» button"
    }, "hideThanksTooltip": { "message": "../images/tooltips/en/sponsor.png" },
 
+   "hideClips": {
+      "message": "Hide «Clips» button"
+   }, "hideClipsTooltip": { "message": "../images/tooltips/en/clip.png" },
+   
+   "hideDownload": {
+      "message": "Hide «Download» button"
+   }, "hideDownloadTooltip": { "message": "../images/tooltips/en/download.png" },
+
    "updateAvailable": {
        "message": "Update available"
    },

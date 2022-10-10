@@ -1,6 +1,6 @@
 var Settings = {}
 chrome.storage.sync.get({ changeIcon: true, animation: "default",
-						  hideSponsor: false, hideButtonLabels: false,
+						  hideSponsor: false, hideButtonLabels: false, hideClips: false, hideDownload: false,
 						  maximumVolume: false, 
 						  speedometer: false, fullscreen: false, showTimeline: false,
 						  shortcuts: {} }, results => { Settings = results; });

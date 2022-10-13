@@ -93,8 +93,8 @@ function hide_button(id){
 function hideAllText_onButton(){
 	let timerId = setInterval(() => {
 		if (getButtons()?.offsetParent && isVideoLoaded()) {
-			let arr = [ ...document.querySelectorAll('#top-level-buttons-computed ytd-button-renderer button'),
-						...document.querySelectorAll('#flexible-item-buttons ytd-button-renderer button')]
+			let arr = [ ...document.querySelectorAll('#top-level-buttons-computed ytd-button-renderer'),
+						...document.querySelectorAll('#flexible-item-buttons ytd-button-renderer')]
 			for (let i = 0; i < arr.length; i++){
 				let text_element = arr[i].querySelector("span[role='text']")
 				if (text_element){
@@ -102,6 +102,12 @@ function hideAllText_onButton(){
 					let icon = arr[i].querySelector("yt-icon").parentElement;
 					icon.style.marginLeft = 0;
 					icon.style.marginRight = 0;
+				}
+				else{
+					text_element = arr[i].querySelector("#text")
+					if (text_element){
+						text_element.remove()
+					}
 				}
 			}
 			clearInterval(timerId)

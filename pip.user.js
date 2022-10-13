@@ -1,6 +1,6 @@
 // ==UserScript==
 // @name         Picture-in-Picture for Youtube
-// @version      2.4.4
+// @version      2.4.4.1
 // @description  Activates the Picture-in-Picture button and other useful features.
 // @author       Super Zombi
 // @match        https://www.youtube.com/*
@@ -314,7 +314,7 @@ GM_registerMenuCommand(get_message("settings"), ()=>{
         <span style="margin-left:5px; ${document.documentElement.hasAttribute("dark") ? "color: #00c0ff;" : "color: blue;"}">GitHub</span>
       </a>
 
-      <img style="margin-top:2px;" src="https://shields.io/badge/version-v2.4.4-blue">
+      <img style="margin-top:2px;" src="https://shields.io/badge/version-v2.4.4.1-blue">
     </p>
   `
   div.appendChild(content)
@@ -489,7 +489,7 @@ function hide_button(id){
 function hideAllText_onButton(){
   let timerId = setInterval(() => {
     if (getButtons()?.offsetParent && isVideoLoaded()) {
-      let arr = document.querySelectorAll('#top-level-buttons-computed ytd-button-renderer button')
+      let arr = document.querySelectorAll('#top-level-buttons-computed ytd-button-renderer')
       for (let i = 0; i < arr.length; i++){
         let text_element = arr[i].querySelector("span[role='text']")
         if (text_element){
@@ -497,6 +497,12 @@ function hideAllText_onButton(){
           let icon = arr[i].querySelector("yt-icon").parentElement;
           icon.style.marginLeft = 0;
           icon.style.marginRight = 0;
+        }
+        else{
+          text_element = arr[i].querySelector("#text")
+          if (text_element){
+            text_element.remove()
+          }
         }
       }
       clearInterval(timerId)

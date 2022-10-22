@@ -59,6 +59,10 @@
    "10s": {
       "message": "10 сек"
    },
+   
+   "autoplayNext": {
+      "message": "Автовідтворення"
+   },
 
    "hideSponsor": {
       "message": "Сховати кнопку «Спонсорувати»"

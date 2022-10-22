@@ -60,6 +60,10 @@
       "message": "10 sec"
    },
 
+   "autoplayNext": {
+      "message": "Autoplay"
+   },
+
    "hideSponsor": {
       "message": "Hide «Sponsor» button"
    }, "hideThanksTooltip": { "message": "../images/tooltips/en/sponsor.png" },

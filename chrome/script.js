@@ -1,7 +1,7 @@
 var Settings = {}
 chrome.storage.sync.get({ changeIcon: true, animation: "default",
 						  hideSponsor: false, hideButtonLabels: false, hideClips: false, hideDownload: false,
-						  maximumVolume: false, 
+						  maximumVolume: false, autoNext: false,
 						  speedometer: false, fullscreen: false, showTimeline: false,
 						  shortcuts: {} }, results => { Settings = results; });
 var fisrt_load = true;
@@ -420,6 +420,12 @@ function main(){
 				}
 				if (Settings.showTimeline){
 					addControls_and_progressBar(video)
+				}
+				if (Settings.autoNext){
+					video.removeAttribute("loop")
+					video.addEventListener("ended", _=>{
+						document.querySelector("#navigation-button-down button").click()
+					})
 				}
 				if (Object.keys(Settings.shortcuts).length > 0){
 					window.addEventListener("keydown", HotKeysWorker, true)

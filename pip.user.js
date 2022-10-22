@@ -1,6 +1,6 @@
 // ==UserScript==
 // @name         Picture-in-Picture for Youtube
-// @version      2.4.4.1
+// @version      2.4.5
 // @description  Activates the Picture-in-Picture button and other useful features.
 // @author       Super Zombi
 // @match        https://www.youtube.com/*
@@ -48,6 +48,7 @@ const locale = {
     "showTimeline": "Show timeline",
     "Hotkeys": "Hotkeys",
     "rewind": "Rewind: ",
+    "autoplayNext": "Autoplay",
     "saveBut": "Save",
     "closeBut": "Close",
     "resetBut": "Reset"
@@ -70,6 +71,7 @@ const locale = {
     "showTimeline": "Отобразить временную шкалу",
     "Hotkeys": "Горячие клавиши",
     "rewind": "Перемотать: ",
+    "autoplayNext": "Автовоспроизведение",
     "saveBut": "Сохранить",
     "closeBut": "Закрыть",
     "resetBut": "Сбросить"
@@ -92,6 +94,7 @@ const locale = {
     "showTimeline": "Відобразити часову шкалу",
     "Hotkeys": "Гарячі клавіші",
     "rewind": "Перемотати: ",
+    "autoplayNext": "Автовідтворення",
     "saveBut": "Зберегти",
     "closeBut": "Закрити",
     "resetBut": "Скинути"
@@ -250,6 +253,10 @@ GM_registerMenuCommand(get_message("settings"), ()=>{
           <input style="cursor: pointer;" class="pip_settings" type="checkbox" name="showTimeline">
           <a>${get_message('showTimeline')}</a>
         </label>
+        <label style="display:block; margin-top:8px; cursor:pointer;">
+          <input style="cursor: pointer;" class="pip_settings" type="checkbox" name="autoNext">
+          <a>${get_message('autoplayNext')}</a>
+        </label>
 
         <details style="margin-top:10px; margin-bottom:10px; text-align: center;">
           <summary style="cursor: pointer; user-select: none; list-style: none;
@@ -314,7 +321,7 @@ GM_registerMenuCommand(get_message("settings"), ()=>{
         <span style="margin-left:5px; ${document.documentElement.hasAttribute("dark") ? "color: #00c0ff;" : "color: blue;"}">GitHub</span>
       </a>
 
-      <img style="margin-top:2px;" src="https://shields.io/badge/version-v2.4.4.1-blue">
+      <img style="margin-top:2px;" src="https://shields.io/badge/version-v2.4.5-blue">
     </p>
   `
   div.appendChild(content)
@@ -809,6 +816,12 @@ function main(){
         }
         if (db_get("showTimeline", false)){
           addControls_and_progressBar(video)
+        }
+        if (db_get("autoNext", false)){
+          video.removeAttribute("loop")
+          video.addEventListener("ended", _=>{
+            document.querySelector("#navigation-button-down button").click()
+          })
         }
         if (Object.keys(db_get("shortcuts", {})).length > 0){
           window.addEventListener("keydown", HotKeysWorker, true)

@@ -60,6 +60,10 @@
       "message": "10 сек"
    },
 
+   "autoplayNext": {
+      "message": "Автовоспроизведение"
+   },
+
    "hideSponsor": {
       "message": "Скрыть кнопку «Спонсировать»"
    }, "hideSponsorTooltip": { "message": "../images/tooltips/ru/sponsor.png" },

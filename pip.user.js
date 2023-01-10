@@ -546,7 +546,7 @@ function getShortsCurrent(selector){
 var currentSpead = 1;
 function addSpeedometer(parrent){
   function click_heandler(element){
-    document.body.onclick = function(e){
+    document.body.onclick = function(event){
       let path = event.path || (event.composedPath && event.composedPath());
       if (path.includes(element)){
         if (path.includes(element.lastChild)){ return }

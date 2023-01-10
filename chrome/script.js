@@ -145,8 +145,9 @@ var currentSpead = 1;
 function addSpeedometer(parrent){
 	function click_heandler(element){
 		document.body.onclick = function(e){
-			if (e.path.includes(element)){
-				if (e.path.includes(element.lastChild)){ return }
+			let path = event.path || (event.composedPath && event.composedPath());
+			if (path.includes(element)){
+				if (path.includes(element.lastChild)){ return }
 				let result = element.lastChild.style.visibility == "hidden" ? "visible" : "hidden";
 				element.lastChild.style.visibility = result;
 			} else { element.lastChild.style.visibility = "hidden"; }

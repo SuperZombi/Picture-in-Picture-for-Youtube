@@ -1,6 +1,6 @@
 // ==UserScript==
 // @name         Picture-in-Picture for Youtube
-// @version      2.4.5
+// @version      2.4.6
 // @description  Activates the Picture-in-Picture button and other useful features.
 // @author       Super Zombi
 // @match        https://www.youtube.com/*
@@ -321,7 +321,7 @@ GM_registerMenuCommand(get_message("settings"), ()=>{
         <span style="margin-left:5px; ${document.documentElement.hasAttribute("dark") ? "color: #00c0ff;" : "color: blue;"}">GitHub</span>
       </a>
 
-      <img style="margin-top:2px;" src="https://shields.io/badge/version-v2.4.5-blue">
+      <img style="margin-top:2px;" src="https://shields.io/badge/version-v2.4.6-blue">
     </p>
   `
   div.appendChild(content)
@@ -547,8 +547,9 @@ var currentSpead = 1;
 function addSpeedometer(parrent){
   function click_heandler(element){
     document.body.onclick = function(e){
-      if (e.path.includes(element)){
-        if (e.path.includes(element.lastChild)){ return }
+      let path = event.path || (event.composedPath && event.composedPath());
+      if (path.includes(element)){
+        if (path.includes(element.lastChild)){ return }
         let result = element.lastChild.style.visibility == "hidden" ? "visible" : "hidden";
         element.lastChild.style.visibility = result;
       } else { element.lastChild.style.visibility = "hidden"; }

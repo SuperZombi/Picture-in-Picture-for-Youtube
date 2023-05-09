@@ -63,6 +63,9 @@
    "autoplayNext": {
       "message": "Autoplay"
    },
+   "play_pause": {
+      "message": "Play/Pause"
+   },
 
    "hideSponsor": {
       "message": "Hide «Sponsor» button"

@@ -148,13 +148,14 @@ label input{
 .keyboard__key {
 	display: inline-block;
 	height: 30px;
-	width: 30px;
+	min-width: 10px;
+	padding: 0 10px;
 	text-align: center;
 	line-height: 30px;
 	font-family: sans-serif;
 	font-size: 18px;
 	margin: 5px;
-	border-radius: 5px;
+	border-radius: 6px;
 	background: #eee;
 	filter: drop-shadow(0 2px 2px grey);
 	transition: 0.2s;

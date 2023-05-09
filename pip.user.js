@@ -1,6 +1,6 @@
 // ==UserScript==
 // @name         Picture-in-Picture for Youtube
-// @version      2.4.6
+// @version      2.4.7
 // @description  Activates the Picture-in-Picture button and other useful features.
 // @author       Super Zombi
 // @match        https://www.youtube.com/*
@@ -49,6 +49,7 @@ const locale = {
     "Hotkeys": "Hotkeys",
     "rewind": "Rewind: ",
     "autoplayNext": "Autoplay",
+    "play_pause": "Play/Pause",
     "saveBut": "Save",
     "closeBut": "Close",
     "resetBut": "Reset"
@@ -169,8 +170,8 @@ GM_registerMenuCommand(get_message("settings"), ()=>{
   content.style.padding = "20px"
   content.style.paddingTop = 0
 
-  let keyboard__key = `display: inline-block; height: 30px; width: 30px; text-align: center; line-height: 30px; cursor: pointer;
-      font-family: sans-serif; font-size: 18px; margin: 4px 2px; border-radius: 5px; filter: drop-shadow(0 2px 2px grey);
+  let keyboard__key = `display: inline-block; height: 30px; min-width: 10px; padding: 0 10px; text-align: center; line-height: 30px; cursor: pointer;
+      font-family: sans-serif; font-size: 18px; margin: 4px 2px; border-radius: 6px; filter: drop-shadow(0 2px 2px grey);
       background: ${document.documentElement.hasAttribute("dark") ? "#333" : "#eee"};
   `
   
@@ -305,6 +306,12 @@ GM_registerMenuCommand(get_message("settings"), ()=>{
               <td><span>${get_message('fullscreen')}</span></td>
             </tr>
 
+            <tr>
+              <td><input class="shortcut" style="margin-right: 5px; cursor: pointer;" type="checkbox" name="play_pause"></td>
+              <td><div style="${keyboard__key}">Space</div></td>
+              <td><span>${get_message('play_pause')}</span></td>
+            </tr>
+
           </table>
 
         </details>
@@ -321,7 +328,7 @@ GM_registerMenuCommand(get_message("settings"), ()=>{
         <span style="margin-left:5px; ${document.documentElement.hasAttribute("dark") ? "color: #00c0ff;" : "color: blue;"}">GitHub</span>
       </a>
 
-      <img style="margin-top:2px;" src="https://shields.io/badge/version-v2.4.6-blue">
+      <img style="margin-top:2px;" src="https://shields.io/badge/version-v2.4.7-blue">
     </p>
   `
   div.appendChild(content)
@@ -742,6 +749,9 @@ function addControls_and_progressBar(video){
 }
 
 var HotKeysWorker = function(e){
+  let search = document.querySelector("#search-form input")
+  if (document.activeElement == search){return}
+
   let vid = getShortsCurrent("#shorts-container video");
 
   if (db_get("shortcuts", {})["J_and_L"]){
@@ -752,6 +762,9 @@ var HotKeysWorker = function(e){
   }
   if (db_get("shortcuts", {})["fullscreen"]){
     fullScreen_button()
+  }
+  if (db_get("shortcuts", {})["play_pause"]){
+    play_pause_button()
   }
 
 
@@ -787,6 +800,11 @@ var HotKeysWorker = function(e){
         vid.style.objectFit = "contain";
         vid.requestFullscreen();
       }
+    }
+  }
+  function play_pause_button(){
+    if (e.keyCode == 32){
+      e.preventDefault();
     }
   }
 }

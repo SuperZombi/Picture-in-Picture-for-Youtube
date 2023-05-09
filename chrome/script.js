@@ -341,6 +341,9 @@ function smartVolume(video){
 }
 
 var HotKeysWorker = function(e){
+	let search = document.querySelector("#search-form input")
+	if (document.activeElement == search){return}
+
 	let vid = getShortsCurrent("#shorts-container video");
 
 	if (Settings.shortcuts.J_and_L){
@@ -351,6 +354,9 @@ var HotKeysWorker = function(e){
 	}
 	if (Settings.shortcuts.fullscreen){
 		fullScreen_button()
+	}
+	if (Settings.shortcuts.play_pause){
+		play_pause_button()
 	}
 
 
@@ -386,6 +392,11 @@ var HotKeysWorker = function(e){
 				vid.style.objectFit = "contain";
 				vid.requestFullscreen();
 			}
+		}
+	}
+	function play_pause_button(){
+		if (e.keyCode == 32){
+			e.preventDefault();
 		}
 	}
 }

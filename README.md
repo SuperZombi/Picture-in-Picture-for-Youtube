@@ -1,5 +1,9 @@
 # Picture-in-Picture-for-Youtube
-<img src="https://shields.io/badge/version-v2.4.7-blue">
+
+<P align="right">
+    <img align="left" src="https://shields.io/badge/version-v2.4.7-blue">
+    <a href="#donate">💲Support the Project</a>
+</p>
 
 ### Chrome extension
 

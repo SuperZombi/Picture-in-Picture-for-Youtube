@@ -171,6 +171,9 @@ Activates the Picture-in-Picture button and other useful features.
 
 <hr>
 
-#### Donate
-<a href="https://www.donationalerts.com/r/super_zombi">Donation Alerts</a>
+#### 💲Donate
+<a href="https://www.donationalerts.com/r/super_zombi">
+    <img width="20px" src="https://www.google.com/s2/favicons?domain=https://www.donationalerts.com&sz=256">
+    Donation Alerts</a>
+    
 (But now it's better to email me and I'll send you the details)

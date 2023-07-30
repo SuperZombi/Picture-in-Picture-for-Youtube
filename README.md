@@ -176,7 +176,15 @@ Activates the Picture-in-Picture button and other useful features.
 <table>
   <tr>
     <td>
-       <img width="16px" src="https://www.google.com/s2/favicons?domain=https://www.donationalerts.com&sz=256">
+       <img width="18px" src="https://www.google.com/s2/favicons?domain=https://donatello.to&sz=256">
+    </td>
+    <td>
+      <a href="https://donatello.to/super_zombi">Donatello</a>
+    </td>
+  </tr>
+  <tr>
+    <td>
+       <img width="18px" src="https://www.google.com/s2/favicons?domain=https://www.donationalerts.com&sz=256">
     </td>
     <td>
       <a href="https://www.donationalerts.com/r/super_zombi">Donation Alerts</a>

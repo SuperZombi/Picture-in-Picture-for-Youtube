@@ -70,7 +70,7 @@ Activates the Picture-in-Picture button and other useful features.
 ## List of changes:
 
   #### 2.4.7:
-   * `Shorts` Fixed a bug when shortcuts worked if you wrote in the search bar.
+   * `Shorts` Fixed a bug when shortcuts worked if you wrote in the search bar or comments.
    * `Shorts` Added a new shortcut on spacebar - Play/Pause (This key is currently assigned by YouTube the following video)
 
   #### 2.4.6:

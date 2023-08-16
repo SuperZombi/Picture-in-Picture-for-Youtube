@@ -749,8 +749,9 @@ function addControls_and_progressBar(video){
 }
 
 var HotKeysWorker = function(e){
-  let search = document.querySelector("#search-form input")
-  if (document.activeElement == search){return}
+  if (document.activeElement == document.querySelector("#search-form input") || // search
+      document.activeElement.classList.contains("yt-formatted-string")         // comments
+  ){return}
 
   let vid = getShortsCurrent("#shorts-container video");
 

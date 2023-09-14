@@ -435,7 +435,9 @@ function main(){
 					addControls_and_progressBar(video)
 				}
 				if (Settings.autoNext){
-					video.removeAttribute("loop")
+					video.addEventListener("timeupdate", () => {
+						video.removeAttribute("loop")
+					})
 					video.addEventListener("ended", _=>{
 						document.querySelector("#navigation-button-down button").click()
 					})

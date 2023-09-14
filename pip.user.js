@@ -1,6 +1,6 @@
 // ==UserScript==
 // @name         Picture-in-Picture for Youtube
-// @version      2.4.7
+// @version      2.4.8
 // @description  Activates the Picture-in-Picture button and other useful features.
 // @author       Super Zombi
 // @match        https://www.youtube.com/*
@@ -838,7 +838,9 @@ function main(){
           addControls_and_progressBar(video)
         }
         if (db_get("autoNext", false)){
-          video.removeAttribute("loop")
+          video.addEventListener("timeupdate", () => {
+            video.removeAttribute("loop")
+          })
           video.addEventListener("ended", _=>{
             document.querySelector("#navigation-button-down button").click()
           })

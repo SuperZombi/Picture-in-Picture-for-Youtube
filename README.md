@@ -11,7 +11,8 @@ Activates the Picture-in-Picture button and other useful features.
 
 ❗ Attention! After changing the plugin settings, reload the YouTube page. ❗
 
-<img src="github/images/image.png"></img>
+<img src="github/images/image.png"></img></br>
+<img width="320px" src="github/images/speed.png">
 
 ## Animations:
 <details>
@@ -36,8 +37,6 @@ Activates the Picture-in-Picture button and other useful features.
     </br>
      <img src="github/images/other_settings.png" width="400px"></br>
      <img src="github/images/hotkeys.png" width="400px"></br>
-     <img src="github/images/speed.png" width="400px"></br>
-     
   </p>  
 </details>
 

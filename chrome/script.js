@@ -2,18 +2,14 @@ var Settings = {}
 chrome.storage.sync.get({ changeIcon: true, animation: "default",
 						  hideSponsor: false, hideButtonLabels: false, hideClips: false, hideDownload: false,
 						  maximumVolume: false, autoNext: false,
-						  speedometer: false, fullscreen: false, showTimeline: false,
-						  shortcuts: {} }, results => { Settings = results; });
-var fisrt_load = true;
+						  speedometer: true, fullscreen: true, showTimeline: false,
+						  shortcuts: {"fullscreen": true, "play_pause": true}
+						}, results => { Settings = results; });
 window.onload = function() {
 	main()
 }
-
 document.addEventListener("yt-navigate-finish", ()=>{
-	if (!fisrt_load){
-		main();
-	}
-	fisrt_load = false;
+	main();
 });
 
 document.addEventListener("yt-player-updated", ()=>{
@@ -126,6 +122,7 @@ function isInViewport(element) {
 	const height = innerHeight || document.documentElement.clientHeight;
 	const width = innerWidth || document.documentElement.clientWidth;
 	return (
+		!(rect.top == 0 && rect.left == 0 && rect.bottom == 0 && rect.right == 0) &&
 		rect.top >= 0 &&
 		rect.left >= 0 &&
 		rect.bottom <= height &&

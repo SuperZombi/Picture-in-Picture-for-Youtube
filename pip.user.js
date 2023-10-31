@@ -1,6 +1,6 @@
 // ==UserScript==
 // @name         Picture-in-Picture for Youtube
-// @version      2.4.8
+// @version      2.4.9
 // @description  Activates the Picture-in-Picture button and other useful features.
 // @author       Super Zombi
 // @match        https://www.youtube.com/*
@@ -421,14 +421,9 @@ GM_registerMenuCommand(get_message("settings"), ()=>{
 
 /////////////////////////////////
 
-var fisrt_load = true;
 main();
-
 document.addEventListener("yt-navigate-finish", ()=>{
-  if (!fisrt_load){
-    main();
-  }
-  fisrt_load = false;
+  main();
 });
 
 document.addEventListener("yt-player-updated", ()=>{
@@ -535,6 +530,7 @@ function isInViewport(element) {
   const height = innerHeight || document.documentElement.clientHeight;
   const width = innerWidth || document.documentElement.clientWidth;
   return (
+    !(rect.top == 0 && rect.left == 0 && rect.bottom == 0 && rect.right == 0) &&
     rect.top >= 0 &&
     rect.left >= 0 &&
     rect.bottom <= height &&

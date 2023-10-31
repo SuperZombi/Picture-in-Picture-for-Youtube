@@ -6,8 +6,15 @@ if (darkThemeMq.matches) {
 else{
 	theme = "light"
 }
+const manifestData = chrome.runtime.getManifest();
+document.querySelector("#version").src = `https://shields.io/badge/version-${manifestData.version}-blue`
 
-chrome.storage.sync.get(null, results => {
+chrome.storage.sync.get({changeIcon: true, animation: "default",
+						hideSponsor: false, hideButtonLabels: false, hideClips: false, hideDownload: false,
+						maximumVolume: false, autoNext: false,
+						speedometer: true, fullscreen: true, showTimeline: false,
+						shortcuts: {"fullscreen": true, "play_pause": true}
+					}, results => {
 	for (let [key, value] of Object.entries(results)) {
 		if (key == "shortcuts"){
 			for (let [hotkey, val] of Object.entries(value)) {

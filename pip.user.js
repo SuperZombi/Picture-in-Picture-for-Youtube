@@ -1,6 +1,6 @@
 // ==UserScript==
 // @name         Picture-in-Picture for Youtube
-// @version      2.4.9
+// @version      2.4.10
 // @description  Activates the Picture-in-Picture button and other useful features.
 // @author       Super Zombi
 // @match        https://www.youtube.com/*
@@ -328,7 +328,7 @@ GM_registerMenuCommand(get_message("settings"), ()=>{
         <span style="margin-left:5px; ${document.documentElement.hasAttribute("dark") ? "color: #00c0ff;" : "color: blue;"}">GitHub</span>
       </a>
 
-      <img style="margin-top:2px;" src="https://shields.io/badge/version-v2.4.7-blue">
+      <img style="margin-top:2px;" src="https://shields.io/badge/version-v2.4.10-blue">
     </p>
   `
   div.appendChild(content)
@@ -652,7 +652,7 @@ function smartVolume(video){
   video.addEventListener("volumechange", check, true)
 }
 function addControls_and_progressBar(video){
-  let progress = getShortsCurrent("#shorts-container #overlay").querySelector("#progress-bar #progress-bar-line")
+  let progress = video.closest("#player-container").querySelector("#progress-bar #progress-bar-line")
 
   let progressBarObserver = new MutationObserver(function(mutations) {
     mutations.forEach(function(mutation) {

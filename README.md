@@ -1,7 +1,7 @@
 # Picture-in-Picture-for-Youtube
 
 <p align="right">
-    <img align="left" src="https://shields.io/badge/version-v2.4.9-blue">
+    <img align="left" src="https://shields.io/badge/version-v2.4.10-blue">
     <a href="#donate">💲Support the Project</a>
 </p>
 
@@ -68,19 +68,22 @@ Activates the Picture-in-Picture button and other useful features.
 
 ## List of changes:
 
+  #### 2.4.10:
+   * `Shorts` Fixed a bug with the inability to rewind the progress bar.
+
   #### 2.4.9:
    * `Shorts` Fixed a bug that caused the plugin to not work.
 
   #### 2.4.8:
    * `Shorts` Fixed a bug when AutoNext not worked.
 
-  #### 2.4.7:
-   * `Shorts` Fixed a bug when shortcuts worked if you wrote in the search bar or comments.
-   * `Shorts` Added a new shortcut on spacebar - Play/Pause (This key is currently assigned by YouTube the following video)
-
 <br/>
 <details>
   <summary>Other</summary>
+
+  #### 2.4.7:
+   * `Shorts` Fixed a bug when shortcuts worked if you wrote in the search bar or comments.
+   * `Shorts` Added a new shortcut on spacebar - Play/Pause (This key is currently assigned by YouTube the following video)
 
   #### 2.4.6:
    * Fixed bug with Speedometer not displaying on click

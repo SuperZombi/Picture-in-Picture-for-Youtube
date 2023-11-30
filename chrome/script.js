@@ -231,7 +231,7 @@ function addFullScreen(parrent){
 	}
 }
 function addControls_and_progressBar(video){
-	let progress = getShortsCurrent("#shorts-container #overlay").querySelector("#progress-bar #progress-bar-line")
+	let progress = video.closest("#player-container").querySelector("#progress-bar #progress-bar-line")
 
 	let progressBarObserver = new MutationObserver(function(mutations) {
 		mutations.forEach(function(mutation) {

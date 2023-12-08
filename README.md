@@ -2,7 +2,7 @@
 
 <p align="right">
     <img align="left" src="https://shields.io/badge/version-v2.4.10-blue">
-    <a href="#donate"><img src="https://shields.io/badge/💲-Support_the_Project-green"></a>
+    <a href="#donate"><img src="https://shields.io/badge/💲-Support_the_Project-2ea043"></a>
 </p>
 
 ### Chrome extension

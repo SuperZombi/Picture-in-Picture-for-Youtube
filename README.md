@@ -41,8 +41,11 @@ Activates the Picture-in-Picture button and other useful features.
 </details>
 
 
-## How to Install:
-### Chrome:
+## Installation:
+
+### [Chrome Web Store](https://chrome.google.com/webstore/detail/picture-in-picture-for-yo/choemllnhinpmdednemjdpbaolkpnhck)
+
+### Chrome (dev):
   1. Download latest **[Release](https://github.com/SuperZombi/Picture-in-Picture-for-Youtube/releases)**.
   2. Unpack the ```src``` folder to a convenient location.
   3. ```⋮``` > "Additional tools" > "Extensions".
@@ -55,7 +58,7 @@ Activates the Picture-in-Picture button and other useful features.
 2. Install **[Script](https://raw.githubusercontent.com/SuperZombi/Picture-in-Picture-for-Youtube/main/pip.user.js)**.
 
 
-## How to open Plugin menu:
+## How to open Settings:
 <details>
   <summary></summary>
   

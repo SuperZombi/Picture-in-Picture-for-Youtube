@@ -1,6 +1,6 @@
 // ==UserScript==
 // @name         Picture-in-Picture for Youtube
-// @version      2.4.10
+// @version      2.4.11
 // @description  Activates the Picture-in-Picture button and other useful features.
 // @author       Super Zombi
 // @match        https://www.youtube.com/*
@@ -328,7 +328,7 @@ GM_registerMenuCommand(get_message("settings"), ()=>{
         <span style="margin-left:5px; ${document.documentElement.hasAttribute("dark") ? "color: #00c0ff;" : "color: blue;"}">GitHub</span>
       </a>
 
-      <img style="margin-top:2px;" src="https://shields.io/badge/version-v2.4.10-blue">
+      <img style="margin-top:2px;" src="https://shields.io/badge/version-v2.4.11-blue">
     </p>
   `
   div.appendChild(content)
@@ -568,6 +568,7 @@ function addSpeedometer(parrent){
     div.style.alignItems = "center";
     let img = document.createElement("img")
     img.src = images["speedometer.svg"]
+    img.draggable = false;
     img.style.cursor = "pointer"
     img.style.height = "32px"
     img.style.marginBottom = "2px";
@@ -598,6 +599,7 @@ function addSpeedometer(parrent){
     text.style.fontSize = "14px";
     text.style.marginLeft = "5px";
     text.style.color = "#aaa"
+    text.style.userSelect = "none"
 
     slider_area.appendChild(input)
     slider_area.appendChild(text)
@@ -634,6 +636,7 @@ function addFullScreen(parrent){
     }
     let img = document.createElement("img")
     img.src = images["full.svg"]
+    img.draggable = false;
     div.appendChild(img)
     parrent.insertBefore(div, parrent.querySelector("#share-button"));
   }

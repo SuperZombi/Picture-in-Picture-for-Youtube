@@ -1,7 +1,7 @@
 # Picture-in-Picture-for-Youtube
 
 <p align="right">
-    <img align="left" src="https://shields.io/badge/version-v2.4.10-blue">
+    <img align="left" src="https://shields.io/badge/version-v2.4.11-blue">
     <a href="#donate"><img src="https://shields.io/badge/💲-Support_the_Project-2ea043"></a>
 </p>
 
@@ -70,6 +70,9 @@ Activates the Picture-in-Picture button and other useful features.
 
 
 ## List of changes:
+
+  #### 2.4.11:
+   * `Shorts` Fullscreen and speedometer icons are no longer draggable.
 
   #### 2.4.10:
    * `Shorts` Fixed a bug with the inability to rewind the progress bar.

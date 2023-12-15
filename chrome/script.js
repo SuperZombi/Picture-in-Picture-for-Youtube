@@ -160,6 +160,7 @@ function addSpeedometer(parrent){
 		div.style.alignItems = "center";
 		let img = document.createElement("img")
 		img.src = chrome.runtime.getURL("images/speedometer.svg")
+		img.draggable = false;
 		img.style.cursor = "pointer"
 		img.style.height = "32px"
 		img.style.marginBottom = "2px";
@@ -190,6 +191,7 @@ function addSpeedometer(parrent){
 		text.style.fontSize = "14px";
 		text.style.marginLeft = "5px";
 		text.style.color = "#aaa"
+		text.style.userSelect = "none"
 
 		slider_area.appendChild(input)
 		slider_area.appendChild(text)
@@ -226,6 +228,7 @@ function addFullScreen(parrent){
 		}
 		let img = document.createElement("img")
 		img.src = chrome.runtime.getURL("images/full.svg")
+		img.draggable = false;
 		div.appendChild(img)
 		parrent.insertBefore(div, parrent.querySelector("#share-button"));
 	}

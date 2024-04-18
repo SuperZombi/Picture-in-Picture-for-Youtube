@@ -205,5 +205,3 @@ Activates the Picture-in-Picture button and other useful features.
     </td>
   </tr>
 </table>
-    
-(But now it's better to email me and I'll send you the details)

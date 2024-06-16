@@ -11,8 +11,8 @@ document.querySelector("#version").src = `https://shields.io/badge/version-${man
 
 chrome.storage.sync.get({changeIcon: true, animation: "default",
 						hideSponsor: false, hideButtonLabels: false, hideClips: false, hideDownload: false,
-						maximumVolume: false, autoNext: false,
-						speedometer: true, fullscreen: true, showTimeline: false,
+						maximumVolume: false, autoNext: false, skipAds: true,
+						speedometer: true, fullscreen: true,
 						shortcuts: {"fullscreen": true, "play_pause": true}
 					}, results => {
 	for (let [key, value] of Object.entries(results)) {

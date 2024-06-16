@@ -38,8 +38,8 @@
    "hideButtonLabels": {
       "message": "Скрыть подписи кнопок"
    },
-   "showTimeline": {
-      "message": "Отобразить временную шкалу"
+   "skipAds": {
+      "message": "Пропускать рекламу"
    },
    "maximumVolume": {
       "message": "Максимальная громкость"

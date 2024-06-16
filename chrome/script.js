@@ -1,8 +1,8 @@
 var Settings = {}
 chrome.storage.sync.get({ changeIcon: true, animation: "default",
 						  hideSponsor: false, hideButtonLabels: false, hideClips: false, hideDownload: false,
-						  maximumVolume: false, autoNext: false,
-						  speedometer: true, fullscreen: true, showTimeline: false,
+						  maximumVolume: false, autoNext: false, skipAds: true,
+						  speedometer: true, fullscreen: true,
 						  shortcuts: {"fullscreen": true, "play_pause": true}
 						}, results => { Settings = results; });
 window.onload = function() {
@@ -207,7 +207,7 @@ function addSpeedometer(parrent){
 		click_heandler(parrent.querySelector("#speedometer"))
 	}
 }
-function addFullScreen(parrent){
+function addFullScreen(parrent, video){
 	if (!parrent.querySelector("#fullScreener")){
 		let div = document.createElement("div")
 		div.id = "fullScreener"
@@ -232,59 +232,8 @@ function addFullScreen(parrent){
 		div.appendChild(img)
 		parrent.insertBefore(div, parrent.querySelector("#share-button"));
 	}
-}
-function addControls_and_progressBar(video){
-	let progress = video.closest("#player-container").querySelector("#progress-bar #progress-bar-line")
-
-	let progressBarObserver = new MutationObserver(function(mutations) {
-		mutations.forEach(function(mutation) {
-			if (progress.hasAttribute("hidden")){
-				progress.removeAttribute("hidden")
-			}
-			Array.from(progress.children).forEach(function(child){
-				child.style.height = "100%"
-			})
-		});
-	});
-	progressBarObserver.observe(progress, {attributes: true, subtree: true});
-	progress.removeAttribute("hidden")
-
-	progress.style.pointerEvents = "auto"
-	progress.style.cursor = "pointer"
-	progress.style.transition = "0.25s"
-	progress.style.height = "2px";
-	progress.onmouseover = function(){
-		progress.style.paddingBottom = "5px";
-		Array.from(progress.children).forEach(function(child){
-			child.style.height = "100%"
-		})
-	}
-	progress.onmouseout = function(){
-		progress.style.paddingBottom = "";
-	}
-
-	var dragActive = false;
-	progress.addEventListener('mousedown', event=>{
-		dragActive = true;
-		rewind(event);
-	});
-	window.addEventListener('mouseup', _=>{dragActive=false});
-	function getCoefficient(event) {
-		let slider = progress.getBoundingClientRect();
-		let clickedPoint = event.clientX - slider.left;
-		let K = 0;
-		let width = progress.clientWidth;
-		K = clickedPoint / width;
-		return K;
-	}
-	function rewind(event) {
-		if (dragActive){
-			video.currentTime = video.duration * getCoefficient(event);
-		}
-	}
 
 	video.addEventListener("fullscreenchange", _=>{
-
 		function fullScreener(){
 			if (!video.hasAttribute("controls")){
 				video.setAttribute("controls","controls")
@@ -301,20 +250,18 @@ function addControls_and_progressBar(video){
 				});
 			});
 			controlsObserver.observe(video, {attributes: true});
-
 			fullScreener()
 
 			var playRateHandler = function(){
-				currentSpead = video.playbackRate;
 				let element = getShortsCurrent("#shorts-container #actions").querySelector("#speedometer input")
 				if (element){
+					currentSpead = video.playbackRate;
 					element.value = currentSpead;
 					element.nextElementSibling.innerHTML = currentSpead + "x";
 				}
 			}
 
 			video.addEventListener("ratechange", playRateHandler)
-
 			video.addEventListener("fullscreenchange", _=>{
 				if (!document.fullscreenElement) {
 					controlsObserver.disconnect()
@@ -326,6 +273,7 @@ function addControls_and_progressBar(video){
 	})
 }
 
+// Deprecated
 function smartVolume(video){
 	function check(){
 		let data = JSON.parse(window.localStorage.getItem("yt-player-volume"));
@@ -338,6 +286,21 @@ function smartVolume(video){
 	}
 	check()
 	video.addEventListener("volumechange", check, true)
+}
+
+var currentShortID = 0;
+function adsSkiper(container){
+	// Disable adBlock ( @@||youtube.com/shorts/*^$document )
+	let ads = container.querySelector(".ytd-ad-slot-renderer")
+	if (ads){
+		if (container.id > currentShortID){
+			document.querySelector("#navigation-button-down button").click()
+		}
+		else if (container.id < currentShortID){
+			document.querySelector("#navigation-button-up button").click()
+		}
+		return true
+	}
 }
 
 var HotKeysWorker = function(e){
@@ -413,26 +376,27 @@ function main(){
 			let actions = getShortsCurrent("#shorts-container #actions")
 			let video = getShortsCurrent("#shorts-container video")
 
-			if (actions && video){
-				clearInterval(timerId)
-				if (Settings.maximumVolume){
-					smartVolume(video)
-				}
-				if (Settings.hideButtonLabels){
-					let text_element = actions.querySelector("#share-button span[role='text']")
-					if (text_element){
-						text_element.parentElement.remove()
+			if (video){
+				let container = video.closest("ytd-reel-video-renderer")
+
+				if (Settings.skipAds){
+					let adsFounded = adsSkiper(container)
+					if (adsFounded){
+						clearInterval(timerId)
+						return
 					}
 				}
+				currentShortID = container.id
+			}
+			if (actions && video){
+				clearInterval(timerId)
+
 				if (Settings.speedometer){
 					video.playbackRate = currentSpead
 					addSpeedometer(actions)
 				}
 				if (Settings.fullscreen){
-					addFullScreen(actions)
-				}
-				if (Settings.showTimeline){
-					addControls_and_progressBar(video)
+					addFullScreen(actions, video)
 				}
 				if (Settings.autoNext){
 					video.addEventListener("timeupdate", () => {
@@ -444,6 +408,12 @@ function main(){
 				}
 				if (Object.keys(Settings.shortcuts).length > 0){
 					window.addEventListener("keydown", HotKeysWorker, true)
+				}
+				if (Settings.hideButtonLabels){
+					let text_element = actions.querySelector("#share-button span[role='text']")
+					if (text_element){
+						text_element.parentElement.remove()
+					}
 				}
 			}
 		}, 50);

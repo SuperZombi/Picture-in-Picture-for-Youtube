@@ -38,8 +38,8 @@
    "hideButtonLabels": {
       "message": "Приховати підписи кнопок"
    },
-   "showTimeline": {
-      "message": "Відобразити часову шкалу"
+   "skipAds": {
+      "message": "Пропускати рекламу"
    },
    "maximumVolume": {
       "message": "Максимальна гучність"

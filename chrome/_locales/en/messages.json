@@ -38,8 +38,8 @@
    "hideButtonLabels": {
       "message": "Hide button labels"
    },
-   "showTimeline": {
-      "message": "Show timeline"
+   "skipAds": {
+      "message": "Skip ads"
    },
    "maximumVolume": {
       "message": "Maximum volume"

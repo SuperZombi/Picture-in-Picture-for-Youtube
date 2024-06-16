@@ -6,7 +6,7 @@
    "default_locale": "en",
    "content_scripts": [{
       "matches": ["https://www.youtube.com/*"],
-      "js": ["script.js"],
+      "js": ["pip-script.js"],
       "run_at": "document_end"
    }],
    "action": {

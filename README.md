@@ -1,7 +1,7 @@
 # Picture-in-Picture-for-Youtube
 
 <p align="right">
-    <img align="left" src="https://shields.io/badge/version-v2.4.11-blue">
+    <img align="left" src="https://shields.io/badge/version-v2.5.0-blue">
     <a href="#donate"><img src="https://shields.io/badge/💲-Support_the_Project-2ea043"></a>
 </p>
 
@@ -71,6 +71,16 @@ Activates the Picture-in-Picture button and other useful features.
 
 ## List of changes:
 
+  #### 2.5.0:
+   * 🟢 Hide «Watch on TV» button.
+   * 🟢 `Shorts` Ads Skip.
+   * 🟡 `Shorts` Fixed fullscreen video controls.
+   * 🔴 `Shorts` ShowTimeline is deprecated.
+
+<br/>
+<details>
+  <summary>Other</summary>
+
   #### 2.4.11:
    * `Shorts` Fullscreen and speedometer icons are no longer draggable.
 
@@ -82,10 +92,6 @@ Activates the Picture-in-Picture button and other useful features.
 
   #### 2.4.8:
    * `Shorts` Fixed a bug when AutoNext not worked.
-
-<br/>
-<details>
-  <summary>Other</summary>
 
   #### 2.4.7:
    * `Shorts` Fixed a bug when shortcuts worked if you wrote in the search bar or comments.

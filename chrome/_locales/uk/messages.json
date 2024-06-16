@@ -59,6 +59,10 @@
    "10s": {
       "message": "10 сек"
    },
+
+   "hideWatchOnTv": {
+      "message": "Сховати «Відтвор. на телевізорі»"
+   },
    
    "autoplayNext": {
       "message": "Автовідтворення"

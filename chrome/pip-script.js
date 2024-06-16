@@ -1,6 +1,6 @@
 var Settings = {}
 chrome.storage.sync.get({ changeIcon: true, animation: "default",
-						  hideSponsor: false, hideButtonLabels: false, hideClips: false, hideDownload: false,
+						  hideSponsor: false, hideButtonLabels: false, hideWatchOnTv: false, hideClips: false, hideDownload: false,
 						  maximumVolume: false, autoNext: false, skipAds: true,
 						  speedometer: true, fullscreen: true,
 						  shortcuts: {"fullscreen": true, "play_pause": true}
@@ -109,6 +109,10 @@ function hideAllText_onButton(){
 			clearInterval(timerId)
 		}
 	}, 200);
+}
+function hideWatchOnTV(){
+	let button = document.querySelector('.ytp-remote-button');
+	button.style.display = 'none';
 }
 
 
@@ -441,6 +445,9 @@ function main(){
 		}
 		if (Settings.hideButtonLabels){
 			hideAllText_onButton()
+		}
+		if (Settings.hideWatchOnTv){
+			hideWatchOnTV()
 		}
 		if (Settings.hideSponsor){
 			hide_button("sponsor-button")

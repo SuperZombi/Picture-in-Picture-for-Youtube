@@ -40,6 +40,7 @@ const locale = {
     "hideClips": "Hide «Clips» Button",
     "hideDownload": "Hide «Download» Button",
     "hideSponsor": "Hide «Sponsor» Button",
+    "hideWatchOnTv": "Hide «Watch on TV»",
     "speed": "Speed",
     "playbackSpeed": "Playback speed",
     "fullscreen": "Full screen",
@@ -64,6 +65,7 @@ const locale = {
     "hideSponsor": "Скрыть кнопку «Спонсировать»",
     "hideClips": "Скрыть кнопку «Клипы»",
     "hideDownload": "Скрыть кнопку «Скачать»",
+    "hideWatchOnTv": "Скрыть «Воспр. на телевизоре»",
     "speed": "Скорость",
     "playbackSpeed": "Скорость воспроизведения",
     "fullscreen": "Полный экран",
@@ -87,6 +89,7 @@ const locale = {
     "hideSponsor": "Сховати кнопку «Спонсорувати»",
     "hideClips": "Сховати кнопку «Кліпи»",
     "hideDownload": "Сховати кнопку «Завантажити»",
+    "hideWatchOnTv": "Сховати «Відтвор. на телевізорі»",
     "speed": "Швидкість",
     "playbackSpeed": "Швидкість програвання",
     "fullscreen": "Повний екран",
@@ -223,6 +226,11 @@ GM_registerMenuCommand(get_message("settings"), ()=>{
         <label style="display:block; margin-top:10px; cursor:pointer;">
           <input style="cursor: pointer;" class="pip_settings" type="checkbox" name="hideButtonLabels">
           <a>${get_message('hideButtonLabels')}</a>
+        </label>
+
+        <label style="display:block; margin-top:10px; cursor:pointer;">
+          <input style="cursor: pointer;" class="pip_settings" type="checkbox" name="hideWatchOnTv">
+          <a>${get_message('hideWatchOnTv')}</a>
         </label>
 
         <label style="display:block; margin-top:10px; cursor:pointer;">
@@ -517,6 +525,11 @@ function hideAllText_onButton(){
       clearInterval(timerId)
     }
   }, 200);
+}
+
+function hideWatchOnTV(){
+  let button = document.querySelector('.ytp-remote-button');
+  button.style.display = 'none';
 }
 
 function youtube_parser(url){
@@ -837,6 +850,9 @@ function main(){
     }
     if (db_get("hideButtonLabels", false)){
       hideAllText_onButton()
+    }
+    if (db_get("hideWatchOnTv", false)){
+      hideWatchOnTV()
     }
     if (db_get("hideSponsor", false)){
       hide_button("sponsor-button")

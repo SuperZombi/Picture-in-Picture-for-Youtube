@@ -10,7 +10,7 @@ const manifestData = chrome.runtime.getManifest();
 document.querySelector("#version").src = `https://shields.io/badge/version-${manifestData.version}-blue`
 
 chrome.storage.sync.get({changeIcon: true, animation: "default",
-						hideSponsor: false, hideButtonLabels: false, hideClips: false, hideDownload: false,
+						hideSponsor: false, hideButtonLabels: false, hideWatchOnTv: false, hideClips: false, hideDownload: false,
 						maximumVolume: false, autoNext: false, skipAds: true,
 						speedometer: true, fullscreen: true,
 						shortcuts: {"fullscreen": true, "play_pause": true}

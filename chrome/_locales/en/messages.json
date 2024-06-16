@@ -67,6 +67,10 @@
       "message": "Play/Pause"
    },
 
+   "hideWatchOnTv": {
+      "message": "Hide «Watch on TV»"
+   },
+
    "hideSponsor": {
       "message": "Hide «Sponsor» button"
    }, "hideThanksTooltip": { "message": "../images/tooltips/en/sponsor.png" },

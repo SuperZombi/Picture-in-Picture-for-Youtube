@@ -64,6 +64,10 @@
       "message": "Автовоспроизведение"
    },
 
+   "hideWatchOnTv": {
+      "message": "Скрыть «Воспр. на телевизоре»"
+   },
+
    "hideSponsor": {
       "message": "Скрыть кнопку «Спонсировать»"
    }, "hideSponsorTooltip": { "message": "../images/tooltips/ru/sponsor.png" },

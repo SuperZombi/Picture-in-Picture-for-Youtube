@@ -1,6 +1,6 @@
 // ==UserScript==
 // @name         Picture-in-Picture for Youtube
-// @version      2.4.11
+// @version      2.5.0
 // @description  Activates the Picture-in-Picture button and other useful features.
 // @author       Super Zombi
 // @match        https://www.youtube.com/*
@@ -45,7 +45,7 @@ const locale = {
     "fullscreen": "Full screen",
     "fullscreenMode": "Full screen mode",
     "maximumVolume": "Maximum volume",
-    "showTimeline": "Show timeline",
+    "skipAds": "Skip ads",
     "Hotkeys": "Hotkeys",
     "rewind": "Rewind: ",
     "autoplayNext": "Autoplay",
@@ -69,7 +69,7 @@ const locale = {
     "fullscreen": "Полный экран",
     "fullscreenMode": "Полноэкранный режим",
     "maximumVolume": "Максимальная громкость",
-    "showTimeline": "Отобразить временную шкалу",
+    "skipAds": "Пропускать рекламу",
     "Hotkeys": "Горячие клавиши",
     "rewind": "Перемотать: ",
     "autoplayNext": "Автовоспроизведение",
@@ -92,7 +92,7 @@ const locale = {
     "fullscreen": "Повний екран",
     "fullscreenMode": "Повноекранний режим",
     "maximumVolume": "Максимальна гучність",
-    "showTimeline": "Відобразити часову шкалу",
+    "skipAds": "Пропускати рекламу",
     "Hotkeys": "Гарячі клавіші",
     "rewind": "Перемотати: ",
     "autoplayNext": "Автовідтворення",
@@ -251,8 +251,8 @@ GM_registerMenuCommand(get_message("settings"), ()=>{
           <a>${get_message('fullscreenMode')}</a>
         </label>
         <label style="display:block; margin-top:8px; cursor:pointer;">
-          <input style="cursor: pointer;" class="pip_settings" type="checkbox" name="showTimeline">
-          <a>${get_message('showTimeline')}</a>
+          <input style="cursor: pointer;" class="pip_settings" type="checkbox" name="skipAds">
+          <a>${get_message('skipAds')}</a>
         </label>
         <label style="display:block; margin-top:8px; cursor:pointer;">
           <input style="cursor: pointer;" class="pip_settings" type="checkbox" name="autoNext">
@@ -615,7 +615,7 @@ function addSpeedometer(parrent){
     click_heandler(parrent.querySelector("#speedometer"))
   }
 }
-function addFullScreen(parrent){
+function addFullScreen(parrent, video){
   if (!parrent.querySelector("#fullScreener")){
     let div = document.createElement("div")
     div.id = "fullScreener"
@@ -640,72 +640,7 @@ function addFullScreen(parrent){
     div.appendChild(img)
     parrent.insertBefore(div, parrent.querySelector("#share-button"));
   }
-}
-function smartVolume(video){
-  function check(){
-    let data = JSON.parse(window.localStorage.getItem("yt-player-volume"));
-    if (data){
-      let currentVolume = JSON.parse(data.data).volume/100;
-      if (video.volume != currentVolume){
-        video.volume = currentVolume;
-      }
-    }
-  }
-  check()
-  video.addEventListener("volumechange", check, true)
-}
-function addControls_and_progressBar(video){
-  let progress = video.closest("#player-container").querySelector("#progress-bar #progress-bar-line")
-
-  let progressBarObserver = new MutationObserver(function(mutations) {
-    mutations.forEach(function(mutation) {
-      if (progress.hasAttribute("hidden")){
-        progress.removeAttribute("hidden")
-      }
-      Array.from(progress.children).forEach(function(child){
-        child.style.height = "100%"
-      })
-    });
-  });
-  progressBarObserver.observe(progress, {attributes: true, subtree: true});
-  progress.removeAttribute("hidden")
-
-  progress.style.pointerEvents = "auto"
-  progress.style.cursor = "pointer"
-  progress.style.transition = "0.25s"
-  progress.style.height = "2px";
-  progress.onmouseover = function(){
-    progress.style.paddingBottom = "5px";
-    Array.from(progress.children).forEach(function(child){
-      child.style.height = "100%"
-    })
-  }
-  progress.onmouseout = function(){
-    progress.style.paddingBottom = "";
-  }
-
-  var dragActive = false;
-  progress.addEventListener('mousedown', event=>{
-    dragActive = true;
-    rewind(event);
-  });
-  window.addEventListener('mouseup', _=>{dragActive=false});
-  function getCoefficient(event) {
-    let slider = progress.getBoundingClientRect();
-    let clickedPoint = event.clientX - slider.left;
-    let K = 0;
-    let width = progress.clientWidth;
-    K = clickedPoint / width;
-    return K;
-  }
-  function rewind(event) {
-    if (dragActive){
-      video.currentTime = video.duration * getCoefficient(event);
-    }
-  }
-
   video.addEventListener("fullscreenchange", _=>{
-
     function fullScreener(){
       if (!video.hasAttribute("controls")){
         video.setAttribute("controls","controls")
@@ -722,20 +657,18 @@ function addControls_and_progressBar(video){
         });
       });
       controlsObserver.observe(video, {attributes: true});
-
       fullScreener()
 
       var playRateHandler = function(){
-        currentSpead = video.playbackRate;
         let element = getShortsCurrent("#shorts-container #actions").querySelector("#speedometer input")
         if (element){
+          currentSpead = video.playbackRate;
           element.value = currentSpead;
           element.nextElementSibling.innerHTML = currentSpead + "x";
         }
       }
 
       video.addEventListener("ratechange", playRateHandler)
-
       video.addEventListener("fullscreenchange", _=>{
         if (!document.fullscreenElement) {
           controlsObserver.disconnect()
@@ -745,6 +678,33 @@ function addControls_and_progressBar(video){
       })
     }
   })
+}
+function smartVolume(video){
+  function check(){
+    let data = JSON.parse(window.localStorage.getItem("yt-player-volume"));
+    if (data){
+      let currentVolume = JSON.parse(data.data).volume/100;
+      if (video.volume != currentVolume){
+        video.volume = currentVolume;
+      }
+    }
+  }
+  check()
+  video.addEventListener("volumechange", check, true)
+}
+
+var currentShortID = 0;
+function adsSkiper(container){
+  let ads = container.querySelector(".ytd-ad-slot-renderer")
+  if (ads){
+    if (container.id > currentShortID){
+      document.querySelector("#navigation-button-down button").click()
+    }
+    else if (container.id < currentShortID){
+      document.querySelector("#navigation-button-up button").click()
+    }
+    return true
+  }
 }
 
 var HotKeysWorker = function(e){
@@ -821,20 +781,26 @@ function main(){
     let timerId = setInterval(() => {
       let actions = getShortsCurrent("#shorts-container #actions")
       let video = getShortsCurrent("#shorts-container video")
+      if (video){
+        let container = video.closest("ytd-reel-video-renderer")
+
+        if (db_get("skipAds", true)){
+          let adsFounded = adsSkiper(container)
+          if (adsFounded){
+            clearInterval(timerId)
+            return
+          }
+        }
+        currentShortID = container.id
+      }
       if (actions && video){
         clearInterval(timerId)
-        if (db_get("maximumVolume", false)){
-          smartVolume(video)
-        }
-        if (db_get("speedometer", false)){
+        if (db_get("speedometer", true)){
           video.playbackRate = currentSpead
           addSpeedometer(actions)
         }
-        if (db_get("fullscreenBut", false)){
-          addFullScreen(actions)
-        }
-        if (db_get("showTimeline", false)){
-          addControls_and_progressBar(video)
+        if (db_get("fullscreenBut", true)){
+          addFullScreen(actions, video)
         }
         if (db_get("autoNext", false)){
           video.addEventListener("timeupdate", () => {

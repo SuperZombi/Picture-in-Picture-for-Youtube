@@ -1,6 +1,6 @@
 // ==UserScript==
 // @name         Picture-in-Picture for Youtube
-// @version      2.5.0
+// @version      2.5.1
 // @description  Activates the Picture-in-Picture button and other useful features.
 // @author       Super Zombi
 // @match        https://www.youtube.com/*
@@ -336,7 +336,7 @@ GM_registerMenuCommand(get_message("settings"), ()=>{
         <span style="margin-left:5px; ${document.documentElement.hasAttribute("dark") ? "color: #00c0ff;" : "color: blue;"}">GitHub</span>
       </a>
 
-      <img style="margin-top:2px;" src="https://shields.io/badge/version-v2.4.11-blue">
+      <img style="margin-top:2px;" src="https://shields.io/badge/version-v2.5.1-blue">
     </p>
   `
   div.appendChild(content)
@@ -530,6 +530,12 @@ function hideAllText_onButton(){
 function hideWatchOnTV(){
   let button = document.querySelector('.ytp-remote-button');
   button.style.display = 'none';
+  let observer = new MutationObserver(function(mutations) {
+    mutations.forEach(function(mutation) {
+      button.style.display = 'none';
+    });
+  });
+  observer.observe(button, {attributes: true});
 }
 
 function youtube_parser(url){

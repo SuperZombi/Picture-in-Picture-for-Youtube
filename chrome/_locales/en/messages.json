@@ -69,7 +69,7 @@
 
    "hideWatchOnTv": {
       "message": "Hide «Watch on TV»"
-   },
+   }, "hideWatchOnTvTooltip": { "message": "../images/tooltips/watch-on-tv.png" },
 
    "hideSponsor": {
       "message": "Hide «Sponsor» button"

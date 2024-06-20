@@ -113,6 +113,12 @@ function hideAllText_onButton(){
 function hideWatchOnTV(){
 	let button = document.querySelector('.ytp-remote-button');
 	button.style.display = 'none';
+	let observer = new MutationObserver(function(mutations) {
+		mutations.forEach(function(mutation) {
+			button.style.display = 'none';
+		});
+	});
+	observer.observe(button, {attributes: true});
 }
 
 

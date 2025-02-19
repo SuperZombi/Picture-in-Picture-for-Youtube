@@ -1,13 +1,13 @@
+<img src="github/images/app-icon.png" height="128" align="right"></img>
+
 # Picture-in-Picture-for-Youtube
 
 <p align="right">
-    <img align="left" src="https://shields.io/badge/version-v2.5.1-blue">
+    <img align="left" src="https://shields.io/badge/version-v2.5.2-blue">
     <a href="#donate"><img src="https://shields.io/badge/💲-Support_the_Project-2ea043"></a>
 </p>
 
 ### Chrome extension
-
-Activates the Picture-in-Picture button and other useful features.
 
 ❗ Attention! After changing the plugin settings, reload the YouTube page. ❗
 

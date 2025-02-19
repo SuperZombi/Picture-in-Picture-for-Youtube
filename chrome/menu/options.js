@@ -13,7 +13,10 @@ chrome.storage.sync.get({changeIcon: true, animation: "default",
 						hideSponsor: false, hideButtonLabels: false, hideWatchOnTv: false, hideClips: false, hideDownload: false,
 						maximumVolume: false, autoNext: false, skipAds: true,
 						speedometer: true, fullscreen: true,
-						shortcuts: {"fullscreen": true, "play_pause": true}
+						shortcuts: {
+							"fullscreen": true, "play_pause": true,
+							"ArrowLeftRight": "5", "J_and_L": "10"
+						}
 					}, results => {
 	for (let [key, value] of Object.entries(results)) {
 		if (key == "shortcuts"){

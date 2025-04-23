@@ -1,6 +1,6 @@
 // ==UserScript==
 // @name         Picture-in-Picture for Youtube
-// @version      2.5.2
+// @version      2.5.3
 // @description  Picture-in-Picture button and other useful features.
 // @author       Super Zombi
 // @match        https://www.youtube.com/*
@@ -716,16 +716,27 @@ function smartVolume(video){
 
 var currentShortID = 0;
 function adsSkiper(container){
+  // Disable adBlock ( @@||youtube.com/shorts/*^$document )
   let ads = container.querySelector(".ytd-ad-slot-renderer")
   if (ads){
-    if (container.id > currentShortID){
-      document.querySelector("#navigation-button-down button").click()
-    }
-    else if (container.id < currentShortID){
+    let reelId = getReelId(container)
+    if (reelId < currentShortID){
       document.querySelector("#navigation-button-up button").click()
+    } else {
+      document.querySelector("#navigation-button-down button").click()
     }
     return true
   }
+}
+function getReelId(container){
+  let parent = container.closest(".reel-video-in-sequence-new")
+  if (parent){
+    let val = parent.getAttribute("id")
+    if (val && !isNaN(val)){
+      return parseInt(val)
+    }
+  }
+  return 0
 }
 
 var HotKeysWorker = function(e){
@@ -813,7 +824,7 @@ function main(){
             return
           }
         }
-        currentShortID = container.id
+        currentShortID = getReelId(container)
       }
       if (actions && video){
         clearInterval(timerId)

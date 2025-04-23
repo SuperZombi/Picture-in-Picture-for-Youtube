@@ -3,7 +3,7 @@
 # Picture-in-Picture-for-Youtube
 
 <p align="right">
-    <img align="left" src="https://shields.io/badge/version-v2.5.2-blue">
+    <img align="left" src="https://shields.io/badge/version-v2.5.3-blue">
     <a href="#donate"><img src="https://shields.io/badge/💲-Support_the_Project-2ea043"></a>
 </p>
 
@@ -70,6 +70,12 @@
 
 
 ## List of changes:
+
+  #### 2.5.3:
+   * `Shorts` Fixed ad skipping.
+
+  #### 2.5.2:
+   * `Shorts` Fix Ignoring shortcuts when the search bar is active.
 
   #### 2.5.1:
    * `Shorts` Fixed «Watch on TV».

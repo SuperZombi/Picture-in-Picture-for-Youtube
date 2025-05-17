@@ -3,7 +3,7 @@
 # Picture-in-Picture-for-Youtube
 
 <p align="right">
-    <img align="left" src="https://shields.io/badge/version-v2.5.3-blue">
+    <img align="left" src="https://shields.io/badge/version-v2.5.4-blue">
     <a href="#donate"><img src="https://shields.io/badge/💲-Support_the_Project-2ea043"></a>
 </p>
 
@@ -71,8 +71,15 @@
 
 ## List of changes:
 
+  #### 2.5.4:
+   * `Shorts` Fixed interface due to YouTube update.
+
   #### 2.5.3:
-   * `Shorts` Fixed ad skipping.
+   * `Shorts` Fixed ads skipping.
+
+<br/>
+<details>
+  <summary>Other</summary>
 
   #### 2.5.2:
    * `Shorts` Fix Ignoring shortcuts when the search bar is active.
@@ -85,10 +92,6 @@
    * 🟢 `Shorts` Ads Skip.
    * 🟡 `Shorts` Fixed fullscreen video controls.
    * 🔴 `Shorts` ShowTimeline is deprecated.
-
-<br/>
-<details>
-  <summary>Other</summary>
 
   #### 2.4.11:
    * `Shorts` Fullscreen and speedometer icons are no longer draggable.

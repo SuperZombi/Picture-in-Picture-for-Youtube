@@ -1,6 +1,6 @@
 // ==UserScript==
 // @name         Picture-in-Picture for Youtube
-// @version      2.5.3
+// @version      2.5.4
 // @description  Picture-in-Picture button and other useful features.
 // @author       Super Zombi
 // @match        https://www.youtube.com/*
@@ -338,7 +338,7 @@ GM_registerMenuCommand(get_message("settings"), ()=>{
         <span style="margin-left:5px; ${document.documentElement.hasAttribute("dark") ? "color: #00c0ff;" : "color: blue;"}">GitHub</span>
       </a>
 
-      <img style="margin-top:2px;" src="https://shields.io/badge/version-v2.5.2-blue">
+      <img style="margin-top:2px;" src="https://shields.io/badge/version-v2.5.4-blue">
     </p>
   `)
   div.appendChild(content)
@@ -583,13 +583,14 @@ function addSpeedometer(parrent){
     let div = document.createElement("div")
     div.id = "speedometer"
     div.title = get_message("speed")
-    div.style.paddingTop = "10px"
+    div.style.marginBottom = "16px"
     div.style.position = "relative"
     div.style.display = "flex";
     div.style.alignItems = "center";
     let img = document.createElement("img")
     img.src = images["speedometer.svg"]
     img.draggable = false;
+    img.style.userSelect = "none"
     img.style.cursor = "pointer"
     img.style.height = "32px"
     img.style.marginBottom = "2px";
@@ -641,9 +642,7 @@ function addFullScreen(parrent, video){
     let div = document.createElement("div")
     div.id = "fullScreener"
     div.title = get_message("fullscreen")
-    div.style.height = "24px"
-    div.style.width = "28px"
-    div.style.marginTop = "14px"
+    div.style.marginBottom = "14px"
     div.style.cursor = "pointer"
     div.style.transition = "0.2s ease"
     div.onmouseover = _=> {
@@ -658,6 +657,8 @@ function addFullScreen(parrent, video){
     let img = document.createElement("img")
     img.src = images["full.svg"]
     img.draggable = false;
+    img.style.userSelect = "none"
+    img.style.width = "28px"
     div.appendChild(img)
     parrent.insertBefore(div, parrent.querySelector("#share-button"));
   }

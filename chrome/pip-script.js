@@ -167,13 +167,14 @@ function addSpeedometer(parrent){
 		let div = document.createElement("div")
 		div.id = "speedometer"
 		div.title = chrome.i18n.getMessage("speed")
-		div.style.paddingTop = "10px"
+		div.style.marginBottom = "16px"
 		div.style.position = "relative"
 		div.style.display = "flex";
 		div.style.alignItems = "center";
 		let img = document.createElement("img")
 		img.src = chrome.runtime.getURL("images/speedometer.svg")
 		img.draggable = false;
+		img.style.userSelect = "none"
 		img.style.cursor = "pointer"
 		img.style.height = "32px"
 		img.style.marginBottom = "2px";
@@ -225,9 +226,7 @@ function addFullScreen(parrent, video){
 		let div = document.createElement("div")
 		div.id = "fullScreener"
 		div.title = chrome.i18n.getMessage("fullscreen")
-		div.style.height = "24px"
-		div.style.width = "28px"
-		div.style.marginTop = "14px"
+		div.style.marginBottom = "14px"
 		div.style.cursor = "pointer"
 		div.style.transition = "0.2s ease"
 		div.onmouseover = _=> {
@@ -242,6 +241,8 @@ function addFullScreen(parrent, video){
 		let img = document.createElement("img")
 		img.src = chrome.runtime.getURL("images/full.svg")
 		img.draggable = false;
+		img.style.userSelect = "none"
+		img.style.width = "28px"
 		div.appendChild(img)
 		parrent.insertBefore(div, parrent.querySelector("#share-button"));
 	}

@@ -2,7 +2,7 @@ var Settings = {}
 chrome.storage.sync.get({ changeIcon: true, animation: "default",
 						  hideSponsor: false, hideButtonLabels: false, hideWatchOnTv: false, hideClips: false, hideDownload: false,
 						  maximumVolume: false, autoNext: false, skipAds: true,
-						  speedometer: true, fullscreen: true,
+						  speedometer: true, fullscreen: true, shorts_download: true,
 						  shortcuts: {
 						  	"fullscreen": true, "play_pause": true,
 						  	"ArrowLeftRight": "5", "J_and_L": "10"
@@ -286,6 +286,63 @@ function addFullScreen(parrent, video){
 		}
 	})
 }
+function addDownloadButton(parrent){
+	if (!parrent.querySelector("#downloadShort")){
+		let div = document.createElement("div")
+		div.id = "downloadShort"
+		div.title = chrome.i18n.getMessage("download")
+		div.style.marginBottom = "14px"
+		div.style.cursor = "pointer"
+		div.style.transition = "0.2s ease"
+		div.onmouseover = _=> {
+			if (!div.getAttribute("disabled")){
+				div.style.transform = "scale(1.15)"
+				setTimeout(function(){ div.style.transform = "" }, 150)
+			}
+		}
+		div.onclick = _=>{
+			if (!div.getAttribute("disabled")){
+				div.setAttribute("disabled", true)
+				div.style.cursor = "wait"
+				let video = getShortsCurrent("#shorts-container video")
+				if(!video){return}
+				let stream = video.captureStream()
+				let recordedChunks = []
+				let recorder = new MediaRecorder(stream, { mimeType : 'video/webm' })
+				recorder.ondataavailable = e=>{
+					if (e.data.size > 0) {
+						recordedChunks.push(e.data)
+					}
+				}
+				recorder.onstop = _=>{
+					let blob = new Blob(recordedChunks, { type: 'video/webm' });
+					let url = URL.createObjectURL(blob)
+					let a = document.createElement('a')
+					a.href = url
+					a.download = `${document.title}.webm`
+					a.click()
+					div.removeAttribute("disabled")
+					div.style.cursor = "pointer"
+					video.ontimeupdate = null
+					video.setAttribute("loop", true)
+				}
+				video.currentTime = 0;
+				video.playbackRate = 1;
+				video.play();
+				recorder.start();
+				video.onended = _=>recorder.stop();
+				video.ontimeupdate = _=>video.removeAttribute("loop")
+			}
+		}
+		let img = document.createElement("img")
+		img.src = chrome.runtime.getURL("images/download.svg")
+		img.draggable = false;
+		img.style.userSelect = "none"
+		img.style.width = "36px"
+		div.appendChild(img)
+		parrent.insertBefore(div, parrent.querySelector("#share-button"));
+	}
+}
 
 // Deprecated
 function smartVolume(video){
@@ -416,6 +473,9 @@ function main(){
 			if (actions && video){
 				clearInterval(timerId)
 
+				if (Settings.shorts_download){
+					addDownloadButton(actions)
+				}
 				if (Settings.speedometer){
 					video.playbackRate = currentSpeed
 					addSpeedometer(actions)

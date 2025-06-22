@@ -91,5 +91,11 @@
    },
    "saveBut": {
       "message": "Save"
+   },
+   "download": {
+      "message": "Download"
+   },
+   "downloadShorts": {
+      "message": "Video downloading"
    }
 }

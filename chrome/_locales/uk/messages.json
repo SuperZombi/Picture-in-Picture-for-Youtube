@@ -88,5 +88,11 @@
    },
    "saveBut": {
       "message": "Зберегти"
+   },
+   "download": {
+      "message": "Завантажити"
+   },
+   "downloadShorts": {
+      "message": "Завантаження відео"
    }
 }

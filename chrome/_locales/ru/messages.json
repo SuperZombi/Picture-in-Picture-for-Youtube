@@ -88,5 +88,11 @@
    },
    "saveBut": {
       "message": "Сохранить"
+   },
+   "download": {
+      "message": "Скачать"
+   },
+   "downloadShorts": {
+      "message": "Скачивание видео"
    }
 }

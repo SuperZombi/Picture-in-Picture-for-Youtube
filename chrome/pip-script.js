@@ -151,7 +151,7 @@ function getShortsCurrent(selector){
 	}
 }
 
-var currentSpead = 1;
+var currentSpeed = 1;
 function addSpeedometer(parrent){
 	function click_heandler(element){
 		document.body.onclick = function(event){
@@ -192,16 +192,16 @@ function addSpeedometer(parrent){
 		input.min = 1
 		input.max = 2
 		input.step = 0.25
-		input.value = currentSpead
+		input.value = currentSpeed
 		input.style.cursor = "ew-resize"
 		input.oninput = function(e){
 			e.target.nextElementSibling.innerHTML = e.target.value + "x";
 			let video = getShortsCurrent("#shorts-container video")
-			currentSpead = e.target.value;
+			currentSpeed = e.target.value;
 			video.playbackRate = e.target.value;
 		}
 		let text = document.createElement("span")
-		text.innerHTML = currentSpead + "x";
+		text.innerHTML = currentSpeed + "x";
 		text.style.fontSize = "14px";
 		text.style.marginLeft = "5px";
 		text.style.color = "#aaa"
@@ -216,8 +216,8 @@ function addSpeedometer(parrent){
 		getShortsCurrent("#shorts-container .overlay").style.overflow = "visible"
 	}
 	else{
-		parrent.querySelector("#speedometer input").value = currentSpead;
-		parrent.querySelector("#speedometer span").innerHTML = currentSpead + "x";
+		parrent.querySelector("#speedometer input").value = currentSpeed;
+		parrent.querySelector("#speedometer span").innerHTML = currentSpeed + "x";
 		click_heandler(parrent.querySelector("#speedometer"))
 	}
 }
@@ -269,9 +269,9 @@ function addFullScreen(parrent, video){
 			var playRateHandler = function(){
 				let element = getShortsCurrent("#shorts-container #actions").querySelector("#speedometer input")
 				if (element){
-					currentSpead = video.playbackRate;
-					element.value = currentSpead;
-					element.nextElementSibling.innerHTML = currentSpead + "x";
+					currentSpeed = video.playbackRate;
+					element.value = currentSpeed;
+					element.nextElementSibling.innerHTML = currentSpeed + "x";
 				}
 			}
 
@@ -417,7 +417,7 @@ function main(){
 				clearInterval(timerId)
 
 				if (Settings.speedometer){
-					video.playbackRate = currentSpead
+					video.playbackRate = currentSpeed
 					addSpeedometer(actions)
 				}
 				if (Settings.fullscreen){

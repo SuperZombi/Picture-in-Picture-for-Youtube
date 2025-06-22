@@ -732,7 +732,7 @@ function addDownloadButton(parrent){
         div.style.cursor = "wait"
         let video = getShortsCurrent("#shorts-container video")
         if(!video){return}
-        let stream = video.captureStream()
+        let stream = video.captureStream ? video.captureStream() : video.mozCaptureStream()
         let recordedChunks = []
         let recorder = new MediaRecorder(stream, { mimeType : 'video/webm' })
         recorder.ondataavailable = e=>{

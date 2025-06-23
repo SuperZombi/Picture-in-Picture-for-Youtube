@@ -43,7 +43,7 @@
 
 ## Installation:
 
-### [Chrome Web Store](https://chrome.google.com/webstore/detail/picture-in-picture-for-yo/choemllnhinpmdednemjdpbaolkpnhck)
+### <img width="18px" src="https://www.svgrepo.com/show/452180/chrome.svg"> [Chrome Web Store](https://chrome.google.com/webstore/detail/picture-in-picture-for-yo/choemllnhinpmdednemjdpbaolkpnhck)
 
 ### Chrome (dev):
   1. Download latest **[Release](https://github.com/SuperZombi/Picture-in-Picture-for-Youtube/releases)**.
@@ -53,7 +53,7 @@
   5. Press "Load unpacked extension".
   6. Select the path to the ```src``` folder.
 
-### Tampermonkey:
+### <img src="https://upload.wikimedia.org/wikipedia/commons/c/c0/Tampermonkey_logo.svg" width="18px"> Tampermonkey:
 1. Install **[Tampermonkey](https://www.tampermonkey.net/)**.
 2. Install **[Script](https://raw.githubusercontent.com/SuperZombi/Picture-in-Picture-for-Youtube/main/pip.user.js)**.
 

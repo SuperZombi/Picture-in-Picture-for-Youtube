@@ -1,8 +1,9 @@
 var Settings = {}
 chrome.storage.sync.get({ changeIcon: true, animation: "default",
 						  hideSponsor: false, hideButtonLabels: false, hideWatchOnTv: false, hideClips: false, hideDownload: false,
+						  hideShortsRemix: false, hideShortsChannelAvatar: false,
 						  maximumVolume: false, autoNext: false, skipAds: true,
-						  speedometer: true, fullscreen: true, shorts_download: true,
+						  speedometer: true, fullscreen: true, shorts_download: false,
 						  shortcuts: {
 						  	"fullscreen": true, "play_pause": true,
 						  	"ArrowLeftRight": "5", "J_and_L": "10"
@@ -92,21 +93,14 @@ function hide_button(id){
 function hideAllText_onButton(){
 	let timerId = setInterval(() => {
 		if (getButtons()?.offsetParent && isVideoLoaded()) {
-			let arr = [ ...document.querySelectorAll('#top-level-buttons-computed ytd-button-renderer'),
-						...document.querySelectorAll('#flexible-item-buttons ytd-button-renderer')]
+			let arr = document.querySelectorAll('#top-level-buttons-computed yt-button-view-model')
 			for (let i = 0; i < arr.length; i++){
-				let text_element = arr[i].querySelector("span[role='text']")
+				let text_element = arr[i].querySelector(".yt-spec-button-shape-next__button-text-content")
 				if (text_element){
-					text_element.parentElement.remove()
-					let icon = arr[i].querySelector("yt-icon").parentElement;
+					let icon = text_element.previousElementSibling;
 					icon.style.marginLeft = 0;
 					icon.style.marginRight = 0;
-				}
-				else{
-					text_element = arr[i].querySelector("#text")
-					if (text_element){
-						text_element.remove()
-					}
+					text_element.remove()
 				}
 			}
 			clearInterval(timerId)
@@ -495,9 +489,25 @@ function main(){
 					window.addEventListener("keydown", HotKeysWorker, true)
 				}
 				if (Settings.hideButtonLabels){
-					let text_element = actions.querySelector("#share-button span[role='text']")
-					if (text_element){
-						text_element.parentElement.remove()
+					[
+						actions.querySelector("#share-button span[role='text']"),
+						actions.querySelector("#remix-button span[role='text']"),
+					].forEach(text_element=>{
+						if (text_element){
+							text_element.parentElement.remove()
+						}
+					})
+				}
+				if (Settings.hideShortsRemix){
+					let button = actions.querySelector("#remix-button")
+					if (button){
+						button.remove()
+					}
+				}
+				if (Settings.hideShortsChannelAvatar){
+					let button = actions.querySelector("#pivot-button")
+					if (button){
+						button.remove()
 					}
 				}
 			}

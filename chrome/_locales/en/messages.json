@@ -69,7 +69,7 @@
 
    "hideWatchOnTv": {
       "message": "Hide «Watch on TV»"
-   }, "hideWatchOnTvTooltip": { "message": "../images/tooltips/watch-on-tv.png" },
+   },
 
    "hideSponsor": {
       "message": "Hide «Sponsor» button"
@@ -82,6 +82,13 @@
    "hideDownload": {
       "message": "Hide «Download» button"
    }, "hideDownloadTooltip": { "message": "../images/tooltips/en/download.png" },
+
+   "hideShortsRemix": {
+      "message": "Hide «Remix» in Shorts"
+   },
+   "hideShortsChannelAvatar": {
+      "message": "Hide Channel Avatar in Shorts"
+   },
 
    "updateAvailable": {
        "message": "Update available"

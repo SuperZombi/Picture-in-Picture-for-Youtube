@@ -80,6 +80,13 @@
       "message": "Сховати кнопку «Завантажити»"
    }, "hideDownloadTooltip": { "message": "../images/tooltips/uk/download.png" },
 
+   "hideShortsRemix": {
+      "message": "Сховати «Ремікс» у Shorts"
+   },
+   "hideShortsChannelAvatar": {
+      "message": "Сховати аватар каналу у Shorts"
+   },
+
    "updateAvailable": {
        "message": "Доступне оновлення"
    },

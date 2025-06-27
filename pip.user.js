@@ -1,6 +1,6 @@
 // ==UserScript==
 // @name         Picture-in-Picture for Youtube
-// @version      2.6.0
+// @version      2.6.1
 // @description  Picture-in-Picture button and other useful features.
 // @author       Super Zombi
 // @match        https://www.youtube.com/*
@@ -44,6 +44,8 @@ const locale = {
     "hideDownload": "Hide «Download» Button",
     "hideSponsor": "Hide «Sponsor» Button",
     "hideWatchOnTv": "Hide «Watch on TV»",
+    "hideShortsRemix": "Hide «Remix» in Shorts",
+    "hideShortsChannelAvatar": "Hide Channel Avatar in Shorts",
     "speed": "Speed",
     "playbackSpeed": "Playback speed",
     "fullscreen": "Full screen",
@@ -71,6 +73,8 @@ const locale = {
     "hideClips": "Скрыть кнопку «Клипы»",
     "hideDownload": "Скрыть кнопку «Скачать»",
     "hideWatchOnTv": "Скрыть «Воспр. на телевизоре»",
+    "hideShortsRemix": "Скрыть «Ремикс» в Shorts",
+    "hideShortsChannelAvatar": "Скрыть аватар канала в Shorts",
     "speed": "Скорость",
     "playbackSpeed": "Скорость воспроизведения",
     "fullscreen": "Полный экран",
@@ -97,6 +101,8 @@ const locale = {
     "hideClips": "Сховати кнопку «Кліпи»",
     "hideDownload": "Сховати кнопку «Завантажити»",
     "hideWatchOnTv": "Сховати «Відтвор. на телевізорі»",
+    "hideShortsRemix": "Сховати «Ремікс» у Shorts",
+    "hideShortsChannelAvatar": "Сховати аватар каналу у Shorts",
     "speed": "Швидкість",
     "playbackSpeed": "Швидкість програвання",
     "fullscreen": "Повний екран",
@@ -256,7 +262,18 @@ GM_registerMenuCommand(get_message("settings"), ()=>{
           <input style="cursor: pointer;" class="pip_settings" type="checkbox" name="hideSponsor">
           <a>${get_message('hideSponsor')}</a>
         </label>
+
+        <label style="display:block; margin-top:8px; cursor:pointer;">
+          <input style="cursor: pointer;" class="pip_settings" type="checkbox" name="hideShortsRemix">
+          <a>${get_message('hideShortsRemix')}</a>
+        </label>
+
+        <label style="display:block; margin-top:8px; cursor:pointer;">
+          <input style="cursor: pointer;" class="pip_settings" type="checkbox" name="hideShortsChannelAvatar">
+          <a>${get_message('hideShortsChannelAvatar')}</a>
+        </label>
     </details>
+
     <details style="margin-top:10px; margin-bottom:10px; text-align: left; font-size: 12pt;">
       <summary style="text-align: center; cursor: pointer; user-select: none;">Shorts</summary>
         <label style="display:block; margin-top:10px; cursor:pointer;">
@@ -349,7 +366,7 @@ GM_registerMenuCommand(get_message("settings"), ()=>{
         <span style="margin-left:5px; ${document.documentElement.hasAttribute("dark") ? "color: #00c0ff;" : "color: blue;"}">GitHub</span>
       </a>
 
-      <img style="margin-top:2px;" src="https://shields.io/badge/version-v2.6.0-blue">
+      <img style="margin-top:2px;" src="https://shields.io/badge/version-v2.6.1-blue">
     </p>
   `)
   div.appendChild(content)
@@ -519,20 +536,14 @@ function hide_button(id){
 function hideAllText_onButton(){
   let timerId = setInterval(() => {
     if (getButtons()?.offsetParent && isVideoLoaded()) {
-      let arr = document.querySelectorAll('#top-level-buttons-computed ytd-button-renderer')
+      let arr = document.querySelectorAll('#top-level-buttons-computed yt-button-view-model')
       for (let i = 0; i < arr.length; i++){
-        let text_element = arr[i].querySelector("span[role='text']")
+        let text_element = arr[i].querySelector(".yt-spec-button-shape-next__button-text-content")
         if (text_element){
-          text_element.parentElement.remove();
-          let icon = arr[i].querySelector("yt-icon").parentElement;
+          let icon = text_element.previousElementSibling;
           icon.style.marginLeft = 0;
           icon.style.marginRight = 0;
-        }
-        else{
-          text_element = arr[i].querySelector("#text")
-          if (text_element){
-            text_element.remove()
-          }
+          text_element.remove()
         }
       }
       clearInterval(timerId)
@@ -898,7 +909,7 @@ function main(){
       }
       if (actions && video){
         clearInterval(timerId)
-        if (db_get("shorts_download", true)){
+        if (db_get("shorts_download", false)){
           addDownloadButton(actions)
         }
         if (db_get("speedometer", true)){
@@ -918,6 +929,28 @@ function main(){
         }
         if (Object.keys(db_get("shortcuts", {})).length > 0){
           window.addEventListener("keydown", HotKeysWorker, true)
+        }
+        if (db_get("hideButtonLabels", false)){
+          [
+            actions.querySelector("#share-button span[role='text']"),
+            actions.querySelector("#remix-button span[role='text']"),
+          ].forEach(text_element=>{
+            if (text_element){
+              text_element.parentElement.remove()
+            }
+          })
+        }
+        if (db_get("hideShortsRemix", false)){
+          let button = actions.querySelector("#remix-button")
+          if (button){
+            button.remove()
+          }
+        }
+        if (db_get("hideShortsChannelAvatar", false)){
+          let button = actions.querySelector("#pivot-button")
+          if (button){
+            button.remove()
+          }
         }
       }
     }, 50);

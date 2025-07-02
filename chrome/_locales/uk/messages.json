@@ -81,10 +81,10 @@
    }, "hideDownloadTooltip": { "message": "../images/tooltips/uk/download.png" },
 
    "hideShortsRemix": {
-      "message": "Сховати «Ремікс» у Shorts"
+      "message": "Сховати кнопку «Ремікс»"
    },
    "hideShortsChannelAvatar": {
-      "message": "Сховати аватар каналу у Shorts"
+      "message": "Сховати аватар каналу"
    },
 
    "updateAvailable": {

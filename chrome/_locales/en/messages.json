@@ -84,10 +84,10 @@
    }, "hideDownloadTooltip": { "message": "../images/tooltips/en/download.png" },
 
    "hideShortsRemix": {
-      "message": "Hide «Remix» in Shorts"
+      "message": "Hide «Remix» button"
    },
    "hideShortsChannelAvatar": {
-      "message": "Hide Channel Avatar in Shorts"
+      "message": "Hide Channel Avatar"
    },
 
    "updateAvailable": {

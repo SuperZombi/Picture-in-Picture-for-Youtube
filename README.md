@@ -3,7 +3,7 @@
 # Picture-in-Picture-for-Youtube
 
 <p align="right">
-    <img align="left" src="https://shields.io/badge/version-v2.6.1-blue">
+    <img align="left" src="https://shields.io/badge/version-v2.6.2-blue">
     <a href="#donate"><img src="https://shields.io/badge/💲-Support_the_Project-2ea043"></a>
 </p>
 
@@ -70,6 +70,8 @@
 
 
 ## List of changes:
+  #### 2.6.2:
+   * 🔴 `Shorts` Remove Video Downloading (YouTube policy).
 
   #### 2.6.1:
    * 🟢 `Shorts` Hide «Remix» in Shorts.

@@ -1,4 +1,4 @@
-<img src="github/images/app-icon.png" height="128" align="right"></img>
+<img src="github/images/app-icon.png" width="128" align="right"></img>
 
 # Picture-in-Picture-for-Youtube
 

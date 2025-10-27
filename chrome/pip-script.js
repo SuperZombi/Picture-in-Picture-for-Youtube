@@ -118,6 +118,33 @@ function hideWatchOnTV(){
 	observer.observe(button, {attributes: true});
 }
 
+async function findIconInShorts(actions, icon_id){
+	const data = {
+		"share": "m13.202 3.368 9.438 7.865c.48.4.48 1.137 0 1.537l-9.438 7.865c-.652.543-1.64.08-1.64-.768V16H9.957c-2.778 0-5.406 1.263-7.141 3.432-.304.38-.912.086-.803-.388l1.118-4.843C3.968 10.572 7.2 8 10.926 8h.636V4.137c0-.848.989-1.311 1.64-.769Z",
+		"remix": "M1.954 10h2.05c0-4.418 3.581-8 8-8H13.1c.253 0 .346.334.128.464l-.341.206c-2.41 1.445-3.885 4.05-3.885 6.86V10h2.05c.402 0 .64.451.412.783l-4.55 6.618c-.198.289-.625.289-.824 0l-4.549-6.618c-.228-.332.01-.783.412-.783Zm20.099 4h-2.05c0 4.418-3.581 8-8 8h-1.097c-.254 0-.346-.334-.129-.464l.342-.206c2.41-1.445 3.885-4.05 3.885-6.86V14h-2.05c-.403 0-.64-.451-.412-.783l4.55-6.618c.198-.289.625-.289.824 0l4.549 6.618c.228.332-.01.783-.412.783Z",
+	}
+	return new Promise(resolve=>{
+		let timerId = setInterval(() => {
+			let allIcons = actions.querySelectorAll("svg")
+			if (allIcons.length > 0){
+				clearInterval(timerId)
+				for (let svg of actions.querySelectorAll("svg")){
+					let icon = svg.querySelector("path").getAttribute("d")
+					if (icon === data[icon_id]){
+						resolve(svg.closest("button-view-model"))
+					}
+				}
+				resolve(null)
+			}
+		}, 200);
+	})
+}
+
+async function hideShortsButton(area, id){
+	let target = await findIconInShorts(area, id)
+	if (target){ target.remove() }
+}
+
 
 function youtube_parser(url){
 	var regExp = /^.*((youtu.be\/)|(v\/)|(\/u\/\w\/)|(embed\/)|(watch\?))\??v?=?([^#&?]*).*/;
@@ -146,7 +173,7 @@ function getShortsCurrent(selector){
 }
 
 var currentSpeed = 1;
-function addSpeedometer(parrent){
+async function addSpeedometer(parrent){
 	function click_heandler(element){
 		document.body.onclick = function(event){
 			let path = event.path || (event.composedPath && event.composedPath());
@@ -161,9 +188,9 @@ function addSpeedometer(parrent){
 		let div = document.createElement("div")
 		div.id = "speedometer"
 		div.title = chrome.i18n.getMessage("speed")
-		div.style.marginBottom = "16px"
 		div.style.position = "relative"
 		div.style.display = "flex";
+		div.style.justifyContent = "center"
 		div.style.alignItems = "center";
 		let img = document.createElement("img")
 		img.src = chrome.runtime.getURL("images/speedometer.svg")
@@ -179,7 +206,7 @@ function addSpeedometer(parrent){
 		slider_area.style.display = "flex";
 		slider_area.style.alignItems = "center";
 		slider_area.style.position = "absolute";
-		slider_area.style.left = "40px";
+		slider_area.style.left = "100%";
 
 		let input = document.createElement("input")
 		input.type = "range"
@@ -206,8 +233,15 @@ function addSpeedometer(parrent){
 
 		div.appendChild(img)
 		div.appendChild(slider_area)
-		parrent.insertBefore(div, parrent.querySelector("#share-button"));
+
 		getShortsCurrent("#shorts-container .overlay").style.overflow = "visible"
+
+		let targetParent = await findIconInShorts(parrent, "share")
+		if (targetParent){
+			targetParent.parentElement.insertBefore(div, targetParent)
+		} else {
+			parrent.appendChild(div)
+		}
 	}
 	else{
 		parrent.querySelector("#speedometer input").value = currentSpeed;
@@ -215,14 +249,16 @@ function addSpeedometer(parrent){
 		click_heandler(parrent.querySelector("#speedometer"))
 	}
 }
-function addFullScreen(parrent, video){
+async function addFullScreen(parrent, video){
 	if (!parrent.querySelector("#fullScreener")){
 		let div = document.createElement("div")
 		div.id = "fullScreener"
 		div.title = chrome.i18n.getMessage("fullscreen")
-		div.style.marginBottom = "14px"
 		div.style.cursor = "pointer"
 		div.style.transition = "0.2s ease"
+		div.style.display = "flex"
+		div.style.justifyContent = "center"
+		div.style.alignItems = "center";
 		div.onmouseover = _=> {
 			div.style.transform = "scale(1.15)"
 			setTimeout(function(){ div.style.transform = "" }, 150)
@@ -238,7 +274,13 @@ function addFullScreen(parrent, video){
 		img.style.userSelect = "none"
 		img.style.width = "28px"
 		div.appendChild(img)
-		parrent.insertBefore(div, parrent.querySelector("#share-button"));
+
+		let targetParent = await findIconInShorts(parrent, "share")
+		if (targetParent){
+			targetParent.parentElement.insertBefore(div, targetParent)
+		} else {
+			parrent.appendChild(div)
+		}
 	}
 
 	video.addEventListener("fullscreenchange", _=>{
@@ -429,20 +471,14 @@ function main(){
 					window.addEventListener("keydown", HotKeysWorker, true)
 				}
 				if (Settings.hideButtonLabels){
-					[
-						actions.querySelector("#share-button span[role='text']"),
-						actions.querySelector("#remix-button span[role='text']"),
-					].forEach(text_element=>{
+					actions.querySelectorAll("button-view-model span[role='text']").forEach(text_element=>{
 						if (text_element){
 							text_element.parentElement.remove()
 						}
 					})
 				}
 				if (Settings.hideShortsRemix){
-					let button = actions.querySelector("#remix-button")
-					if (button){
-						button.remove()
-					}
+					hideShortsButton(actions, "remix")
 				}
 				if (Settings.hideShortsChannelAvatar){
 					let button = actions.querySelector("#pivot-button")

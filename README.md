@@ -3,7 +3,7 @@
 # Picture-in-Picture-for-Youtube
 
 <p align="right">
-    <img align="left" src="https://shields.io/badge/version-v2.6.2-blue">
+    <img align="left" src="https://shields.io/badge/version-v2.7.0-blue">
     <a href="#donate"><img src="https://shields.io/badge/💲-Support_the_Project-2ea043"></a>
 </p>
 
@@ -70,6 +70,13 @@
 
 
 ## List of changes:
+  ### 2.7.0:
+   * 🟡 Updated for new YouTube UI.
+
+<br/>
+<details>
+  <summary>Other</summary>
+
   #### 2.6.2:
    * 🔴 `Shorts` Remove Video Downloading (YouTube policy).
 
@@ -79,11 +86,7 @@
    * 🟡 Fixed «Hide button labels».
 
   ### 2.6.0:
-   * 🟢 `Shorts` Video Downloading
-
-<br/>
-<details>
-  <summary>Other</summary>
+   * 🟢 `Shorts` Video Downloading (deprecated in `2.6.2`)
 
   #### 2.5.4:
    * `Shorts` Fixed interface due to YouTube update.

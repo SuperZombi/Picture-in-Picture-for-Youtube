@@ -198,13 +198,14 @@ async function addSpeedometer(parrent){
 		div.style.display = "flex";
 		div.style.justifyContent = "center"
 		div.style.alignItems = "center";
+		div.style.padding = "8px"
+		div.style.margin = "auto"
 		let img = document.createElement("img")
 		img.src = chrome.runtime.getURL("images/speedometer.svg")
 		img.draggable = false;
 		img.style.userSelect = "none"
 		img.style.cursor = "pointer"
 		img.style.height = "32px"
-		img.style.marginBottom = "2px";
 		click_heandler(div)
 
 		let slider_area = document.createElement("div")
@@ -243,17 +244,18 @@ async function addSpeedometer(parrent){
 		getShortsCurrent("#shorts-container .overlay").style.overflow = "visible"
 
 		let targetParent = await findIconInShorts(parrent, "share")
-		if (targetParent){
-			targetParent.parentElement.insertBefore(div, targetParent)
-		} else {
-			parrent.appendChild(div)
+		if (!parrent.querySelector("#speedometer")){
+			if (targetParent){
+				targetParent.parentElement.insertBefore(div, targetParent)
+			} else {
+				parrent.appendChild(div)
+			}
+			return
 		}
 	}
-	else{
-		parrent.querySelector("#speedometer input").value = currentSpeed;
-		parrent.querySelector("#speedometer span").innerHTML = currentSpeed + "x";
-		click_heandler(parrent.querySelector("#speedometer"))
-	}
+	parrent.querySelector("#speedometer input").value = currentSpeed;
+	parrent.querySelector("#speedometer span").innerHTML = currentSpeed + "x";
+	click_heandler(parrent.querySelector("#speedometer"))
 }
 async function addFullScreen(parrent, video){
 	if (!parrent.querySelector("#fullScreener")){
@@ -265,6 +267,8 @@ async function addFullScreen(parrent, video){
 		div.style.display = "flex"
 		div.style.justifyContent = "center"
 		div.style.alignItems = "center";
+		div.style.padding = "8px"
+		div.style.margin = "auto"
 		div.onmouseover = _=> {
 			div.style.transform = "scale(1.15)"
 			setTimeout(function(){ div.style.transform = "" }, 150)
@@ -282,10 +286,12 @@ async function addFullScreen(parrent, video){
 		div.appendChild(img)
 
 		let targetParent = await findIconInShorts(parrent, "share")
-		if (targetParent){
-			targetParent.parentElement.insertBefore(div, targetParent)
-		} else {
-			parrent.appendChild(div)
+		if (!parrent.querySelector("#fullScreener")){
+			if (targetParent){
+				targetParent.parentElement.insertBefore(div, targetParent)
+			} else {
+				parrent.appendChild(div)
+			}
 		}
 	}
 
@@ -440,8 +446,8 @@ function main(){
 	}
 	if (window.location.pathname.startsWith("/shorts")){
 		let timerId = setInterval(() => {
-			let actions = getShortsCurrent("#shorts-container #actions")
-			let video = getShortsCurrent("#shorts-container video")
+			let actions = getShortsCurrent("ytd-reel-video-renderer #actions")
+			let video = getShortsCurrent("ytd-reel-video-renderer video")
 
 			if (video){
 				let container = video.closest("ytd-reel-video-renderer")
@@ -487,7 +493,7 @@ function main(){
 					hideShortsButton(actions, "remix")
 				}
 				if (Settings.hideShortsChannelAvatar){
-					let button = actions.querySelector("#pivot-button")
+					let button = actions.querySelector("pivot-button-view-model")
 					if (button){
 						button.remove()
 					}

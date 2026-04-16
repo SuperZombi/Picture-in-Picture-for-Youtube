@@ -198,8 +198,7 @@ async function addSpeedometer(parrent){
 		div.style.display = "flex";
 		div.style.justifyContent = "center"
 		div.style.alignItems = "center";
-		div.style.padding = "8px"
-		div.style.margin = "auto"
+		div.style.margin = "10px auto"
 		let img = document.createElement("img")
 		img.src = chrome.runtime.getURL("images/speedometer.svg")
 		img.draggable = false;
@@ -213,7 +212,7 @@ async function addSpeedometer(parrent){
 		slider_area.style.display = "flex";
 		slider_area.style.alignItems = "center";
 		slider_area.style.position = "absolute";
-		slider_area.style.left = "100%";
+		slider_area.style.left = "calc(100% + 10px)";
 
 		let input = document.createElement("input")
 		input.type = "range"
@@ -267,8 +266,7 @@ async function addFullScreen(parrent, video){
 		div.style.display = "flex"
 		div.style.justifyContent = "center"
 		div.style.alignItems = "center";
-		div.style.padding = "8px"
-		div.style.margin = "auto"
+		div.style.margin = "10px auto"
 		div.onmouseover = _=> {
 			div.style.transform = "scale(1.15)"
 			setTimeout(function(){ div.style.transform = "" }, 150)

@@ -444,7 +444,7 @@ function main(){
 	}
 	if (window.location.pathname.startsWith("/shorts")){
 		let timerId = setInterval(() => {
-			let actions = getShortsCurrent("ytd-reel-video-renderer #actions")
+			let actions = getShortsCurrent("ytd-reel-video-renderer reel-action-bar-view-model")
 			let video = getShortsCurrent("ytd-reel-video-renderer video")
 
 			if (video){
@@ -497,7 +497,7 @@ function main(){
 					}
 				}
 			}
-		}, 50);
+		}, 100);
 		return
 	}
 
